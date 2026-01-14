@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { IconClock, IconCheck, IconX, IconMapPin } from '@tabler/icons-react'
+import { IconClock, IconMapPin, IconCheck, IconX } from '@tabler/icons-react'
+import { theme, iconBackgrounds, statusColors } from './theme'
 
 interface AttendanceHistory {
   date: string
@@ -10,28 +11,31 @@ interface AttendanceHistory {
 }
 
 interface Props {
-  employeeId: number
-  date: string
-  checkInTime?: string
-  checkOutTime?: string
-  status: 'present' | 'absent' | 'late' | 'on_leave' | 'remote'
-  location?: string
-  biometricVerified: boolean
-  recentHistory: AttendanceHistory[]
+  input?: {
+    employeeId?: number
+    date?: string
+    checkInTime?: string
+    checkOutTime?: string
+    status?: 'present' | 'absent' | 'late' | 'on_leave' | 'remote' | 'PRESENT' | 'ABSENT' | 'LATE' | 'ON_LEAVE' | 'REMOTE'
+    location?: string
+    biometricVerified?: boolean
+    recentHistory?: AttendanceHistory[]
+  }
   toolName?: string
   toolCallId?: string
   addToolResult?: (result: any) => void
 }
 
-const statusColors = {
-  present: 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
-  absent: 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300',
-  late: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300',
-  on_leave: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
-  remote: 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300',
-}
 
-export function AttendanceTracker({ date, checkInTime, checkOutTime, status, location, biometricVerified, recentHistory = [], toolName, toolCallId, addToolResult }: Props) {
+export function AttendanceTracker({ input, toolName, toolCallId, addToolResult }: Props) {
+  const date = input?.date || '';
+  const checkInTime = input?.checkInTime;
+  const checkOutTime = input?.checkOutTime;
+  const status = input?.status || 'ABSENT';
+  const location = input?.location;
+  const biometricVerified = input?.biometricVerified || false;
+  const recentHistory = input?.recentHistory || [];
+  
   useEffect(() => {
     if (addToolResult && toolName && toolCallId) {
       addToolResult({
@@ -51,76 +55,87 @@ export function AttendanceTracker({ date, checkInTime, checkOutTime, status, loc
   }, [status, date, checkInTime, checkOutTime, biometricVerified, toolName, toolCallId, addToolResult]);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 max-w-4xl">
+    <div className={`${theme.card.base} max-w-4xl`}>
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-green-100 dark:bg-green-900 rounded-xl">
-          <IconClock className="w-6 h-6 text-green-600 dark:text-green-300" />
+        <div className={`${iconBackgrounds.green} ${theme.header.icon}`}>
+          <IconClock className={`w-6 h-6 ${theme.icon.green}`} />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Attendance Tracker</h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">تتبع الحضور</p>
+          <h2 className={theme.header.title}>Attendance Tracker</h2>
+          <p className={theme.header.subtitle}>تتبع الحضور</p>
         </div>
       </div>
 
-      <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900 dark:to-emerald-900 rounded-xl p-6 mb-6">
+      <div className={`${theme.gradient.success} rounded-3xl p-6 mb-6 ${theme.infoBox.base} ${theme.infoBox.success}`}>
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Today's Status</p>
-            <p className="text-2xl font-bold text-gray-900 dark:text-white">{date}</p>
+            <p className={`text-sm ${theme.text.muted}`}>Today's Status</p>
+            <p className={`text-2xl font-bold ${theme.text.primary}`}>{date}</p>
           </div>
-          <span className={`px-4 py-2 rounded-full font-medium ${statusColors[status]}`}>
+          <span className={`px-3 py-1 rounded-full text-sm font-medium ${theme.badge.base} ${statusColors.attendance[status] || statusColors.attendance.ABSENT}`}>
             {status.replace('_', ' ').toUpperCase()}
           </span>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-3">
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Check In</p>
-            <p className="text-lg font-bold text-gray-900 dark:text-white">{checkInTime || '--:--'}</p>
+          <div className={theme.item.compact}>
+            <p className={`text-xs ${theme.text.muted} mb-1`}>Check In</p>
+            <p className={`text-lg font-bold ${theme.text.primary}`}>{checkInTime || '--:--'}</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-3">
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Check Out</p>
-            <p className="text-lg font-bold text-gray-900 dark:text-white">{checkOutTime || '--:--'}</p>
+          <div className={theme.item.compact}>
+            <p className={`text-xs ${theme.text.muted} mb-1`}>Check Out</p>
+            <p className={`text-lg font-bold ${theme.text.primary}`}>{checkOutTime || '--:--'}</p>
           </div>
-          <div className="bg-white dark:bg-gray-800 rounded-lg p-3">
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Biometric</p>
-            <div className="flex items-center gap-2">
+          <div className={theme.item.compact}>
+            <p className={`text-xs ${theme.text.muted} mb-1`}>Location</p>
+            <div className="flex items-center gap-1">
+              <IconMapPin className={`w-4 h-4 ${theme.icon.muted}`} />
+              <p className={`text-sm font-medium ${theme.text.primary}`}>{location || 'N/A'}</p>
+            </div>
+          </div>
+          <div className={theme.item.compact}>
+            <p className={`text-xs ${theme.text.muted} mb-1`}>Verified</p>
+            <div className="flex items-center gap-1">
               {biometricVerified ? (
-                <IconCheck className="w-5 h-5 text-green-600" />
+                <><IconCheck className={`w-4 h-4 ${theme.icon.green}`} /><span className={`text-sm font-medium ${theme.text.muted}`}>Yes</span></>
               ) : (
-                <IconX className="w-5 h-5 text-red-600" />
+                <><IconX className={`w-4 h-4 ${theme.icon.primary}`} /><span className={`text-sm font-medium ${theme.text.muted}`}>No</span></>
               )}
-              <p className="text-sm font-medium text-gray-900 dark:text-white">
-                {biometricVerified ? 'Verified' : 'Not Verified'}
-              </p>
             </div>
           </div>
-          {location && (
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-3">
-              <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">Location</p>
-              <div className="flex items-center gap-1">
-                <IconMapPin className="w-4 h-4 text-gray-600 dark:text-gray-400" />
-                <p className="text-sm font-medium text-gray-900 dark:text-white">{location}</p>
-              </div>
-            </div>
-          )}
         </div>
       </div>
 
-      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Recent History</h3>
-      <div className="space-y-2">
-        {recentHistory.slice(0, 5).map((record, idx) => (
-          <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-            <div>
-              <p className="font-medium text-gray-900 dark:text-white">{record.date}</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{record.status}</p>
-            </div>
-            <div className="text-right">
-              <p className="text-sm text-gray-900 dark:text-white">{record.checkIn} - {record.checkOut}</p>
-              <p className="text-sm text-green-600 dark:text-green-400">{record.hoursWorked}h worked</p>
-            </div>
-          </div>
-        ))}
+      <div>
+        <h3 className={`text-lg font-semibold ${theme.text.primary} mb-4`}>Recent History</h3>
+        <div className={theme.table.container}>
+          <table className="w-full">
+            <thead>
+              <tr className={theme.table.header}>
+                <th className={theme.table.headerCell}>Date</th>
+                <th className={theme.table.headerCell}>Check In</th>
+                <th className={theme.table.headerCell}>Check Out</th>
+                <th className={theme.table.headerCell}>Hours</th>
+                <th className={theme.table.headerCell}>Status</th>
+              </tr>
+            </thead>
+            <tbody className={theme.table.body}>
+              {recentHistory.map((record, idx) => (
+                <tr key={idx} className={theme.table.row}>
+                  <td className={`${theme.table.cell} ${theme.text.primary}`}>{record.date}</td>
+                  <td className={`${theme.table.cell} ${theme.text.secondary}`}>{record.checkIn}</td>
+                  <td className={`${theme.table.cell} ${theme.text.secondary}`}>{record.checkOut}</td>
+                  <td className={`${theme.table.cell} ${theme.text.secondary}`}>{record.hoursWorked}h</td>
+                  <td className={theme.table.cell}>
+                    <span className={`${theme.badge.base} ${statusColors.attendance[record.status] || theme.badge.navy}`}>
+                      {record.status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   )

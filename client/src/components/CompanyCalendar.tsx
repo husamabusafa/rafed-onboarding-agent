@@ -1,5 +1,6 @@
-import { IconCalendar, IconStar } from '@tabler/icons-react'
 import { useEffect } from 'react'
+import { IconCalendar } from '@tabler/icons-react'
+import { theme, iconBackgrounds, borders } from './theme'
 
 interface Holiday {
   date?: string
@@ -21,16 +22,22 @@ interface Month {
 }
 
 interface Props {
-  year: number
-  selectedMonth?: number
-  months: Month[]
-  weekendDays: string[]
+  input?: {
+    year?: number
+    selectedMonth?: number
+    months?: Month[]
+    weekendDays?: string[]
+  }
   toolName?: string
   toolCallId?: string
   addToolResult?: (result: any) => void
 }
 
-export function CompanyCalendar({ year, months = [], weekendDays = [], toolName, toolCallId, addToolResult }: Props) {
+export function CompanyCalendar({ input, toolName, toolCallId, addToolResult }: Props) {
+  const year = input?.year || 2026;
+  const months = input?.months || [];
+  const weekendDays = input?.weekendDays || [];
+  
   useEffect(() => {
     if (addToolResult && toolName && toolCallId) {
       const totalHolidays = months.reduce((sum, month) => sum + month.holidays.length, 0);
@@ -46,55 +53,66 @@ export function CompanyCalendar({ year, months = [], weekendDays = [], toolName,
         }
       });
     }
-  }, [year, months.length, toolName, toolCallId, addToolResult]);
+  }, [year, months, toolName, toolCallId, addToolResult]);
   const currentMonth = new Date().getMonth() + 1
   const upcomingMonths = months.filter(m => m.monthNumber >= currentMonth).slice(0, 3)
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 max-w-4xl">
+    <div className={`${theme.card.base} max-w-4xl`}>
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-xl">
-          <IconCalendar className="w-6 h-6 text-blue-600 dark:text-blue-300" />
+        <div className={`${iconBackgrounds.teal} ${theme.header.icon}`}>
+          <IconCalendar className={`w-6 h-6 ${theme.icon.teal}`} />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Company Calendar {year}</h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">التقويم الشركة</p>
+          <h2 className={theme.header.title}>Company Calendar {year}</h2>
+          <p className={theme.header.subtitle}>التقويم الشركة</p>
         </div>
       </div>
 
-      <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-        <p className="text-sm text-gray-700 dark:text-gray-300">
-          <strong>Weekend Days:</strong> {weekendDays.join(', ')}
-        </p>
+      <div className={`mb-6 ${theme.infoBox.base} ${theme.infoBox.info}`}>
+        <p className={`text-sm font-medium ${theme.text.secondary}`}>Weekend Days:</p>
+        <p className={`text-xs ${theme.text.muted} mt-1`}>{weekendDays.join(', ')}</p>
       </div>
 
       <div className="space-y-4">
         {upcomingMonths.map((month) => (
-          <div key={month.monthNumber} className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
-            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900 dark:to-indigo-900 p-4">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white">{month.nameEn}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{month.nameAr}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">{month.hijriRangeEn}</p>
+          <div key={month.monthNumber} className={`${borders.base} rounded-3xl overflow-hidden`}>
+            <div className={`${theme.gradient.primary} p-4 ${borders.base} border-b`}>
+              <div className="flex justify-between items-center">
+                <div>
+                  <h3 className={`text-lg font-bold ${theme.text.primary}`}>{month.nameEn}</h3>
+                  <p className={`text-xs ${theme.text.muted}`}>{month.nameAr}</p>
+                </div>
+                <div className="text-right">
+                  <p className={`text-xs ${theme.text.muted}`}>Hijri: {month.hijriRangeEn}</p>
+                  <p className={`text-xs ${theme.text.subtle}`}>{month.hijriRangeAr}</p>
+                </div>
+              </div>
             </div>
             
-            <div className="p-4">
+            <div className={`p-4 ${theme.section.light}`}>
+              <p className={`text-xs ${theme.text.subtle} mb-3`}>
+                {month.totalDays} days, starts on {month.startsOn}
+              </p>
+              
               {month.holidays.length > 0 ? (
                 <div className="space-y-2">
                   {month.holidays.map((holiday, idx) => (
-                    <div key={idx} className="flex items-start gap-3 p-3 bg-green-50 dark:bg-green-900/30 rounded-lg border border-green-200 dark:border-green-700">
-                      <IconBeach className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <p className="font-semibold text-gray-900 dark:text-white">{holiday.nameEn}</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">{holiday.nameAr}</p>
-                        <p className="text-xs text-green-700 dark:text-green-300 mt-1">
-                          {holiday.date || `${holiday.startDate} to ${holiday.endDate}`}
-                        </p>
+                    <div key={idx} className={`${theme.infoBox.base} ${theme.infoBox.primary}`}>
+                      <div className="flex justify-between items-start">
+                        <div className="flex-1">
+                          <p className={`font-semibold text-sm ${theme.text.primary}`}>{holiday.nameEn}</p>
+                          <p className={`text-xs ${theme.text.muted}`}>{holiday.nameAr}</p>
+                          <p className={`text-xs ${theme.text.subtle} mt-1`}>
+                            {holiday.date || `${holiday.startDate} - ${holiday.endDate}`}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-gray-500 dark:text-gray-400 text-center py-2">No holidays this month</p>
+                <p className={`text-sm ${theme.text.subtle} italic`}>No holidays this month</p>
               )}
             </div>
           </div>

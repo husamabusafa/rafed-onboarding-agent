@@ -1,5 +1,6 @@
-import { IconBuilding, IconUsers, IconChevronDown, IconChevronRight } from '@tabler/icons-react'
 import { useState, useEffect } from 'react'
+import { IconBuilding, IconUsers } from '@tabler/icons-react'
+import { theme, iconBackgrounds, borders } from './theme'
 
 interface Department {
   nameAr: string
@@ -16,15 +17,18 @@ interface Division {
 }
 
 interface Props {
-  selectedDivision?: string
-  divisions: Division[]
+  input?: {
+    selectedDivision?: string
+    divisions?: Division[]
+  }
   toolName?: string
   toolCallId?: string
   addToolResult?: (result: any) => void
 }
 
-export function DepartmentBrowser({ divisions = [], toolName, toolCallId, addToolResult }: Props) {
-  const [expandedDivisions, setExpandedDivisions] = useState<Set<number>>(new Set())
+export function DepartmentBrowser({ input, toolName, toolCallId, addToolResult }: Props) {
+  const divisions = input?.divisions || [];
+  const [expandedDivisions] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     if (addToolResult && toolName && toolCallId) {
@@ -36,50 +40,58 @@ export function DepartmentBrowser({ divisions = [], toolName, toolCallId, addToo
           status: 'displayed',
           divisionsCount: divisions.length,
           totalDepartments: totalDepartments,
+          divisions: divisions,
           message: `Showing ${divisions.length} division(s) with ${totalDepartments} department(s)`
         }
       });
     }
-  }, [divisions.length, toolName, toolCallId, addToolResult]);
+  }, [divisions, toolName, toolCallId, addToolResult]);
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 max-w-4xl">
+    <div className={`${theme.card.base} max-w-4xl`}>
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-purple-100 dark:bg-purple-900 rounded-xl">
-          <IconBuilding className="w-6 h-6 text-purple-600 dark:text-purple-300" />
+        <div className={`${iconBackgrounds.navy} ${theme.header.icon}`}>
+          <IconBuilding className={`w-6 h-6 ${theme.icon.secondary}`} />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Department Browser</h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">متصفح الأقسام</p>
+          <h2 className={theme.header.title}>Department Browser</h2>
+          <p className={theme.header.subtitle}>متصفح الأقسام</p>
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-4">
         {divisions.map((division, idx) => (
-          <div key={idx} className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
-            <div className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900 dark:to-pink-900 p-4">
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white">{division.nameEn}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{division.nameAr}</p>
+          <div key={idx} className={`${borders.base} rounded-3xl overflow-hidden`}>
+            <div className={`${theme.gradient.primary} p-4 ${borders.base} border-b`}>
+              <h3 className={`text-lg font-bold ${theme.text.primary}`}>{division.nameEn}</h3>
+              <p className={`text-sm ${theme.text.muted}`}>{division.nameAr}</p>
             </div>
             
-            <div className="p-4 space-y-3">
+            <div className={`p-4 ${theme.section.light} space-y-3`}>
               {division.departments.map((dept, deptIdx) => (
-                <div key={deptIdx} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-white">{dept.nameEn}</p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">{dept.nameAr}</p>
-                    {dept.manager && (
-                      <p className="text-xs text-purple-600 dark:text-purple-400 mt-1">Manager: {dept.manager}</p>
-                    )}
+                <div key={deptIdx} className={theme.item.compact}>
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <h4 className={`font-semibold ${theme.text.primary}`}>{dept.nameEn}</h4>
+                      <p className={`text-xs ${theme.text.subtle}`}>{dept.nameAr}</p>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="text-center">
+                        <IconUsers className={`w-4 h-4 ${theme.icon.muted} mx-auto mb-1`} />
+                        <p className={`text-xs font-medium ${theme.text.secondary}`}>{dept.headCount}</p>
+                      </div>
+                      {dept.manager && (
+                        <div className="text-right">
+                          <p className={`text-xs ${theme.text.subtle}`}>Manager</p>
+                          <p className={`text-xs font-medium ${theme.text.primary}`}>{dept.manager}</p>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs rounded-full font-medium">
+                  <div className="mt-2 flex items-center gap-2">
+                    <span className={`${theme.badge.base} ${theme.badge.teal}`}>
                       {dept.region}
                     </span>
-                    <div className="flex items-center gap-1 text-gray-600 dark:text-gray-400">
-                      <IconUsers className="w-4 h-4" />
-                      <span className="text-sm font-medium">{dept.headCount}</span>
-                    </div>
                   </div>
                 </div>
               ))}

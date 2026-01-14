@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
-import { IconChecklist, IconCircleCheck, IconClock, IconAlertCircle } from '@tabler/icons-react'
+import { IconChecklist, IconClock, IconCircleCheck, IconAlertCircle } from '@tabler/icons-react'
+import { theme, iconBackgrounds } from './theme'
 
 interface Task {
   taskId: number
@@ -14,29 +15,33 @@ interface Task {
 }
 
 interface Props {
-  employeeId: number
-  onboardingStage: 'pre_joining' | 'first_day' | 'post_joining'
-  tasks: Task[]
-  progressPercentage: number
+  input?: {
+    employeeId?: number
+    onboardingStage?: 'pre_joining' | 'first_day' | 'post_joining'
+    tasks?: Task[]
+    progressPercentage?: number
+  }
   toolName?: string
   toolCallId?: string
   addToolResult?: (result: any) => void
 }
 
-interface CustomToolUIRenderProps {
-  toolName?: string
-  toolCallId?: string
-  addToolResult?: (result: any) => void
+const statusConfig: Record<string, any> = {
+  pending: { icon: IconClock, color: theme.icon.muted, bg: theme.badge.navy },
+  PENDING: { icon: IconClock, color: theme.icon.muted, bg: theme.badge.navy },
+  in_progress: { icon: IconClock, color: theme.icon.teal, bg: theme.badge.teal },
+  IN_PROGRESS: { icon: IconClock, color: theme.icon.teal, bg: theme.badge.teal },
+  completed: { icon: IconCircleCheck, color: theme.icon.green, bg: theme.badge.green },
+  COMPLETED: { icon: IconCircleCheck, color: theme.icon.green, bg: theme.badge.green },
+  blocked: { icon: IconAlertCircle, color: theme.icon.primary, bg: theme.badge.primary },
+  BLOCKED: { icon: IconAlertCircle, color: theme.icon.primary, bg: theme.badge.primary },
 }
 
-const statusConfig = {
-  pending: { icon: IconClock, color: 'text-gray-500', bg: 'bg-gray-100 dark:bg-gray-700' },
-  in_progress: { icon: IconClock, color: 'text-blue-500', bg: 'bg-blue-100 dark:bg-blue-900' },
-  completed: { icon: IconCircleCheck, color: 'text-green-500', bg: 'bg-green-100 dark:bg-green-900' },
-  blocked: { icon: IconAlertCircle, color: 'text-red-500', bg: 'bg-red-100 dark:bg-red-900' },
-}
-
-export function OnboardingTaskTracker({ onboardingStage, tasks = [], progressPercentage, toolName, toolCallId, addToolResult }: Props) {
+export function OnboardingTaskTracker({ input, toolName, toolCallId, addToolResult }: Props) {
+  const onboardingStage = input?.onboardingStage || 'pre_joining';
+  const tasks = input?.tasks || [];
+  const progressPercentage = input?.progressPercentage || 0;
+  
   useEffect(() => {
     if (addToolResult && toolName && toolCallId) {
       const completedTasks = tasks.filter(t => t.status === 'completed').length;
@@ -53,58 +58,60 @@ export function OnboardingTaskTracker({ onboardingStage, tasks = [], progressPer
         }
       });
     }
-  }, [onboardingStage, tasks.length, progressPercentage, toolName, toolCallId, addToolResult]);
+  }, [onboardingStage, tasks, progressPercentage, toolName, toolCallId, addToolResult]);
 
   const stageName = onboardingStage.replace('_', ' ').toUpperCase()
   
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 max-w-4xl">
+    <div className={`${theme.card.base} max-w-4xl`}>
       <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-xl">
-          <IconChecklist className="w-6 h-6 text-indigo-600 dark:text-indigo-300" />
+        <div className={`${iconBackgrounds.primary} ${theme.header.icon}`}>
+          <IconChecklist className={`w-6 h-6 ${theme.icon.primary}`} />
         </div>
         <div className="flex-1">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Onboarding Tasks</h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">مهام التهيئة</p>
+          <h2 className={theme.header.title}>Onboarding Tasks</h2>
+          <p className={theme.header.subtitle}>مهام التأهيل</p>
         </div>
         <div className="text-right">
-          <p className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">{progressPercentage}%</p>
-          <p className="text-xs text-gray-600 dark:text-gray-400">Complete</p>
+          <p className={`text-3xl font-bold ${theme.icon.primary}`}>{progressPercentage}%</p>
+          <p className={`text-xs ${theme.text.muted}`}>Complete</p>
         </div>
       </div>
 
-      <div className="mb-6 h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+      <div className={`mb-6 h-3 ${theme.section.light} rounded-full overflow-hidden`}>
         <div 
-          className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-500"
+          className={`h-full ${theme.gradient.primary} transition-all duration-500`}
           style={{ width: `${progressPercentage}%` }}
         />
       </div>
 
-      <div className="mb-4 p-3 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg">
-        <p className="text-sm font-medium text-gray-900 dark:text-white">Current Stage: <span className="text-indigo-600 dark:text-indigo-400">{stageName}</span></p>
+      <div className={`mb-4 ${theme.infoBox.base} ${theme.infoBox.primary}`}>
+        <p className={`text-sm font-medium ${theme.text.primary}`}>Current Stage: <span className={theme.text.muted}>{stageName}</span></p>
       </div>
 
       <div className="space-y-3 max-h-96 overflow-y-auto">
-        {tasks.map((task) => {
+        {tasks.map((task: Task) => {
           const StatusIcon = statusConfig[task.status].icon
           
           return (
-            <div key={task.taskId} className={`p-4 rounded-xl border ${statusConfig[task.status].bg} border-gray-200 dark:border-gray-700`}>
+            <div key={task.taskId} className={theme.item.compact}>
               <div className="flex items-start gap-3">
-                <StatusIcon className={`w-5 h-5 ${statusConfig[task.status].color} mt-0.5`} />
+                <div className={`p-2 rounded-xl ${iconBackgrounds[task.status === 'completed' ? 'green' : task.status === 'blocked' ? 'primary' : task.status === 'in_progress' ? 'teal' : 'navy']}`}>
+                  <StatusIcon className={`w-5 h-5 ${statusConfig[task.status].color}`} />
+                </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-gray-900 dark:text-white">{task.taskEn}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">{task.taskAr}</p>
-                  <div className="flex items-center gap-3 mt-2 text-xs text-gray-600 dark:text-gray-400">
-                    <span className="px-2 py-1 bg-white dark:bg-gray-800 rounded">Stage: {task.stage}</span>
-                    <span className="px-2 py-1 bg-white dark:bg-gray-800 rounded">{task.responsibleParty}</span>
+                  <h3 className={`font-semibold ${theme.text.primary}`}>{task.taskEn}</h3>
+                  <p className={`text-sm ${theme.text.subtle}`}>{task.taskAr}</p>
+                  <div className={`flex items-center gap-3 mt-2 text-xs ${theme.text.muted}`}>
+                    <span className={`px-2 py-1 ${theme.badge.base} ${theme.badge.navy} rounded`}>Stage: {task.stage}</span>
+                    <span className={`px-2 py-1 ${theme.badge.base} ${theme.badge.teal} rounded`}>{task.responsibleParty}</span>
                     {task.dueDate && <span>Due: {task.dueDate}</span>}
                   </div>
                 </div>
-                <span className={`px-3 py-1 text-xs rounded-full font-medium ${
-                  task.priority === 'high' ? 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300' :
-                  task.priority === 'medium' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300' :
-                  'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'
+                <span className={`px-3 py-1 text-xs rounded-full font-medium ${theme.badge.base} ${
+                  task.priority === 'high' ? theme.badge.primary :
+                  task.priority === 'medium' ? theme.badge.gold :
+                  theme.badge.navy
                 }`}>
                   {task.priority}
                 </span>

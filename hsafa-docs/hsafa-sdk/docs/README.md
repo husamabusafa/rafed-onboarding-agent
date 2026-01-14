@@ -106,7 +106,9 @@ Important props (selected):
 - `theme?: 'light' | 'dark'` — default `dark`
 - `language?: 'en' | 'ar'` — defaults by `dir` if not provided
 - `dir?: 'ltr' | 'rtl'` — controls layout RTL/LTR
-- Colors (override theme defaults): `primaryColor`, `backgroundColor`, `borderColor`, `textColor`, `accentColor`
+- **Base colors** (override theme defaults): `primaryColor`, `backgroundColor`, `borderColor`, `textColor`, `accentColor`
+- **Status colors** (new in v0.6.2): `errorColor`, `errorColorLight`, `errorColorDark`, `successColor`, `successColorLight`, `warningColor`, `warningColorLight`, `infoColor`, `infoColorLight`, `dangerColor`, `dangerColorLight`, `dangerColorDark`
+- **CSS customization** (new in v0.6.2): `customStyles` - Inject custom CSS with access to CSS variables. See [CSS Guide](./HSAFA_CHAT_CSS_GUIDE.md)
 - Layout: `width` (default 420), `height` (default `100vh`), `floatingButtonPosition`, `alwaysOpen`, `defaultOpen`, `expandable`, `maximized`
 - Borders/animation: `enableBorderAnimation`, `enableContentPadding`, `enableContentBorder`, `borderRadius`
 - UX copy: `placeholder`, `title`
@@ -179,20 +181,73 @@ Example of a single final item payload (simplified):
 
 Theme presets (`light`/`dark`) with overridable colors. See `sdk/src/utils/chat-theme.ts`.
 
-- Preset colors: `primaryColor`, `backgroundColor`, `borderColor`, `textColor`, `accentColor`, plus `mutedTextColor`, `inputBackground`, `cardBackground`, `hoverBackground` (derived).
-- Override via `HsafaChat` props:
+**📚 For advanced CSS customization, see [CSS Customization Guide](./HSAFA_CHAT_CSS_GUIDE.md)**
 
+### Base Colors
+- `primaryColor`, `backgroundColor`, `borderColor`, `textColor`, `accentColor`
+- Derived: `mutedTextColor`, `inputBackground`, `cardBackground`, `hoverBackground`
+
+### Status Colors (v0.6.2+)
+All status colors are now fully customizable:
+- **Error states**: `errorColor`, `errorColorLight`, `errorColorDark` — used for error banners, validation messages
+- **Success states**: `successColor`, `successColorLight` — used for completed tool calls, success notifications
+- **Warning states**: `warningColor`, `warningColorLight` — used for warnings and input-streaming tool states
+- **Info states**: `infoColor`, `infoColorLight` — used for informational messages and running tool states
+- **Danger states**: `dangerColor`, `dangerColorLight`, `dangerColorDark` — used for delete actions, stop buttons
+
+Example with custom colors:
 ```tsx
 <HsafaChat
   agentId="my-agent"
   theme="light"
+  // Base colors
   primaryColor="#3b82f6"
   backgroundColor="#ffffff"
   borderColor="#e5e7eb"
   textColor="#111827"
   accentColor="#F9FAFB"
+  // Status colors (optional)
+  errorColor="#ef4444"
+  errorColorLight="#fef2f2"
+  successColor="#10b981"
+  warningColor="#eab308"
+  infoColor="#3b82f6"
+  dangerColor="#dc2626"
 />
 ```
+
+### CSS Customization (v0.6.2+)
+
+For complete control over component styling, use `customStyles` to inject custom CSS with access to theme-aware CSS variables:
+
+```tsx
+<HsafaChat
+  agentId="my-agent"
+  customStyles={`
+    /* Change input background */
+    [data-hsafa-chat] textarea {
+      background: var(--hsafa-input-bg) !important;
+      border-radius: 12px !important;
+    }
+    
+    /* Custom message bubbles */
+    [data-hsafa-chat] div[style*="margin-bottom"] > div {
+      border-radius: 16px !important;
+    }
+    
+    /* Theme-specific styles */
+    [data-hsafa-theme="dark"] {
+      --hsafa-input-bg: #1a1b1f;
+    }
+  `}
+/>
+```
+
+See the complete [CSS Customization Guide](./HSAFA_CHAT_CSS_GUIDE.md) for:
+- All available CSS variables
+- Component selectors reference
+- Theme-aware styling patterns
+- Common customization examples
 
 Markdown with Mermaid is supported via `MarkdownRenderer` / `MarkdownRendererWithMermaid` and `MermaidDiagram`.
 

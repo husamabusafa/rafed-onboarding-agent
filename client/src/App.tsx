@@ -72,6 +72,7 @@ function App() {
       <HsafaChat 
         agentId="cmkc0f4gi000ppc0k703h6zgn" 
         theme="dark"
+      
         HsafaUI={uiComponents}
         alwaysOpen
         fullPageChat
