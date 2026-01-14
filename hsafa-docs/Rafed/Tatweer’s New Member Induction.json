@@ -1,0 +1,954 @@
+{
+"source_files": [
+{
+"file_name": "Tatweer’s New Member Induction.pdf",
+"file_path": "/mnt/data/Tatweer’s New Member Induction.pdf",
+"page_count": 46,
+"document_title": "Tatweer’s New Member Induction",
+"language": [
+"English",
+"Arabic (some slides)"
+]
+}
+],
+"document_about": {
+"summary": "An induction (onboarding) slide deck for new members of Tatweer Education Holding (Tatweer Holding Company). It introduces Tatweer, its leadership and structure, and provides new-hire policies (dress code, attendance/leaves, benefits, performance cycle, learning & development, cybersecurity awareness, buddy program), plus internal tools and employee services (ERP/HR system, internal portal, fingerprint registration, Wala Plus discounts, shuttle and Uber business transport).",
+"main_topics": [
+"Company overview (vision, mission, values, service ecosystem, strategy drivers)",
+"Organizational structure and leadership",
+"New member policies and benefits",
+"Learning & development and cybersecurity",
+"Buddy program",
+"Employee tools and facilities"
+]
+},
+"contacts": {
+"emails": [
+"[TatweerSecurity@tatweer.sa](mailto:TatweerSecurity@tatweer.sa)",
+"[Training@TATWEER.SA](mailto:Training@TATWEER.SA)"
+]
+},
+"table_of_contents": {
+"sections": [
+{
+"section": "Introduction to Tatweer",
+"items": [
+"About Tatweer",
+"Organizational Structure",
+"Board of directors",
+"THC leaders",
+"Talent acquisition & Onboarding team"
+]
+},
+{
+"section": "New Member",
+"items": [
+"Dress code",
+"Attendance and leaves",
+"Benefits and rewards",
+"Performance Cycle",
+"Learning & Development",
+"Cybersecurity Awareness",
+"Assigned Buddy"
+]
+},
+{
+"section": "Tools and Facilities",
+"items": [
+"Facilities",
+"Systems",
+"Wala Plus",
+"The Shuttle Service",
+"Uber Service"
+]
+}
+]
+},
+"company_overview": {
+"about_tatweer": "Tatweer is the executive arm of the Ministry of Education, implementing investment opportunities in the education sector.",
+"tatweer_journey": {
+"timeline": [
+{
+"year": 2008,
+"event": "Owned by PIF"
+},
+{
+"year": 2022,
+"event": "Transfer of ownership from PIF to state-owned under MoE"
+},
+{
+"date": "2023-10-26",
+"event": "Company Statute issued converting THC to a private, non-profit, closed joint stock holding company composed of one person"
+}
+],
+"arabic_legal_description": "شركة مساهمة قابضة مقفلة غير ربحية خاصة من شخص واحد."
+},
+"vision": "The National Education Champion, empowering every learner to be globally competitive.",
+"mission": "Elevate the education ecosystem with integrated, innovative, and efficient solutions through our dedicated talent, cutting-edge capabilities, and strategic partnerships.",
+"values": {
+"name": "C.O.R.E.",
+"values": [
+"Care",
+"Ownership",
+"Resilience",
+"Engagement"
+],
+"note": "Designed to drive impact."
+},
+"service_ecosystem": {
+"categories": [
+{
+"name": "Core Education Services",
+"includes": "content, curriculum, student services, etc.",
+"objective": "Support improvement of educational outcomes and create value in education"
+},
+{
+"name": "Education Support Services",
+"includes": "infrastructure, admin services, etc.",
+"objective": "Enable the education ecosystem and generate additional revenue streams to support the core services"
+}
+],
+"delivery_modes": [
+"In-person",
+"Distance"
+],
+"segments": [
+"Pre-School",
+"K-12",
+"Higher Education",
+"Vocational",
+"Life-Long Learning"
+]
+},
+"strategy_drivers": [
+"Support in achieving the Education aspects of Vision 2030",
+"Commit to improving quality and becoming even more student-centric",
+"Tatweer to take over more operations from MoE and MoE to focus on legislation",
+"Improve some aspects of business performance as well as Tatweer’s reputation"
+],
+"subsidiaries_establishment_timeline": [
+{
+"year": 2015,
+"entity": "TETCO",
+"entity_full_en": "Tatweer Educational Technologies Company",
+"note_en": "Establishment of Tatweer Educational Technologies Company"
+},
+{
+"year": 2012,
+"entity": "TBC",
+"entity_full_en": "Tatweer Buildings Company",
+"note_en": "Establishment of Tatweer building Company"
+},
+{
+"year": 2012,
+"entity": "RAFED",
+"entity_full_en": "Tatweer Transportation Services Company",
+"note_en": "Establishment of Tatweer Transportation Services Company"
+},
+{
+"year": 2012,
+"entity": "TALEMIA",
+"entity_full_en": "Tatweer Educational Services Company",
+"note_en": "Establishment of Tatweer Educational Services Company"
+},
+{
+"year": 2008,
+"entity": "Tatweer",
+"entity_full_en": "Tatweer Education Holding Company",
+"note_en": "Establishment of Tatweer Education Holding Company"
+}
+]
+},
+"governance_and_leadership": {
+"board_of_directors": {
+"chairman": {
+"role": "Minister of Ministry of Education",
+"name": "His Excellency Mr. Yousef AlBenean"
+},
+"members": [
+"Dr. Khalid AlSultan",
+"Dr. Saja Jamjoom",
+"Mr. Hamad AlKanhal",
+"Mr. Ali Alyabis",
+"Mr. Baker AlMuhanaa",
+"Mr. Faisal AlSuwailem"
+],
+"committees": {
+"audit_and_risk_committee": [
+"Mr. Faisal bin Ibrahim Al-Suwailem",
+"Mrs. Al-Jawhara Bint Fahd Al-Rabiah",
+"Mr. Walid bin Ibrahim Shukri",
+"Mr. Nasser bin Abdulaziz Al-Ajroush",
+"Dr. Thamer bin Abdul Rahman Al Salem"
+],
+"nominations_and_remuneration_committee": [
+"Dr. Khalid bin Saleh Al-Sultan",
+"Mr. Hamad bin Mohammed Al-Kanhal",
+"Dr. Raafat Bari Malik"
+]
+}
+},
+"thc_group_ceo": "Eng. Metab Al Shahrani",
+"group_ceos": [
+"Eng. Metab Al Shahrani",
+"Mr. Mohammed AlHizam",
+"Eng. Fahad Al Solaie",
+"Eng. Omar Al Suwaiyan",
+"Eng. Mohamed Al Mehiemeed"
+],
+"tatweers_leaders": [
+{
+"name": "Adel Al Obailan",
+"title": "Corporate Communication Executive Director"
+},
+{
+"name": "Talal Al Rumayaan",
+"title": "Legal Affairs VP"
+},
+{
+"name": "Ehab Mufti",
+"title": "Chief Shared Services Officer"
+},
+{
+"name": "Anwar Al Khuraimi",
+"title": "Chief Internal Audit Officer"
+},
+{
+"name": "Amro Al Tamimi",
+"title": "Group Chief Finance Officer"
+},
+{
+"name": "Bandar Subaih",
+"title": "GRC Vice President"
+},
+{
+"name": "Abdulrahman Al Sebaiheen",
+"title": "Chief Corporate Strategy and Transformation Officer"
+},
+{
+"name": "Hamad Al Jarboou",
+"title": "Chief Business Development, Portfolio Management, and Investment Officer"
+},
+{
+"name": "Sultan AlTamimi",
+"title": "Chief Human Capital Officer"
+}
+],
+"talent_acquisition_and_onboarding_team": [
+{
+"name": "Omar Al Ekresh",
+"title": "Talent Acquisition Director"
+},
+{
+"name": "Ghaida Al Fawaz",
+"title": "Sr. Talent Acquisition Specialist"
+},
+{
+"name": "Modhi Al. Mousa",
+"title": "Talent Acquisition Associate Expert"
+}
+],
+"organization_structure_2024": {
+"note": "The slide shows an organization chart; the parsed text includes high-level units and some departments.",
+"high_level_units": [
+"Board of Director",
+"NRC (Nominations and Remuneration Committee)",
+"Audit and Risks Committee",
+"THC CEO / CEO Office",
+"Governance, Risk & Compliance",
+"Legal Affairs",
+"Internal Audit",
+"Business Development, Portfolio Management, and Investment",
+"Human Capital",
+"Finance",
+"Shared Services",
+"Corporate Strategy & Transformation"
+],
+"example_departments_and_functions": [
+"Corporate Communication",
+"Business Planning",
+"Business Development",
+"Investment, Incubation, and Asset Management",
+"PMO",
+"Administrative Services / Program / Project Management Operations",
+"Strategic Planning and Design",
+"Strategy Execution and Performance",
+"Change Management & Transformation",
+"Customer Experience Center of Excellence",
+"Information Technology",
+"Facility and Admin Services Management",
+"Contract and Procurement",
+"Cyber Security",
+"Health and Safety",
+"Financial Controlling and Reporting",
+"Accounting",
+"Treasury",
+"Financial Planning and Analysis",
+"HC Center of Excellence",
+"HC Center of Services",
+"Talent Acquisition",
+"L&D and Talent Management",
+"HC Transformation",
+"HCBP"
+]
+}
+},
+"new_member_information": {
+"dress_code": {
+"non_saudi_male_employees": [
+"Wear a formal suit.",
+"Do not wear T-shirts or jeans.",
+"Only long-sleeved shirts that are not rolled up and in simple colors are allowed.",
+"Wear a tie."
+],
+"saudi_female_employees": [
+"Wear the abaya and hijab (head-scarf/niqab) in calm colors. The abaya should be covering and loose-fitting, not tight or see-through.",
+"Avoid excessive adornment, jewelry, and accessories."
+],
+"saudi_male_employees": [
+"Wear the national dress (thobe).",
+"Wear a ghutra or shemagh during official meetings.",
+"Avoid appearing in an inappropriate manner or wearing informal shoes in the workplace."
+]
+},
+"attendance_and_leaves": {
+"working_hours": {
+"hours_per_day": 8,
+"flex_time_window": "From 7:00 until 8:30"
+},
+"permission_policy": {
+"hours_per_month": 8,
+"max_hours_per_day": 4
+},
+"public_holidays": [
+"Eid Al Hajj",
+"Eid AlFetr",
+"Foundation Day",
+"National Day"
+],
+"leaves_for_personal_events": {
+"newborn_leave": "3 working days",
+"marriage_leave": "5 working days",
+"hajj_leave": "10 days including Eid vacation",
+"maternity_leave": "12 weeks"
+},
+"other_leaves": {
+"annual_leave": "30 days - full pay",
+"sick_leave": [
+"60 days - 75% from salary",
+"30 days - unpaid"
+],
+"death_leave": true,
+"emergency_leave": true,
+"educational_leave": true,
+"unpaid_leave": true
+}
+},
+"rewards_and_benefits": {
+"education_allowance": {
+"eligibility": [
+"Pass probation period",
+"Saudi national",
+"As per company policy"
+],
+"max_total": 50000,
+"max_per_each": 25000,
+"currency": null,
+"currency_note": "Currency not specified in the slides."
+},
+"annual_increment_and_bonus": {
+"basis": "Performance based",
+"policy": "As per company policy"
+},
+"company_loan": {
+"interest_rate": "0% rate",
+"amount_range_basic_salary": "1-3 basic salary",
+"max_installments": 12,
+"max_monthly_deduction_percent": 20,
+"policy": "As per company policy"
+},
+"remote_work": {
+"days": 24,
+"note": "Based on eligibility."
+},
+"medical_insurance": {
+"coverage": "Employee and family (Parents, Spouse & Children)",
+"contribution_rate": "0% including Parents",
+"classification_by_grade": [
+{
+"medical_class": "VIP",
+"grade_range": "From 13 to 19"
+},
+{
+"medical_class": "A",
+"grade_range": "From 1 to 12"
+}
+],
+"note": "Operation team will send an email notification with user guide; benefits available in Bupa application."
+}
+},
+"performance_cycle": {
+"stages": [
+{
+"name": "Setting Objectives",
+"details": [
+"Employee enters annual goals through the ERP system.",
+"Employee and manager agree on annual goals.",
+"Link employee goals to management goals.",
+"Objectives must be compatible with SIM methodology (Specific, Impactful, Measurable)."
+]
+},
+{
+"name": "Continuous Performance Management (Progress)",
+"details": [
+"Ongoing discussions and feedback by the line manager.",
+"Recognizes employee productivity.",
+"Drives employee performance.",
+"Helps overcome work challenges.",
+"Creates a more engaging work environment."
+]
+},
+{
+"name": "Mid-Year Review (July)",
+"details": [
+"Employee and line manager discuss progress toward objectives.",
+"Mid-year evaluation by the line manager through the ERP system.",
+"Two indicators: Lagging behind, On track."
+]
+},
+{
+"name": "End-Year Evaluation",
+"details": [
+"Self-evaluation.",
+"Employee and line manager discuss performance during the year.",
+"Line manager evaluation.",
+"Manager of Manager approval.",
+"Calibration sessions.",
+"Line manager and PM approval required.",
+"Top management approval.",
+"Announcement of results."
+]
+}
+]
+},
+"learning_and_development": {
+"objective": "Investing in employee learning and development is essential for achieving business goals and fostering a culture of continuous learning.",
+"training_formats": [
+{
+"type": "Public Training",
+"description": "Led by external experts; can be in KSA, international, or live virtual; participants from diverse companies/countries."
+},
+{
+"type": "In-House Training",
+"description": "Organized specifically for Tatweer employees; coordinated by L&D; often facilitated by external specialists to address organization needs."
+}
+],
+"policy_and_guidelines_eligibility_criteria": [
+{
+"criterion": "Nationality",
+"detail": "Only Saudi employees are eligible for training."
+},
+{
+"criterion": "Approved budget",
+"detail": "Training program must be within the approved budget."
+},
+{
+"criterion": "Performance evaluation",
+"detail": "Employee must have received a score of "Meet Expectation" or higher in the last annual performance evaluation."
+},
+{
+"criterion": "Learning needs analysis",
+"detail": "Training activities should be based on learning needs analysis and departmental plans."
+},
+{
+"criterion": "Clear record",
+"detail": "Employee file must be free of penalties/sanctions in the past calendar year."
+},
+{
+"criterion": "Duration in Tatweer",
+"detail": "Employees with less than 6 months are not eligible for public training."
+}
+],
+"additional_guidelines": [
+{
+"guideline": "Location (by grade)",
+"detail": "Grade 8 and below: Saudi Arabia; Grade 9-13: Middle East; Grade 14-16: Europe; Grade 17 and above: open."
+},
+{
+"guideline": "Request in advance",
+"detail": "Employee must request training at least one month or more ahead of training date."
+},
+{
+"guideline": "Training relevancy",
+"detail": "Training title should match employee level and area of expertise."
+},
+{
+"guideline": "Management approval",
+"detail": "Line Manager & Chiefs approval of training requests."
+},
+{
+"guideline": "Language proficiency",
+"detail": "Employee must be proficient in the language in which the training program is conducted."
+}
+],
+"registration_process": {
+"business_schools": [
+"Employees register themselves.",
+"Select training course based on plan.",
+"Fill in the online registration form.",
+"Choose payment option "Sponsored Pay Company" and use email [Training@TATWEER.SA](mailto:Training@TATWEER.SA)."
+],
+"public_training": [
+"Employee applies through the ERP.",
+"After approval, Training Team registers employees with vendors under framework agreements."
+],
+"in_house_training": [
+"Employee applies through the ERP.",
+"After approval, Training Team registers employees with vendors under framework agreements."
+],
+"note": "Once registration is completed, employee will be notified."
+}
+},
+"cybersecurity_awareness": {
+"purpose": "Raise awareness among new employees about key practices to protect the digital work environment.",
+"passwords": [
+"Use strong and unique passwords.",
+"Never share your passwords with anyone.",
+"Change your password regularly, at least every 90 days."
+],
+"email_practices": [
+"Avoid opening links or attachments from unknown sources.",
+"Verify the sender's email address.",
+"Do not send sensitive information via email without encryption."
+],
+"device_usage": [
+"Do not use organizational devices for personal purposes.",
+"Do not install any software without IT department approval.",
+"Immediately report if a device is lost or suspected to be compromised."
+],
+"data_and_information": [
+"Treat all information as confidential.",
+"Store important files in designated and approved locations.",
+"Do not use unapproved USB storage devices."
+],
+"incident_reporting": [
+"Report any suspicious message or behavior immediately to the cybersecurity team.",
+"Send reports to [TatweerSecurity@tatweer.sa](mailto:TatweerSecurity@tatweer.sa).",
+"Do not ignore security alerts or protection messages."
+],
+"employee_commitment": [
+"Employees are responsible for protecting the information they handle.",
+"Following security instructions protects both the organization and the employee from cyber threats."
+]
+},
+"assigned_buddy_program": {
+"objective": "Ensure new hires have a smooth transition and feel supported during onboarding by providing a knowledgeable and approachable buddy.",
+"buddy_role": [
+"First point of contact for new hire questions or guidance.",
+"Help new hire understand company culture, policies, and work environment.",
+"Introduce new employees to team members and key stakeholders.",
+"Support navigation of internal systems, tools, and resources.",
+"Encourage engagement and participation in activities and meetings.",
+"Share tips and best practices related to day-to-day work."
+],
+"buddy_responsibilities": {
+"pre_joining": [
+"Coordinate with HR to understand start date and basic details (buddy is copied in the onboarding email).",
+"Prepare a welcome plan (e.g., coffee chats, first-day lunch if possible)."
+],
+"first_week": [
+"Meet with the new hire and offer a workplace tour.",
+"Help set up basic tools (emails, systems access) and guide through onboarding tasks.",
+"Introduce the new hire to team members and key departments."
+],
+"first_month": [
+"Schedule regular informal check-ins (e.g., weekly coffee chats or brief catch-ups).",
+"Be available to answer questions, clarify expectations, and assist with challenges.",
+"Provide insights into department practices and performance expectations."
+],
+"after_first_month": [
+"Continue to offer support and guidance as needed.",
+"Encourage the new hire’s independence while remaining approachable.",
+"Share feedback with HR if any concerns or suggestions arise."
+]
+},
+"assigned_buddy_team": [
+{
+"name": "Bejad Al Muraibadh",
+"team": "GRC"
+},
+{
+"name": "Abdulmajid Al Othman",
+"team": "LEGAL"
+},
+{
+"name": "Ghaida Al Fawaz",
+"team": "HC"
+},
+{
+"name": "Najd Al Otaibi",
+"team": "Corporate Communication"
+},
+{
+"name": "Mohammed Al Sharari",
+"team": "Shared Services"
+},
+{
+"name": "Fahd Al Owardhi",
+"team": "Internal Audit"
+},
+{
+"team": "BD",
+"name": null
+},
+{
+"team": "Strategy",
+"name": null
+},
+{
+"team": "Finance",
+"name": null
+}
+]
+}
+},
+"tools_and_facilities": {
+"hr_system": {
+"name": "ERP or OFOQ (Oracle Applications Cloud shown)",
+"purpose": "Integration between departments and links data and procedures of support departments.",
+"sign_in_steps": [
+"Use the application link your company gave you to open the sign-in page.",
+"Enter your user ID and password.",
+"Click Sign In to land on the home page."
+]
+},
+"internal_portal": {
+"description": "Internal portal for employees to facilitate access to necessary information of all company's departments.",
+"what_to_find": [
+"Brief overview and detailed description of the sector.",
+"Internal mobility "Step".",
+"News and advertisements."
+]
+},
+"fingerprint_registration": {
+"when": "Once you receive a notification email from Operation team; registration is finalized in the office within 48 hours maximum."
+},
+"wala_plus": {
+"program_name": "Discount & Offer Program "Wala Plus"",
+"description": "Partnership with loyalty program Wala Plus offering employees and families unlimited access to 1000+ discounts and offers.",
+"onboarding_note": "Operation team registers you on day 1 and sends an email notification with an attached user guide."
+},
+"shuttle_service": {
+"description": "Shuttle transfer point from Al-Murooj Train Station."
+},
+"uber_service": {
+"description": "Partnership agreement with Uber Business to provide transportation services for employees of Tatweer companies without additional costs.",
+"coverage": "Movement between Tatweer companies (Holding, Talemia, Rafd, TBC, TETCO) and the headquarters of the Ministry of Education.",
+"criteria": "All THC employee"
+}
+},
+"branding": {
+"brand": "Tatweer Education Holding",
+"brand_ar": "التعليم القابضة (تطوير)",
+"associated_logos": [
+"TETCO (Tatweer Educational Technologies)",
+"TBC (Tatweer Buildings Company)",
+"RAFED",
+"TALEMIA"
+]
+},
+"pages": [
+{
+"page_number": 1,
+"raw_text": "Tatweer’s New Member Induction\nّـــــاك\nحي",
+"visual_extracted": null
+},
+{
+"page_number": 2,
+"raw_text": "ــــــــاك\nّ\nحي\nDr. Abdulrahman Abdullah Al Abdulgader",
+"visual_extracted": null
+},
+{
+"page_number": 3,
+"raw_text": "Table of Contents \nIntroduction to Tatweer\n• About Tatweer\n• Organizational Structure \n• Board of directors \n• THC leaders\n• Talent acquisition & \nOnboarding team \nNew Member\n• Dress code\n• Attendance and leaves.\n• Benefits and rewards.\n• Performance Cycle \n• Learning & Development\n• Cybersecurity Awareness\n• Assigned Buddy \nTools and Facilities \n• Facilities\n• Systems\n• Wala Plus\n• The Shuttle Service\n• Uber Service \n1 2 3",
+"visual_extracted": null
+},
+{
+"page_number": 4,
+"raw_text": "Custodian of the Two Holy Mosques King Salman’s, HRH’s and HE the Minister’s priorities \non education were considered as key inputs\nCustodian of the Two \nHoly Mosques King \nSalman bin Abdulaziz\nHE MOE Minister\nYousef Al-Benyan\nHRH Crown Prince \nMohammad bin Salman\n"إن التعليم في السعودية هو الركيزة األساسية التي نحقق بها تطلعات شعبنا" \n“Education in the Kingdom is the basic foundation through \nwhich we will achieve the aspirations of our people"\n“Our real wealth lies in the ambition of our people and the \npotential of our younger generation”\n"مع بداية العام الدراسي 1446هـ نهدف إلى بناء أجيال قادرة على المنافسة \nعالميا" \n“As 1446 AH academic year begins, we aim to build \nglobally competitive generations”\n”لدينا الكثير من الفرص الكامنة والثروات المتنوعة، وتكمن ثروتنا الحقيقية في طموح \nمجتمعنا وأفراده وإمكانات جيلنا الصاعد"",
+"visual_extracted": null
+},
+{
+"page_number": 5,
+"raw_text": "About Tatweer\nTatweer Is the executive arm of the \nMinistry of Education, which has made \nadvanced efforts to implement \ninvestment opportunities in the \neducation sector.",
+"visual_extracted": null
+},
+{
+"page_number": 6,
+"raw_text": null,
+"visual_extracted": {
+"headline_en": "One family working to serve education",
+"headline_ar": "أسرة واحدة تعمل لخدمة التعليم",
+"establishments": [
+{
+"year": 2015,
+"entity": "TETCO",
+"entity_full_en": "Tatweer Educational Technologies Company",
+"note_en": "Establishment of Tatweer Educational Technologies Company"
+},
+{
+"year": 2012,
+"entity": "TBC",
+"entity_full_en": "Tatweer Buildings Company",
+"note_en": "Establishment of Tatweer building Company"
+},
+{
+"year": 2012,
+"entity": "RAFED",
+"entity_full_en": "Tatweer Transportation Services Company",
+"note_en": "Establishment of Tatweer Transportation Services Company"
+},
+{
+"year": 2012,
+"entity": "TALEMIA",
+"entity_full_en": "Tatweer Educational Services Company",
+"note_en": "Establishment of Tatweer Educational Services Company"
+},
+{
+"year": 2008,
+"entity": "Tatweer",
+"entity_full_en": "Tatweer Education Holding Company",
+"note_en": "Establishment of Tatweer Education Holding Company"
+}
+]
+}
+},
+{
+"page_number": 7,
+"raw_text": "Tatweer Journey \nTransfer of ownership \n2022\nTransfer of ownership from PIF to state-owned under \nMoE. The Company Statute was issued on 26 Oct \n2023 converting THC to:\nA private, non-profit, closed joint stock holding \ncompany composed of one person.\nشركـة مساهمة قابضة مقفلة غير ربحية خاصة من شخص واحد.\n2008\nTimeline \nOwned by PIF",
+"visual_extracted": null
+},
+{
+"page_number": 8,
+"raw_text": "The National Education Champion, \nempowering every learner to be \nglobally competitive.\nOur Vision",
+"visual_extracted": null
+},
+{
+"page_number": 9,
+"raw_text": "Elevate the education ecosystem with integrated, innovative, and \nefficient solutions through our dedicated talent, cutting-edge \ncapabilities, and strategic partnerships.\nOur Mission",
+"visual_extracted": null
+},
+{
+"page_number": 10,
+"raw_text": "Engagement\nValues\nOur C.O.R.E. values \nare designed to drive impact\nCare\nOwnership\nResilience\nC.O.R.E.",
+"visual_extracted": null
+},
+{
+"page_number": 11,
+"raw_text": "Educational ecosystem services aregrouped into two main \ncategories, Core Education Services and Education Support Services\nIn-person\nDistance \nServices can span one or multiple segments, i.e.: Pre-School, K-12, \nHigher Education, Vocational, and Life-Long Learning\nSERVICE ECOSYSTEM\nCORE EDUCATION \nSERVICES\nIncluding content, \ncurriculum, student \nservices, etc.\nObjective:\n• To support the \nimprovement of \neducational \noutcomes and create \nvalue in education\nEDUCATION SUPPORT \nSERVICES\nIncluding infrastructure, \nadmin services, etc.\nObjective:\n• To enable the \neducation ecosystem \nand generate \nadditional revenue \nstreams to support the \ncore services",
+"visual_extracted": null
+},
+{
+"page_number": 12,
+"raw_text": "12 Highly Confidential and not for Distribution\nIn alignment with \nMoE goals and in \ncontribution to Vision \n2030, Tatweer is \nredefining its \nstrategy \nSupport in achieving the Education aspects of Vision 2030\nCommit to improving quality and becoming even more student￾centric\nTatweer to take over more operations from MoE and MoE to focus \non legislation\nImprove some aspects of business performance as well \nas Tatweer’s reputation\nDrivers of Tatweer’s new strategy",
+"visual_extracted": null
+},
+{
+"page_number": 13,
+"raw_text": "Board\nDepartment\nUnit\nDivision\nTatweer Overview \nOrganization Structure 2024\nBoard of Director \nNRC Audit and Risks \nCommittee\nTHC CEO \nCEO Office\nGovernance, Risk & \nCompliance\nLegal Affairs \nInternal Audit\nBusiness Development, \nPortfolio Management, \nand Investment \nHuman Capital Finance Shared Services Corporate Strategy & \nTransformation\nCorporate \nCommunication \nBusiness Planning \nBusiness Development \nInvestment \n,Incubation ,and Asset \nManagement\nPMO\nAdministrate Services \nProgram \nStrategic Planning and \nDesign \nStrategy Exaction and \nPerformance \nChange Management \n&Transformation\nCustomer Experiences \nCenter Of Excellence \nInformation \nTechnology \nFacility and Admin \nServices Management\nContract and \nProcurement \nCyber Security \nHealth and Safety \nFinancial Controlling \nand Reporting\nAccounting\nTreasury \nFinancial Planning \nand Analysis \nHC Center of \nExcellence \nHC Center of Services\nTalent Acquisition \nL&D and Talent \nManagement \nHC Transformation\nHCBP\nProject Management \nOperations\nInformation \nTechnology and \nCyber Security\nSupport Services \nOperations and \nBusiness Development\nPublic Sectors, Quality \nPerformance and \nMonitoring\nPublic Sectors, Quality \nPerformance and \nMonitoring",
+"visual_extracted": null
+},
+{
+"page_number": 14,
+"raw_text": "Board of Directors",
+"visual_extracted": null
+},
+{
+"page_number": 15,
+"raw_text": "Chairman \nMinster of Ministry of Education\nHis Excellency Mr. Yousef AlBenean",
+"visual_extracted": null
+},
+{
+"page_number": 16,
+"raw_text": "Dr. Khalid AlSultan\nDr. Saja Jamjoom\nMr. Hamad AlKanhal\nMr. Ali Alyabis\nMr. Baker AlMuhanaa\nMr. Faisal AlSuwailem\nMembers",
+"visual_extracted": null
+},
+{
+"page_number": 17,
+"raw_text": "The Audit and Risk Committee:\n1-Mr. Faisal bin Ibrahim Al-Suwailem\n2-Mrs. Al-Jawhara Bint Fahd Al-Rabiah\n3-Mr. Walid bin Ibrahim Shukri\n4-Mr. Nasser bin Abdulaziz Al-Ajroush\n5- Dr. Thamer bin Abdul Rahman Al Salem \nNominations and Remuneration Committee:\n1- Dr. Khalid bin Saleh Al-Sultan\n2- Mr. Hamad bin Mohammed Al-Kanhal\n3- Dr. Raafat Bari Malik\nChairman of Committee Member \nCommittees",
+"visual_extracted": null
+},
+{
+"page_number": 18,
+"raw_text": "THC Group CEO\nTHC Group CEO\nEng . Metab Al Shahrani",
+"visual_extracted": null
+},
+{
+"page_number": 19,
+"raw_text": "Group CEOs\nEng . Metab Al Shahrani\nMr. Mohammed AlHizam Eng. Fahad Al Solaie Eng. Omar Al Suwaiyan Eng. Mohamed Al Mehiemeed",
+"visual_extracted": null
+},
+{
+"page_number": 20,
+"raw_text": "Tatweer’s Leaders \nCorporate \nCommunication \nExecutive Director\nLegal Affairs VP Chief Shared \nServices Officer\nChief Internal Audit \nOfficer\nGroup Chief \nFinance Officer\nTalal Al Rumayaan Ehab Mufti Anwar Al Khuraimi Amro Al Tamimi Bandar Subaih\nChief Corporate \nStrategy and \nTransformation \nOfficer\nAbdulrahman\nAl Sebaiheen\nChief Business \nDevelopment, Portfolio \nManagement, and \nInvestment Officer\nHamad Al Jarboou\nChief Human \nCapital Officer\nAdel Al Obailan Sultan AlTamimi\nGRC Vice President",
+"visual_extracted": null
+},
+{
+"page_number": 21,
+"raw_text": "Omar Al Ekresh\nTalent Acquisition Director\nGhaida Al Fawaz\nSr. Talent Acquisition Specialist\nModhi Al. Mousa\nTalent Acquisition Associate Expert\nTalent Acquisition & \nOnboarding Team",
+"visual_extracted": null
+},
+{
+"page_number": 22,
+"raw_text": "New Member \nLearning & \nDevelopment\nDress code Attendance \n& leaves\nBenefits \n& Rewards\nPerformance \nCycle \nCybersecurity \nAwareness\nAssigned \nBuddy",
+"visual_extracted": null
+},
+{
+"page_number": 23,
+"raw_text": "Dress Code\nThe Human Capital Division at \nTatweer Holding \nC...quired to adhere \nto the following dress code \ninstructions :",
+"visual_extracted": {
+"dress_code_guidelines": {
+"non_saudi_male_employees": [
+"Wear a formal suit.",
+"Do not wear T-shirts or jeans.",
+"Only long-sleeved shirts that are not rolled up and in simple colors are allowed.",
+"Wear a tie."
+],
+"saudi_female_employees": [
+"Wear the abaya and hijab (head-scarf/niqab) in calm colors. The abaya should be covering and loose-fitting, not tight or see-through.",
+"Avoid excessive adornment, jewelry, and accessories."
+],
+"saudi_male_employees": [
+"Wear the national dress (thobe).",
+"Wear a ghutra or shemagh during official meetings.",
+"Avoid appearing in an inappropriate manner or wearing informal shoes in the workplace."
+]
+}
+}
+},
+{
+"page_number": 24,
+"raw_text": "5 working days\nEid AlFetr\nMarriage Leave\n12weeks\nMaternity Leave\n22 working day\n30 days - full pay Anual Leave\n60 days - 75% from salary\n30 days - unpaid\nSick Leave\nDeath leave\nEmergency \nLeave\nEducational \nLeave\nUnpaid Leave\n3 working days\nNewborn Leave\n10 days including \nEid vacation\nHajj Leave\nNational Day\nEid Al Hajj\nFoundation Day\nLeaves and Working Hours\nPublic Holidays\nLeaves for Personal Events\nOther Leaves\nAttendance\n8 Hours per day \nFlexy time From 7:00 \nuntil 8:30\nPermission\n8 hours per month\n4 H Max per day",
+"visual_extracted": null
+},
+{
+"page_number": 25,
+"raw_text": "Rewards\nEducation \nAllowance\n• Pass Probation Period.\n• Saudi National.\n• As per Company policy \n50,000 Max, 25,000 for each\nAnnual Increment\n& Bonus\n• Performance Based\n• As per Company policy\nCompany Loan\n0% Rate\n• 1-3 Basic Salary\n• Max 12 installments\n• 20% Max Monthly Deduction\n• As per Company policy\nRemote Work\n24 days\n• Based on eligibility.",
+"visual_extracted": null
+},
+{
+"page_number": 26,
+"raw_text": "Medical Insurance\nMedical Insurance covers employee \nand family (Parents, Spouse & Children)\nContribution rate 0% including Parents\n• Medical insurance Classified according to grades as \nfollowing :\nMedical Class\nVIP\nGrade\n From 13 to 19\nA From 1 to 12\n• Operation team will send you an email notification along with user \nguide , all benefits are available in Bupa Application",
+"visual_extracted": null
+},
+{
+"page_number": 27,
+"raw_text": "Performance Cycle \nMid-Year Review End-Year Evaluation Continuous Performance \nManagement Setting Objectives \nSetting Objectives Progress Mid-Year Review End-Year Evaluation \nThe employee enters his/her \nannual goals through the ERP \nsystem, considering the \nfollowing:\n• The employee sits with the \nmanager and agrees on \nannual goals.\n• Linking employee goals to \nmanagement goals\n• Objectives must be \ncompatible with the SIM \nmethodology (Specific, \nImpactful, Measurable).\nIncludes individual discussions \nand ongoing feedback about \nthe employee’s performance by \nthe line manager, which \ncontributes to:\n• Recognizes employee \nproductivity.\n• Drives employee \nperformance.\n• Overcoming work \nChallenges.\n• Creates a more engaging \nwork environment.\nThis stage takes place in July and \nincludes the following:\n• Employee and line manager \ndiscussing the progress in \nachieving the objectives.\n• Mid-year evaluation by the \nline manager through the \nERP system.\n• There will be two levels as \nindicator for the mid-year \nreview : \n- Lagging behind\n- On track\nThis stage takes place at the end of \nthe year and includes the following:\n• Self-evaluation\n• The employee and line manager \ndiscuss the employee’s \nperformance during the year\n• Line manager evaluation\n• Manager of Manager approval\n• Calibration Sessions\n• Line manager and PM approval \nare required\n• Approval of Top management\n• Announcement of results",
+"visual_extracted": null
+},
+{
+"page_number": 28,
+"raw_text": "Investing in employee learning and development is essential for \nachieving our business goals and fostering a culture of continuous \nlearning.\nObjective:\n01\n02\nPublic Training: These sessions are led by external experts and can take \nplace either within the Kingdom of Saudi Arabia, internationally, or \nthrough live virtual formats. Participants come from a diverse range of \ncompanies and countries, offering you the opportunity to learn alongside \nprofessionals from various backgrounds.\nIn-House Training: This type of training is organized specifically for Tatweer\nemployees. Our Learning and Development (L&D) team coordinates \nthese sessions, often facilitated by external specialists, to focus on the \nunique needs and goals of our organization.\nTypes of Training Format:\nLearning & Development",
+"visual_extracted": null
+},
+{
+"page_number": 29,
+"raw_text": "L&D Policy and Guidelines:\nThe L&D policy is designed to create consistent practices and processes for all \naspects of learning and development at Tatweer.\n03\n01\n04\n02 05\n06 Nationality\nOnly Saudi Employees are \neligible for Training\nApproved Budget\nThe training program must \nbe within the approved \nbudget\nPerformance Evaluation\nThe employee must have received a \nscore of "Meet Expectation" or higher in \nthe last annual performance evaluation\nLearning Needs Analysis\nAll training should activities should be \nbased on learning needs analysis and \ndepartmental plans\nClear Record\nThe employee's file must be free of \nany penalties or sanctions in the past \ncalendar year\nTo be eligible for nomination to program, employee committed meet the following criteria:\nDuration in Tatweer\nEmployees with less than 6 months of \nexperience in the company are not \neligible for Public training.",
+"visual_extracted": null
+},
+{
+"page_number": 30,
+"raw_text": "11\n09\n07\n10\n08\nLocation\nLocation of training may be very \nbased on the grade of employee:\nGrade: 8 and Below: Saudi Arabia\nGrade: 9-13: Middle East.\nGrade : 14-16: Europe\nGrade: 17 and Above: open\nRequest in advance \nEmployee must request \ntraining at least one month \nor more ahead of training \ndate.\nTraining Relevancy\nTraining title should match employee \nlevel and area of expertise.\nManagement Approval \nLine Manger & Chiefs Approval of \ntraining requests \nLanguage Proficiency\nThe employee must be proficient in the \nlanguage in which the training program \nis conducted",
+"visual_extracted": null
+},
+{
+"page_number": 31,
+"raw_text": "Once the registration is completed, employee will be notified\nBusiness \nSchools\nPublic \nTraining\n• The employees register themselves.\n• Select the Training Course based on plan.\n• Fill in the online Registration form.\n• Choose Payment Option “Sponsored Pay Company" in the \npayment section and address the following email: \[nTraining@TATWEER.SA](mailto:nTraining@TATWEER.SA).\n• Employee will apply through the ERP \n• Based on Approval, Training Team registers the employees \nwith vendors with whom we have framework agreements.\nIn- House\nTraining\n• Employees will apply through the ERP \n• Based on Approval, Training Team registers the \nemployees with vendors with whom we have \nframework agreements.\nRegistration \nfor Training \nCourse",
+"visual_extracted": null
+},
+{
+"page_number": 32,
+"raw_text": "Cybersecurity Awareness\nCybersecurity is a fundamental element in safeguarding the organization's information and systems. This \ndocument aims to raise awareness among new employees about the key practices they should follow to protect \nthe digital work environment.\nPasswords\n• Use strong and unique passwords.\n• Never share your passwords with anyone.\n• Change your password regularly, at least every 90 days.\nEmail\n• Avoid opening links or attachments from unknown sources.\n• Verify the sender's email address.\n• Do not send sensitive information via email without encryption.\nDevice Usage\n• Do not use organizational devices for personal purposes.\n• Do not install any software without IT department approval.\n• Immediately report if a device is lost or suspected to be \ncompromised.",
+"visual_extracted": null
+},
+{
+"page_number": 33,
+"raw_text": "• Treat all information as confidential.\n• Store important files in designated and approved locations.\n• Do not use unapproved USB storage devices.\nData & Information\nIncident Reporting\n• Report any suspicious message or behavior immediately to the cybersecurity \nteam.\n• Send reports to the following email: [TatweerSecurity@tatweer.sa](mailto:TatweerSecurity@tatweer.sa)\n• Do not ignore security alerts or protection messages.\nEmployee Commitment\n• Employees are responsible for protecting the information they \nhandle.\n• Following security instructions protects both the organization and \nthe employee from cyber threats.\nCybersecurity Awareness",
+"visual_extracted": null
+},
+{
+"page_number": 34,
+"raw_text": "Objective:\nTo ensure new hires have a smooth transition and feel supported during their onboarding \nperiod by providing them with a knowledgeable and approachable buddy.\nRole of the Buddy:\n• Act as the first point of contact for the new hire for any questions or guidance.\n• Help the new hire understand the company culture, policies, and work environment.\n• Introducing new employees to team members and key stakeholders.\n• Provide support in navigating internal systems, tools, and resources.\n• Encourage new hire’s engagement and participation in activities and meetings.\n• Share tips and best practices related to day-to-day work.\nAssigned Buddy",
+"visual_extracted": null
+},
+{
+"page_number": 35,
+"raw_text": "Buddy Responsibilities:\nPre-Joining:\n• Coordinate with HR to understand the new \nhire’s start date and basic details. ( We will \ncopy you in the onboarding email to new \njoiner.)\n• Prepare a welcome plan (e.g., coffee \nchats ,first day lunch if possible).\nFirst Week:\n• Meet with the new hire and offer a \nworkplace tour.\n• Help set up basic tools (emails, systems \naccess) and guide through necessary \nonboarding tasks.\n• Introduce the new hire to team members \nand key departments.",
+"visual_extracted": null
+},
+{
+"page_number": 36,
+"raw_text": "After First Month: First Month:\n• Schedule regular informal check-ins (e.g., \nweekly coffee chats or brief catch - ups). \n• Be available to answer questions, clarify \nexpectations, and assist with any \nchallenges.\n• Provide insights into department \npractices and performance \nexpectations.\n• Continue to offer support and guidance as \nneeded.\n• Encourage the new hire’s independence \nwhile remaining approachable.\n• Share feedback with HR if any concerns or \nsuggestions arise.\nBuddy Responsibilities",
+"visual_extracted": null
+},
+{
+"page_number": 37,
+"raw_text": "Assigned \nBuddy \nTeam \nBejad Al Muraibadh\n(GRC)\nAbdulmajid Al Othman\n(LEGAL)\nGhaida Al Fawaz\n(HC)\n-------------------\n(BD)\nNajd Al Otaibi\n(Corporate Communication)\nMohammed Al Sharari\n(Shared Services)\n-----\n(Strategy)\n----------\n(Finance)\nFahd Al Owardhi\n(Internal Audit)",
+"visual_extracted": null
+},
+{
+"page_number": 38,
+"raw_text": "• Facilities\n• Systems\n• Wala Plus\n• The Shuttle Service\n• Uber Service \nTools And Facilities",
+"visual_extracted": null
+},
+{
+"page_number": 39,
+"raw_text": "How to use HR system\nERP or OFOQ helps to achieve integration between departments and links all data and \nprocedures of support departments.\n1\n2\n3\nUse the application link your company gave\nyou to open the sign-in page.\nEnter your user ID and password.\nClick Sign In to land on the home page.\nSign in and get started",
+"visual_extracted": null
+},
+{
+"page_number": 40,
+"raw_text": "How to use Internal Portal\nIt is an internal portal for employees to facilitate access to all necessary information of \nall company's departments.\nA brief overview and detailed description \nof the sector.\nInternal mobility “ Step” \nNews and advertisements.\nWhat to find ?",
+"visual_extracted": null
+},
+{
+"page_number": 41,
+"raw_text": "When will you start\nusing Fingerprint ?\nOnce you receive a notification email from \nOperation team, one of the team will come to \nyour office to finalize registration. (within 48 \nhours maximum)",
+"visual_extracted": null
+},
+{
+"page_number": 42,
+"raw_text": "Discount & Offer Program “Wala Plus"\nAt Tatweer, we are committed to creating a \nsupportive and motivating work environment. As \npart of this commitment, we have partnered \nwith the loyalty program (Wala Plus) to offer our \nemployees and their families unlimited access \nto over 1000 discounts and offers from top \nbrands and service providers. \n• Operation team will register you on day 1 \nand will send an email notification along with \nattached user guide.",
+"visual_extracted": null
+},
+{
+"page_number": 43,
+"raw_text": "The Shuttle Service \nThe shuttle transfer point from Al-Murooj Train Station.",
+"visual_extracted": null
+},
+{
+"page_number": 44,
+"raw_text": "44\nThe Human Capital and Contracts and Procurement Department \nSector is pleased to announce\nSigning a partnership agreement with Uber Business, to provide \nconvenient transportation services and effective for employees \nof Tatweer companies, this agreement aims to facilitate movement of \nemployees between development companies and the headquarters of \nthe Ministry of Education, without bearing any additional costs on them.\nCoverage: The agreement includes movement between\nTatweer companies (Holding, Talemia , Rafd, TBC , TETCO) and the \nheadquarters of the Ministry of Education.\nCriteria:\nAll THC Employee\nUber Service",
+"visual_extracted": null
+},
+{
+"page_number": 45,
+"raw_text": "Tatweer Family Welcomes you!",
+"visual_extracted": null
+},
+{
+"page_number": 46,
+"raw_text": null,
+"visual_extracted": {
+"brand": "Tatweer Education Holding",
+"brand_ar": "التعليم القابضة (تطوير)",
+"logos": [
+"TETCO (Tatweer Educational Technologies)",
+"TBC (Tatweer Buildings Company)",
+"RAFED",
+"TALEMIA"
+]
+}
+}
+]
+}
