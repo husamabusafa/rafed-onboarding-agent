@@ -1,0 +1,364 @@
+{
+  "components": [
+    {
+      "nodeId": "component_employee_directory",
+      "nodeType": "tool_custom_frontend",
+      "label": "Employee Directory",
+      "positionX": 100,
+      "positionY": 400,
+      "data": {
+        "label": "Employee Directory",
+        "color": "#3B82F6",
+        "type": "frontend",
+        "toolTitle": "EmployeeDirectory",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Display searchable employee information including name, position, department, region, email, and contact details",
+        "customToolZodSchema": "z.object({\n  searchQuery: z.string().optional(),\n  filters: z.object({\n    department: z.string().optional(),\n    region: z.enum(['HO', 'Riyadh', 'Makkah', 'Madinah', 'Eastern', 'Southern', 'Northern', 'Qassim']).optional(),\n    division: z.string().optional(),\n  }).optional(),\n  employees: z.array(z.object({\n    empId: z.number(),\n    nameAr: z.string(),\n    nameEn: z.string(),\n    positionAr: z.string(),\n    positionEn: z.string(),\n    department: z.string(),\n    division: z.string(),\n    region: z.string(),\n    email: z.string().email(),\n    mobile: z.string(),\n  })),\n})"
+      }
+    },
+    {
+      "nodeId": "component_department_browser",
+      "nodeType": "tool_custom_frontend",
+      "label": "Department Browser",
+      "positionX": 300,
+      "positionY": 400,
+      "data": {
+        "label": "Department Browser",
+        "color": "#8B5CF6",
+        "type": "frontend",
+        "toolTitle": "DepartmentBrowser",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Browse organizational structure showing all departments, divisions, and their team members",
+        "customToolZodSchema": "z.object({\n  selectedDivision: z.string().optional(),\n  divisions: z.array(z.object({\n    nameAr: z.string(),\n    nameEn: z.string(),\n    departments: z.array(z.object({\n      nameAr: z.string(),\n      nameEn: z.string(),\n      headCount: z.number(),\n      manager: z.string().optional(),\n      region: z.string(),\n    })),\n  })),\n})"
+      }
+    },
+    {
+      "nodeId": "component_cafeteria_menu",
+      "nodeType": "tool_custom_frontend",
+      "label": "Cafeteria Menu",
+      "positionX": 500,
+      "positionY": 400,
+      "data": {
+        "label": "Cafeteria Menu",
+        "color": "#F97316",
+        "type": "frontend",
+        "toolTitle": "CafeteriaMenu",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Display the company cafeteria menu with drinks, categories, and detailed descriptions",
+        "customToolZodSchema": "z.object({\n  selectedCategory: z.string().optional(),\n  categories: z.array(z.object({\n    nameAr: z.string(),\n    nameEn: z.string(),\n    items: z.array(z.object({\n      nameAr: z.string(),\n      nameEn: z.string(),\n      descriptionAr: z.string(),\n      descriptionEn: z.string(),\n      caffeineLevel: z.enum(['None', 'Low', 'Medium', 'High']),\n      type: z.enum(['Hot', 'Cold']),\n    })),\n  })),\n})"
+      }
+    },
+    {
+      "nodeId": "component_company_calendar",
+      "nodeType": "tool_custom_frontend",
+      "label": "Company Calendar",
+      "positionX": 700,
+      "positionY": 400,
+      "data": {
+        "label": "Company Calendar",
+        "color": "#3B82F6",
+        "type": "frontend",
+        "toolTitle": "CompanyCalendar",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Display company calendar with holidays, important dates, and Hijri/Gregorian mappings",
+        "customToolZodSchema": "z.object({\n  year: z.number(),\n  selectedMonth: z.number().min(1).max(12).optional(),\n  months: z.array(z.object({\n    monthNumber: z.number(),\n    nameEn: z.string(),\n    nameAr: z.string(),\n    hijriRangeEn: z.string(),\n    hijriRangeAr: z.string(),\n    totalDays: z.number(),\n    startsOn: z.string(),\n    holidays: z.array(z.object({\n      date: z.string().optional(),\n      startDate: z.string().optional(),\n      endDate: z.string().optional(),\n      nameEn: z.string(),\n      nameAr: z.string(),\n    })),\n  })),\n  weekendDays: z.array(z.string()),\n})"
+      }
+    },
+    {
+      "nodeId": "component_attendance_tracker",
+      "nodeType": "tool_custom_frontend",
+      "label": "Attendance Tracker",
+      "positionX": 900,
+      "positionY": 400,
+      "data": {
+        "label": "Attendance Tracker",
+        "color": "#10B981",
+        "type": "frontend",
+        "toolTitle": "AttendanceTracker",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Allow employees to check in/out and view their attendance history",
+        "customToolZodSchema": "z.object({\n  employeeId: z.number(),\n  date: z.string(),\n  checkInTime: z.string().optional(),\n  checkOutTime: z.string().optional(),\n  status: z.enum(['present', 'absent', 'late', 'on_leave', 'remote']),\n  location: z.string().optional(),\n  biometricVerified: z.boolean(),\n  recentHistory: z.array(z.object({\n    date: z.string(),\n    checkIn: z.string(),\n    checkOut: z.string(),\n    hoursWorked: z.number(),\n    status: z.string(),\n  })),\n})"
+      }
+    },
+    {
+      "nodeId": "component_onboarding_task_tracker",
+      "nodeType": "tool_custom_frontend",
+      "label": "Onboarding Task Tracker",
+      "positionX": 100,
+      "positionY": 600,
+      "data": {
+        "label": "Onboarding Task Tracker",
+        "color": "#6366F1",
+        "type": "frontend",
+        "toolTitle": "OnboardingTaskTracker",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Display and track completion of onboarding tasks assigned to the new employee",
+        "customToolZodSchema": "z.object({\n  employeeId: z.number(),\n  onboardingStage: z.enum(['pre_joining', 'first_day', 'post_joining']),\n  tasks: z.array(z.object({\n    taskId: z.number(),\n    stage: z.string(),\n    taskAr: z.string(),\n    taskEn: z.string(),\n    responsibleParty: z.string(),\n    status: z.enum(['pending', 'in_progress', 'completed', 'blocked']),\n    dueDate: z.string().optional(),\n    completedDate: z.string().optional(),\n    priority: z.enum(['high', 'medium', 'low']),\n  })),\n  progressPercentage: z.number().min(0).max(100),\n})"
+      }
+    },
+    {
+      "nodeId": "component_document_request",
+      "nodeType": "tool_custom_frontend",
+      "label": "Document Request",
+      "positionX": 300,
+      "positionY": 600,
+      "data": {
+        "label": "Document Request",
+        "color": "#3B82F6",
+        "type": "frontend",
+        "toolTitle": "DocumentRequest",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Form to request company documents (contracts, certificates, letters, etc.)",
+        "customToolZodSchema": "z.object({\n  requestId: z.string().uuid().optional(),\n  employeeId: z.number(),\n  documentType: z.enum(['employment_certificate', 'salary_certificate', 'contract_copy', 'id_letter', 'experience_letter', 'other']),\n  purpose: z.string(),\n  deliveryMethod: z.enum(['email', 'printed', 'both']),\n  urgency: z.enum(['normal', 'urgent']),\n  additionalNotes: z.string().optional(),\n  status: z.enum(['draft', 'submitted', 'in_review', 'approved', 'rejected', 'completed']).default('draft'),\n  submittedDate: z.string().optional(),\n})"
+      }
+    },
+    {
+      "nodeId": "component_leave_request",
+      "nodeType": "tool_custom_frontend",
+      "label": "Leave Request",
+      "positionX": 500,
+      "positionY": 600,
+      "data": {
+        "label": "Leave Request",
+        "color": "#14B8A6",
+        "type": "frontend",
+        "toolTitle": "LeaveRequest",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Form to request various types of leave (annual, sick, emergency, etc.)",
+        "customToolZodSchema": "z.object({\n  requestId: z.string().uuid().optional(),\n  employeeId: z.number(),\n  leaveType: z.enum(['annual', 'sick', 'emergency', 'unpaid', 'hajj', 'maternity', 'paternity', 'bereavement', 'study']),\n  startDate: z.string(),\n  endDate: z.string(),\n  totalDays: z.number().positive(),\n  reason: z.string(),\n  contactDuringLeave: z.string().optional(),\n  remainingBalance: z.number().optional(),\n  status: z.enum(['draft', 'submitted', 'pending_approval', 'approved', 'rejected']).default('draft'),\n  approverComments: z.string().optional(),\n})"
+      }
+    },
+    {
+      "nodeId": "component_equipment_request",
+      "nodeType": "tool_custom_frontend",
+      "label": "Equipment Request",
+      "positionX": 700,
+      "positionY": 600,
+      "data": {
+        "label": "Equipment Request",
+        "color": "#6366F1",
+        "type": "frontend",
+        "toolTitle": "EquipmentRequest",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Form to request office equipment, devices, or supplies",
+        "customToolZodSchema": "z.object({\n  requestId: z.string().uuid().optional(),\n  employeeId: z.number(),\n  equipmentType: z.enum(['laptop', 'desktop', 'mobile_phone', 'tablet', 'monitor', 'keyboard', 'mouse', 'headset', 'office_supplies', 'other']),\n  quantity: z.number().positive().default(1),\n  specifications: z.string().optional(),\n  justification: z.string(),\n  urgency: z.enum(['low', 'medium', 'high', 'critical']),\n  preferredDeliveryDate: z.string().optional(),\n  status: z.enum(['draft', 'submitted', 'pending_approval', 'approved', 'ordered', 'delivered', 'rejected']).default('draft'),\n  approvalChain: z.array(z.object({\n    approver: z.string(),\n    status: z.string(),\n    date: z.string().optional(),\n  })).optional(),\n})"
+      }
+    },
+    {
+      "nodeId": "component_parking_request",
+      "nodeType": "tool_custom_frontend",
+      "label": "Parking Request",
+      "positionX": 900,
+      "positionY": 600,
+      "data": {
+        "label": "Parking Request",
+        "color": "#3B82F6",
+        "type": "frontend",
+        "toolTitle": "ParkingRequest",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Request a parking spot at the office",
+        "customToolZodSchema": "z.object({\n  requestId: z.string().uuid().optional(),\n  employeeId: z.number(),\n  vehicleType: z.enum(['car', 'motorcycle', 'bicycle']),\n  licensePlate: z.string(),\n  vehicleMake: z.string(),\n  vehicleModel: z.string(),\n  vehicleColor: z.string(),\n  preferredLocation: z.string().optional(),\n  disabilityAccommodation: z.boolean().default(false),\n  startDate: z.string(),\n  status: z.enum(['pending', 'approved', 'assigned', 'rejected']).default('pending'),\n  assignedSpotNumber: z.string().optional(),\n})"
+      }
+    },
+    {
+      "nodeId": "component_id_badge_status",
+      "nodeType": "tool_custom_frontend",
+      "label": "ID Badge Status",
+      "positionX": 100,
+      "positionY": 800,
+      "data": {
+        "label": "ID Badge Status",
+        "color": "#06B6D4",
+        "type": "frontend",
+        "toolTitle": "IdBadgeStatus",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Display the status of employee ID badge creation and issuance",
+        "customToolZodSchema": "z.object({\n  employeeId: z.number(),\n  badgeNumber: z.string().optional(),\n  status: z.enum(['photo_pending', 'in_production', 'ready_for_pickup', 'issued', 'replacement_requested', 'lost_reported']),\n  photoSubmitted: z.boolean(),\n  productionDate: z.string().optional(),\n  issuedDate: z.string().optional(),\n  pickupLocation: z.string().optional(),\n  accessLevels: z.array(z.string()).optional(),\n  expiryDate: z.string().optional(),\n})"
+      }
+    },
+    {
+      "nodeId": "component_email_setup_status",
+      "nodeType": "tool_custom_frontend",
+      "label": "Email Setup Status",
+      "positionX": 300,
+      "positionY": 800,
+      "data": {
+        "label": "Email Setup Status",
+        "color": "#3B82F6",
+        "type": "frontend",
+        "toolTitle": "EmailSetupStatus",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Track the status of email account creation and configuration",
+        "customToolZodSchema": "z.object({\n  employeeId: z.number(),\n  emailAddress: z.string().email().optional(),\n  status: z.enum(['requested', 'in_progress', 'created', 'credentials_sent', 'activated', 'failed']),\n  accountType: z.enum(['standard', 'admin', 'service']).default('standard'),\n  requestDate: z.string(),\n  creationDate: z.string().optional(),\n  activationDate: z.string().optional(),\n  accessGroups: z.array(z.string()).optional(),\n  mobileDeviceConfigured: z.boolean().default(false),\n  initialPassword: z.string().optional(),\n  setupInstructions: z.string().optional(),\n})"
+      }
+    },
+    {
+      "nodeId": "component_building_tour_scheduler",
+      "nodeType": "tool_custom_frontend",
+      "label": "Building Tour Scheduler",
+      "positionX": 500,
+      "positionY": 800,
+      "data": {
+        "label": "Building Tour Scheduler",
+        "color": "#8B5CF6",
+        "type": "frontend",
+        "toolTitle": "BuildingTourScheduler",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Schedule orientation tours of company facilities",
+        "customToolZodSchema": "z.object({\n  tourId: z.string().uuid().optional(),\n  employeeId: z.number(),\n  employeeLevel: z.enum(['executive_14_19', 'staff_1_13']),\n  tourDate: z.string(),\n  tourTime: z.string(),\n  duration: z.number().default(60),\n  tourType: z.enum(['full_building', 'department_only', 'facilities_only', 'executive']),\n  meetingPoint: z.string(),\n  tourGuide: z.string().optional(),\n  status: z.enum(['scheduled', 'confirmed', 'completed', 'cancelled', 'rescheduled']).default('scheduled'),\n  stops: z.array(z.object({\n    location: z.string(),\n    description: z.string(),\n    estimatedTime: z.number(),\n  })).optional(),\n})"
+      }
+    },
+    {
+      "nodeId": "component_meet_your_team",
+      "nodeType": "tool_custom_frontend",
+      "label": "Meet Your Team",
+      "positionX": 700,
+      "positionY": 800,
+      "data": {
+        "label": "Meet Your Team",
+        "color": "#6366F1",
+        "type": "frontend",
+        "toolTitle": "MeetYourTeam",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Display team members, their roles, and introductory information",
+        "customToolZodSchema": "z.object({\n  newEmployeeId: z.number(),\n  department: z.string(),\n  directManager: z.object({\n    empId: z.number(),\n    nameAr: z.string(),\n    nameEn: z.string(),\n    position: z.string(),\n    email: z.string().email(),\n    mobile: z.string(),\n    bio: z.string().optional(),\n    photo: z.string().optional(),\n  }),\n  teamMembers: z.array(z.object({\n    empId: z.number(),\n    nameAr: z.string(),\n    nameEn: z.string(),\n    position: z.string(),\n    email: z.string().email(),\n    role: z.string(),\n    joinedDate: z.string().optional(),\n    expertise: z.array(z.string()).optional(),\n    photo: z.string().optional(),\n  })),\n  relatedDepartments: z.array(z.object({\n    name: z.string(),\n    contactPerson: z.string(),\n    relationship: z.string(),\n  })).optional(),\n})"
+      }
+    },
+    {
+      "nodeId": "component_orientation_workshop",
+      "nodeType": "tool_custom_frontend",
+      "label": "Orientation Workshop",
+      "positionX": 900,
+      "positionY": 800,
+      "data": {
+        "label": "Orientation Workshop",
+        "color": "#14B8A6",
+        "type": "frontend",
+        "toolTitle": "OrientationWorkshop",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Register for onboarding workshops and training sessions",
+        "customToolZodSchema": "z.object({\n  workshopId: z.string().uuid(),\n  title: z.object({\n    ar: z.string(),\n    en: z.string(),\n  }),\n  description: z.object({\n    ar: z.string(),\n    en: z.string(),\n  }),\n  workshopType: z.enum(['company_introduction', 'policies_procedures', 'cybersecurity', 'hr_systems', 'department_specific', 'leadership_orientation']),\n  date: z.string(),\n  startTime: z.string(),\n  endTime: z.string(),\n  location: z.string(),\n  facilitator: z.string(),\n  maxAttendees: z.number(),\n  currentAttendees: z.number(),\n  isRequired: z.boolean(),\n  targetAudience: z.enum(['all_new_employees', 'executives', 'staff', 'specific_department']),\n  registrationStatus: z.enum(['open', 'full', 'closed']),\n  employeeRegistered: z.boolean().default(false),\n})"
+      }
+    },
+    {
+      "nodeId": "component_it_access_request",
+      "nodeType": "tool_custom_frontend",
+      "label": "IT Access Request",
+      "positionX": 100,
+      "positionY": 1000,
+      "data": {
+        "label": "IT Access Request",
+        "color": "#6366F1",
+        "type": "frontend",
+        "toolTitle": "ItAccessRequest",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Request access to IT systems, applications, and platforms",
+        "customToolZodSchema": "z.object({\n  requestId: z.string().uuid().optional(),\n  employeeId: z.number(),\n  systems: z.array(z.object({\n    systemName: z.string(),\n    accessLevel: z.enum(['read_only', 'standard', 'power_user', 'admin']),\n    justification: z.string(),\n  })),\n  urgency: z.enum(['standard', 'high', 'critical']),\n  managerApproval: z.object({\n    approved: z.boolean().optional(),\n    approverName: z.string().optional(),\n    approvalDate: z.string().optional(),\n    comments: z.string().optional(),\n  }).optional(),\n  status: z.enum(['draft', 'pending_manager_approval', 'pending_it_review', 'in_progress', 'completed', 'rejected']).default('draft'),\n  requestedDate: z.string(),\n  completionDate: z.string().optional(),\n})"
+      }
+    },
+    {
+      "nodeId": "component_internal_contact_directory",
+      "nodeType": "tool_custom_frontend",
+      "label": "Internal Contact Directory",
+      "positionX": 300,
+      "positionY": 1000,
+      "data": {
+        "label": "Internal Contact Directory",
+        "color": "#06B6D4",
+        "type": "frontend",
+        "toolTitle": "InternalContactDirectory",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Searchable directory of key contacts, departments, and services",
+        "customToolZodSchema": "z.object({\n  searchQuery: z.string().optional(),\n  category: z.enum(['hr', 'it', 'finance', 'administration', 'operations', 'safety_security', 'communications', 'legal', 'facilities']).optional(),\n  contacts: z.array(z.object({\n    departmentAr: z.string(),\n    departmentEn: z.string(),\n    serviceType: z.string(),\n    contactPerson: z.string().optional(),\n    email: z.string().email(),\n    phone: z.string().optional(),\n    extension: z.string().optional(),\n    location: z.string().optional(),\n    availability: z.string().optional(),\n  })),\n})"
+      }
+    },
+    {
+      "nodeId": "component_benefits_overview",
+      "nodeType": "tool_custom_frontend",
+      "label": "Benefits Overview",
+      "positionX": 500,
+      "positionY": 1000,
+      "data": {
+        "label": "Benefits Overview",
+        "color": "#10B981",
+        "type": "frontend",
+        "toolTitle": "BenefitsOverview",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Display employee benefits, compensation details, and insurance information",
+        "customToolZodSchema": "z.object({\n  employeeId: z.number(),\n  salary: z.object({\n    basicSalary: z.number(),\n    allowances: z.array(z.object({\n      type: z.string(),\n      amount: z.number(),\n    })),\n    totalPackage: z.number(),\n  }).optional(),\n  medicalInsurance: z.object({\n    provider: z.string(),\n    policyNumber: z.string().optional(),\n    coverage: z.enum(['employee_only', 'employee_and_dependents']),\n    dependentsCount: z.number().default(0),\n    startDate: z.string(),\n    endDate: z.string(),\n    cardIssued: z.boolean(),\n  }).optional(),\n  leaveEntitlements: z.array(z.object({\n    leaveType: z.string(),\n    annualAllocation: z.number(),\n    used: z.number(),\n    remaining: z.number(),\n  })),\n  additionalBenefits: z.array(z.object({\n    benefitName: z.string(),\n    description: z.string(),\n    eligibility: z.string().optional(),\n  })).optional(),\n  performanceReview: z.object({\n    cycle: z.string(),\n    nextReviewDate: z.string().optional(),\n  }).optional(),\n})"
+      }
+    },
+    {
+      "nodeId": "component_probation_tracker",
+      "nodeType": "tool_custom_frontend",
+      "label": "Probation Tracker",
+      "positionX": 700,
+      "positionY": 1000,
+      "data": {
+        "label": "Probation Tracker",
+        "color": "#F59E0B",
+        "type": "frontend",
+        "toolTitle": "ProbationTracker",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Track probation period progress, milestones, and evaluation dates",
+        "customToolZodSchema": "z.object({\n  employeeId: z.number(),\n  startDate: z.string(),\n  endDate: z.string(),\n  duration: z.number(),\n  currentDay: z.number(),\n  progressPercentage: z.number().min(0).max(100),\n  status: z.enum(['active', 'extended', 'completed', 'terminated']),\n  milestones: z.array(z.object({\n    name: z.string(),\n    dueDate: z.string(),\n    completed: z.boolean(),\n    completedDate: z.string().optional(),\n    notes: z.string().optional(),\n  })),\n  evaluations: z.array(z.object({\n    evaluationType: z.enum(['30_day', '60_day', '90_day', 'final']),\n    scheduledDate: z.string(),\n    completedDate: z.string().optional(),\n    evaluator: z.string(),\n    rating: z.number().min(1).max(5).optional(),\n    comments: z.string().optional(),\n  })),\n  nextEvaluationDate: z.string().optional(),\n})"
+      }
+    },
+    {
+      "nodeId": "component_feedback_survey",
+      "nodeType": "tool_custom_frontend",
+      "label": "Feedback Survey",
+      "positionX": 900,
+      "positionY": 1000,
+      "data": {
+        "label": "Feedback Survey",
+        "color": "#6366F1",
+        "type": "frontend",
+        "toolTitle": "FeedbackSurvey",
+        "agentColor": "#F59E0B",
+        "isExpanded": true,
+        "isConfigured": true,
+        "toolDescription": "Submit feedback about the onboarding experience or workplace satisfaction",
+        "customToolZodSchema": "z.object({\n  surveyId: z.string().uuid().optional(),\n  employeeId: z.number(),\n  surveyType: z.enum(['onboarding_satisfaction', 'workplace_environment', 'manager_feedback', 'facilities_feedback', 'it_services', 'hr_services', 'general_suggestion']),\n  isAnonymous: z.boolean().default(false),\n  questions: z.array(z.object({\n    questionId: z.string(),\n    questionText: z.string(),\n    questionType: z.enum(['rating', 'multiple_choice', 'text', 'yes_no']),\n    answer: z.union([\n      z.number(),\n      z.string(),\n      z.boolean(),\n      z.array(z.string())\n    ]),\n  })),\n  overallRating: z.number().min(1).max(5).optional(),\n  additionalComments: z.string().optional(),\n  submittedDate: z.string().optional(),\n  status: z.enum(['draft', 'submitted', 'reviewed']).default('draft'),\n})"
+      }
+    }
+  ]
+}

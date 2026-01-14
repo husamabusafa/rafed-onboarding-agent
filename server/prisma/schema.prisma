@@ -1,0 +1,777 @@
+// Comprehensive Prisma Schema for Onboarding System
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Employee Management
+model Employee {
+  id              Int       @id @default(autoincrement())
+  empId           Int       @unique
+  nameAr          String
+  nameEn          String
+  positionAr      String
+  positionEn      String
+  email           String    @unique
+  mobile          String
+  joiningDate     DateTime  @default(now())
+  
+  // Relations
+  department      Department @relation(fields: [departmentId], references: [id])
+  departmentId    Int
+  division        Division   @relation(fields: [divisionId], references: [id])
+  divisionId      Int
+  region          Region     @relation(fields: [regionId], references: [id])
+  regionId        Int
+  
+  // Onboarding related
+  onboardingStage OnboardingStage @default(PRE_JOINING)
+  probationStart  DateTime?
+  probationEnd    DateTime?
+  
+  // Related records
+  attendanceRecords    AttendanceRecord[]
+  onboardingTasks      OnboardingTask[]
+  documentRequests     DocumentRequest[]
+  leaveRequests        LeaveRequest[]
+  equipmentRequests    EquipmentRequest[]
+  parkingRequest       ParkingRequest?
+  idBadge              IdBadge?
+  emailSetup           EmailSetup?
+  buildingTours        BuildingTour[]
+  itAccessRequests     ItAccessRequest[]
+  benefits             Benefits?
+  probationEvaluations ProbationEvaluation[]
+  feedbackSurveys      FeedbackSurvey[]
+  
+  // Team relationships
+  managerId       Int?
+  manager         Employee?  @relation("ManagerEmployee", fields: [managerId], references: [id])
+  directReports   Employee[] @relation("ManagerEmployee")
+  
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  
+  @@index([departmentId])
+  @@index([divisionId])
+  @@index([regionId])
+  @@index([email])
+}
+
+model Region {
+  id        Int        @id @default(autoincrement())
+  code      String     @unique
+  nameAr    String
+  nameEn    String
+  employees Employee[]
+  departments Department[]
+  
+  @@map("regions")
+}
+
+model Division {
+  id          Int          @id @default(autoincrement())
+  nameAr      String
+  nameEn      String
+  employees   Employee[]
+  departments Department[]
+  
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  
+  @@map("divisions")
+}
+
+model Department {
+  id          Int        @id @default(autoincrement())
+  nameAr      String
+  nameEn      String
+  headCount   Int        @default(0)
+  manager     String?
+  
+  division    Division   @relation(fields: [divisionId], references: [id])
+  divisionId  Int
+  region      Region     @relation(fields: [regionId], references: [id])
+  regionId    Int
+  
+  employees   Employee[]
+  contacts    InternalContact[]
+  
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  
+  @@index([divisionId])
+  @@index([regionId])
+  @@map("departments")
+}
+
+// Cafeteria Menu
+model MenuCategory {
+  id      Int        @id @default(autoincrement())
+  nameAr  String
+  nameEn  String
+  items   MenuItem[]
+  
+  @@map("menu_categories")
+}
+
+model MenuItem {
+  id             Int            @id @default(autoincrement())
+  nameAr         String
+  nameEn         String
+  descriptionAr  String
+  descriptionEn  String
+  caffeineLevel  CaffeineLevel
+  type           DrinkType
+  
+  category       MenuCategory   @relation(fields: [categoryId], references: [id])
+  categoryId     Int
+  
+  @@index([categoryId])
+  @@map("menu_items")
+}
+
+// Company Calendar
+model Holiday {
+  id        Int       @id @default(autoincrement())
+  date      DateTime?
+  startDate DateTime?
+  endDate   DateTime?
+  nameEn    String
+  nameAr    String
+  month     Int
+  year      Int
+  
+  @@index([year, month])
+  @@map("holidays")
+}
+
+// Attendance Tracking
+model AttendanceRecord {
+  id                Int              @id @default(autoincrement())
+  employee          Employee         @relation(fields: [employeeId], references: [id])
+  employeeId        Int
+  date              DateTime         @db.Date
+  checkInTime       DateTime?
+  checkOutTime      DateTime?
+  status            AttendanceStatus
+  location          String?
+  biometricVerified Boolean          @default(false)
+  hoursWorked       Float?
+  
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  
+  @@unique([employeeId, date])
+  @@index([employeeId])
+  @@index([date])
+  @@map("attendance_records")
+}
+
+// Onboarding Tasks
+model OnboardingTask {
+  id                Int           @id @default(autoincrement())
+  employee          Employee      @relation(fields: [employeeId], references: [id])
+  employeeId        Int
+  stage             OnboardingStage
+  taskAr            String
+  taskEn            String
+  responsibleParty  String
+  status            TaskStatus    @default(PENDING)
+  dueDate           DateTime?
+  completedDate     DateTime?
+  priority          Priority      @default(MEDIUM)
+  
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+  
+  @@index([employeeId])
+  @@index([status])
+  @@map("onboarding_tasks")
+}
+
+// Document Requests
+model DocumentRequest {
+  id             Int                  @id @default(autoincrement())
+  requestId      String               @unique @default(uuid())
+  employee       Employee             @relation(fields: [employeeId], references: [id])
+  employeeId     Int
+  documentType   DocumentType
+  purpose        String
+  deliveryMethod DeliveryMethod
+  urgency        Urgency              @default(NORMAL)
+  additionalNotes String?
+  status         RequestStatus        @default(DRAFT)
+  submittedDate  DateTime?
+  completedDate  DateTime?
+  
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  
+  @@index([employeeId])
+  @@index([status])
+  @@map("document_requests")
+}
+
+// Leave Requests
+model LeaveRequest {
+  id                Int            @id @default(autoincrement())
+  requestId         String         @unique @default(uuid())
+  employee          Employee       @relation(fields: [employeeId], references: [id])
+  employeeId        Int
+  leaveType         LeaveType
+  startDate         DateTime       @db.Date
+  endDate           DateTime       @db.Date
+  totalDays         Int
+  reason            String
+  contactDuringLeave String?
+  remainingBalance  Int?
+  status            RequestStatus  @default(DRAFT)
+  approverComments  String?
+  approvedDate      DateTime?
+  
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  
+  @@index([employeeId])
+  @@index([status])
+  @@map("leave_requests")
+}
+
+// Equipment Requests
+model EquipmentRequest {
+  id                    Int            @id @default(autoincrement())
+  requestId             String         @unique @default(uuid())
+  employee              Employee       @relation(fields: [employeeId], references: [id])
+  employeeId            Int
+  equipmentType         EquipmentType
+  quantity              Int            @default(1)
+  specifications        String?
+  justification         String
+  urgency               Urgency        @default(NORMAL)
+  preferredDeliveryDate DateTime?
+  status                EquipmentStatus @default(DRAFT)
+  approvalChain         Json?
+  
+  createdAt             DateTime       @default(now())
+  updatedAt             DateTime       @updatedAt
+  
+  @@index([employeeId])
+  @@index([status])
+  @@map("equipment_requests")
+}
+
+// Parking Requests
+model ParkingRequest {
+  id                      Int            @id @default(autoincrement())
+  requestId               String         @unique @default(uuid())
+  employee                Employee       @relation(fields: [employeeId], references: [id])
+  employeeId              Int            @unique
+  vehicleType             VehicleType
+  licensePlate            String
+  vehicleMake             String
+  vehicleModel            String
+  vehicleColor            String
+  preferredLocation       String?
+  disabilityAccommodation Boolean        @default(false)
+  startDate               DateTime       @db.Date
+  status                  ParkingStatus  @default(PENDING)
+  assignedSpotNumber      String?
+  
+  createdAt               DateTime       @default(now())
+  updatedAt               DateTime       @updatedAt
+  
+  @@index([employeeId])
+  @@map("parking_requests")
+}
+
+// ID Badge
+model IdBadge {
+  id             Int         @id @default(autoincrement())
+  employee       Employee    @relation(fields: [employeeId], references: [id])
+  employeeId     Int         @unique
+  badgeNumber    String?     @unique
+  status         BadgeStatus
+  photoSubmitted Boolean     @default(false)
+  productionDate DateTime?
+  issuedDate     DateTime?
+  pickupLocation String?
+  accessLevels   String[]
+  expiryDate     DateTime?
+  
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  
+  @@index([employeeId])
+  @@map("id_badges")
+}
+
+// Email Setup
+model EmailSetup {
+  id                     Int          @id @default(autoincrement())
+  employee               Employee     @relation(fields: [employeeId], references: [id])
+  employeeId             Int          @unique
+  emailAddress           String?      @unique
+  status                 EmailStatus
+  accountType            AccountType  @default(STANDARD)
+  requestDate            DateTime     @default(now())
+  creationDate           DateTime?
+  activationDate         DateTime?
+  accessGroups           String[]
+  mobileDeviceConfigured Boolean      @default(false)
+  initialPassword        String?
+  setupInstructions      String?
+  
+  createdAt              DateTime     @default(now())
+  updatedAt              DateTime     @updatedAt
+  
+  @@index([employeeId])
+  @@map("email_setups")
+}
+
+// Building Tours
+model BuildingTour {
+  id             Int        @id @default(autoincrement())
+  tourId         String     @unique @default(uuid())
+  employee       Employee   @relation(fields: [employeeId], references: [id])
+  employeeId     Int
+  employeeLevel  EmployeeLevel
+  tourDate       DateTime   @db.Date
+  tourTime       String
+  duration       Int        @default(60)
+  tourType       TourType
+  meetingPoint   String
+  tourGuide      String?
+  status         TourStatus @default(SCHEDULED)
+  stops          Json?
+  
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  
+  @@index([employeeId])
+  @@index([tourDate])
+  @@map("building_tours")
+}
+
+// Orientation Workshops
+model OrientationWorkshop {
+  id                 Int            @id @default(autoincrement())
+  workshopId         String         @unique @default(uuid())
+  titleAr            String
+  titleEn            String
+  descriptionAr      String
+  descriptionEn      String
+  workshopType       WorkshopType
+  date               DateTime       @db.Date
+  startTime          String
+  endTime            String
+  location           String
+  facilitator        String
+  maxAttendees       Int
+  currentAttendees   Int            @default(0)
+  isRequired         Boolean        @default(false)
+  targetAudience     TargetAudience
+  registrationStatus RegistrationStatus @default(OPEN)
+  
+  registrations      WorkshopRegistration[]
+  
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  
+  @@index([date])
+  @@map("orientation_workshops")
+}
+
+model WorkshopRegistration {
+  id         Int                  @id @default(autoincrement())
+  workshop   OrientationWorkshop  @relation(fields: [workshopId], references: [id])
+  workshopId Int
+  employeeId Int
+  registered Boolean              @default(false)
+  
+  createdAt  DateTime             @default(now())
+  
+  @@unique([workshopId, employeeId])
+  @@index([employeeId])
+  @@map("workshop_registrations")
+}
+
+// IT Access Requests
+model ItAccessRequest {
+  id                Int            @id @default(autoincrement())
+  requestId         String         @unique @default(uuid())
+  employee          Employee       @relation(fields: [employeeId], references: [id])
+  employeeId        Int
+  systems           Json
+  urgency           Urgency        @default(NORMAL)
+  managerApproval   Json?
+  status            ITAccessStatus @default(DRAFT)
+  requestedDate     DateTime       @default(now())
+  completionDate    DateTime?
+  
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  
+  @@index([employeeId])
+  @@index([status])
+  @@map("it_access_requests")
+}
+
+// Internal Contacts
+model InternalContact {
+  id             Int         @id @default(autoincrement())
+  departmentAr   String
+  departmentEn   String
+  serviceType    String
+  contactPerson  String?
+  email          String
+  phone          String?
+  extension      String?
+  location       String?
+  availability   String?
+  category       ContactCategory
+  
+  department     Department? @relation(fields: [departmentId], references: [id])
+  departmentId   Int?
+  
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  
+  @@index([category])
+  @@index([departmentId])
+  @@map("internal_contacts")
+}
+
+// Benefits
+model Benefits {
+  id                    Int      @id @default(autoincrement())
+  employee              Employee @relation(fields: [employeeId], references: [id])
+  employeeId            Int      @unique
+  basicSalary           Float
+  allowances            Json?
+  totalPackage          Float
+  
+  // Medical Insurance
+  insuranceProvider     String?
+  insurancePolicyNumber String?
+  insuranceCoverage     InsuranceCoverage
+  dependentsCount       Int      @default(0)
+  insuranceStartDate    DateTime?
+  insuranceEndDate      DateTime?
+  insuranceCardIssued   Boolean  @default(false)
+  
+  // Leave Entitlements
+  leaveEntitlements     Json?
+  
+  // Additional Benefits
+  additionalBenefits    Json?
+  
+  // Performance Review
+  reviewCycle           String?
+  nextReviewDate        DateTime?
+  
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  
+  @@index([employeeId])
+  @@map("benefits")
+}
+
+// Probation Tracking
+model ProbationEvaluation {
+  id             Int             @id @default(autoincrement())
+  employee       Employee        @relation(fields: [employeeId], references: [id])
+  employeeId     Int
+  evaluationType EvaluationType
+  scheduledDate  DateTime        @db.Date
+  completedDate  DateTime?
+  evaluator      String
+  rating         Int?
+  comments       String?
+  
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  
+  @@index([employeeId])
+  @@index([scheduledDate])
+  @@map("probation_evaluations")
+}
+
+model ProbationMilestone {
+  id            Int      @id @default(autoincrement())
+  employeeId    Int
+  name          String
+  dueDate       DateTime @db.Date
+  completed     Boolean  @default(false)
+  completedDate DateTime?
+  notes         String?
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  @@index([employeeId])
+  @@map("probation_milestones")
+}
+
+// Feedback Surveys
+model FeedbackSurvey {
+  id                 Int          @id @default(autoincrement())
+  surveyId           String       @unique @default(uuid())
+  employee           Employee     @relation(fields: [employeeId], references: [id])
+  employeeId         Int
+  surveyType         SurveyType
+  isAnonymous        Boolean      @default(false)
+  questions          Json
+  overallRating      Int?
+  additionalComments String?
+  submittedDate      DateTime?
+  status             SurveyStatus @default(DRAFT)
+  
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  
+  @@index([employeeId])
+  @@index([surveyType])
+  @@map("feedback_surveys")
+}
+
+// Enums
+enum OnboardingStage {
+  PRE_JOINING
+  FIRST_DAY
+  POST_JOINING
+}
+
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+  BLOCKED
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LATE
+  ON_LEAVE
+  REMOTE
+}
+
+enum CaffeineLevel {
+  NONE
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum DrinkType {
+  HOT
+  COLD
+}
+
+enum DocumentType {
+  EMPLOYMENT_CERTIFICATE
+  SALARY_CERTIFICATE
+  CONTRACT_COPY
+  ID_LETTER
+  EXPERIENCE_LETTER
+  OTHER
+}
+
+enum DeliveryMethod {
+  EMAIL
+  PRINTED
+  BOTH
+}
+
+enum Urgency {
+  NORMAL
+  URGENT
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum RequestStatus {
+  DRAFT
+  SUBMITTED
+  IN_REVIEW
+  PENDING_APPROVAL
+  APPROVED
+  REJECTED
+  COMPLETED
+}
+
+enum LeaveType {
+  ANNUAL
+  SICK
+  EMERGENCY
+  UNPAID
+  HAJJ
+  MATERNITY
+  PATERNITY
+  BEREAVEMENT
+  STUDY
+}
+
+enum EquipmentType {
+  LAPTOP
+  DESKTOP
+  MOBILE_PHONE
+  TABLET
+  MONITOR
+  KEYBOARD
+  MOUSE
+  HEADSET
+  OFFICE_SUPPLIES
+  OTHER
+}
+
+enum EquipmentStatus {
+  DRAFT
+  SUBMITTED
+  PENDING_APPROVAL
+  APPROVED
+  ORDERED
+  DELIVERED
+  REJECTED
+}
+
+enum VehicleType {
+  CAR
+  MOTORCYCLE
+  BICYCLE
+}
+
+enum ParkingStatus {
+  PENDING
+  APPROVED
+  ASSIGNED
+  REJECTED
+}
+
+enum BadgeStatus {
+  PHOTO_PENDING
+  IN_PRODUCTION
+  READY_FOR_PICKUP
+  ISSUED
+  REPLACEMENT_REQUESTED
+  LOST_REPORTED
+}
+
+enum EmailStatus {
+  REQUESTED
+  IN_PROGRESS
+  CREATED
+  CREDENTIALS_SENT
+  ACTIVATED
+  FAILED
+}
+
+enum AccountType {
+  STANDARD
+  ADMIN
+  SERVICE
+}
+
+enum EmployeeLevel {
+  EXECUTIVE_14_19
+  STAFF_1_13
+}
+
+enum TourType {
+  FULL_BUILDING
+  DEPARTMENT_ONLY
+  FACILITIES_ONLY
+  EXECUTIVE
+}
+
+enum TourStatus {
+  SCHEDULED
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  RESCHEDULED
+}
+
+enum WorkshopType {
+  COMPANY_INTRODUCTION
+  POLICIES_PROCEDURES
+  CYBERSECURITY
+  HR_SYSTEMS
+  DEPARTMENT_SPECIFIC
+  LEADERSHIP_ORIENTATION
+}
+
+enum TargetAudience {
+  ALL_NEW_EMPLOYEES
+  EXECUTIVES
+  STAFF
+  SPECIFIC_DEPARTMENT
+}
+
+enum RegistrationStatus {
+  OPEN
+  FULL
+  CLOSED
+}
+
+enum ITAccessStatus {
+  DRAFT
+  PENDING_MANAGER_APPROVAL
+  PENDING_IT_REVIEW
+  IN_PROGRESS
+  COMPLETED
+  REJECTED
+}
+
+enum ContactCategory {
+  HR
+  IT
+  FINANCE
+  ADMINISTRATION
+  OPERATIONS
+  SAFETY_SECURITY
+  COMMUNICATIONS
+  LEGAL
+  FACILITIES
+}
+
+enum InsuranceCoverage {
+  EMPLOYEE_ONLY
+  EMPLOYEE_AND_DEPENDENTS
+}
+
+enum EvaluationType {
+  DAY_30
+  DAY_60
+  DAY_90
+  FINAL
+}
+
+enum SurveyType {
+  ONBOARDING_SATISFACTION
+  WORKPLACE_ENVIRONMENT
+  MANAGER_FEEDBACK
+  FACILITIES_FEEDBACK
+  IT_SERVICES
+  HR_SERVICES
+  GENERAL_SUGGESTION
+}
+
+enum SurveyStatus {
+  DRAFT
+  SUBMITTED
+  REVIEWED
+}

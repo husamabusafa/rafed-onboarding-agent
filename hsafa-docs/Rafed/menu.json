@@ -1,0 +1,146 @@
+{
+  "menu_metadata": {
+    "brand_name_en": "RAFED",
+    "brand_name_ar": "رافد",
+    "menu_title_en": "Drinks menu",
+    "menu_title_ar": "قائمة المشروبات",
+    "department_en": "Corporate Services Sector - Administrative Affairs and Facilities Management",
+    "department_ar": "قطاع الخدمات المؤسسية - إدارة الشؤون الإدارية والمرافق",
+    "brand_promise_en": "We have chosen for you the finest types to provide a great taste in every drink, as our drinks are carefully presented according to the best standards",
+    "brand_promise_ar": "اخترنا لكم أجود الأنواع لتوفير مذاق رائع في كل مشروب، حيث أن مشروباتنا تقدم بعناية وفق أفضل المعايير"
+  },
+  "categories": [
+    {
+      "category_name_en": "Teas & Herbal Infusions",
+      "category_name_ar": "الشاي والأعشاب",
+      "items": [
+        {
+          "name_en": "Red tea",
+          "name_ar": "شاي أحمر",
+          "description_en": "Classic fully oxidized black tea, served hot.",
+          "description_ar": "الشاي الأسود الكلاسيكي كامل الأكسدة، يقدم ساخناً.",
+          "caffeine_level": "Medium",
+          "type": "Hot"
+        },
+        {
+          "name_en": "Green tea",
+          "name_ar": "شاي أخضر",
+          "description_en": "Unoxidized tea rich in antioxidants with a lighter flavor.",
+          "description_ar": "شاي غير مؤكسد غني بمضادات الأكسدة ذو نكهة خفيفة.",
+          "caffeine_level": "Low",
+          "type": "Hot"
+        },
+        {
+          "name_en": "Tea & mint",
+          "name_ar": "شاي نعناع",
+          "description_en": "Black tea infused with fresh mint leaves.",
+          "description_ar": "شاي أسود مع أوراق النعناع الطازجة.",
+          "caffeine_level": "Medium",
+          "type": "Hot"
+        },
+        {
+          "name_en": "Tea & Habaq",
+          "name_ar": "شاي حبق",
+          "description_en": "Tea brewed with Habaq (Saudi Basil/Wild Mint), a traditional aromatic herb distinct from regular mint.",
+          "description_ar": "شاي محضر مع الحبق (الريحان السعودي)، عشبة عطرية تقليدية تختلف عن النعناع العادي.",
+          "caffeine_level": "Medium",
+          "type": "Hot"
+        },
+        {
+          "name_en": "Anise",
+          "name_ar": "يانسون",
+          "description_en": "Herbal infusion made from anise seeds, known for its soothing properties.",
+          "description_ar": "مشروب عشبي محضر من بذور اليانسون، معروف بخصائصه المهدئة.",
+          "caffeine_level": "None",
+          "type": "Hot"
+        },
+        {
+          "name_en": "Roselle",
+          "name_ar": "كركديه",
+          "description_en": "Hibiscus tea known for its tart, cranberry-like flavor and bright red color.",
+          "description_ar": "شاي الكركديه المعروف بنكهته الحامضة ولونه الأحمر الزاهي.",
+          "caffeine_level": "None",
+          "type": "Hot"
+        }
+      ]
+    },
+    {
+      "category_name_en": "Coffee",
+      "category_name_ar": "القهوة",
+      "items": [
+        {
+          "name_en": "Arabic coffee",
+          "name_ar": "قهوة عربية",
+          "description_en": "Traditional Saudi coffee, lightly roasted and brewed with cardamom and saffron.",
+          "description_ar": "القهوة السعودية التقليدية، محمصة تحميصاً خفيفاً ومحضرة مع الهيل والزعفران.",
+          "caffeine_level": "High",
+          "type": "Hot"
+        },
+        {
+          "name_en": "Turkish coffee",
+          "name_ar": "قهوة تركية",
+          "description_en": "Unfiltered coffee made with very finely ground coffee beans.",
+          "description_ar": "قهوة غير مفلترة محضرة من حبوب القهوة المطحونة ناعماً جداً.",
+          "caffeine_level": "High",
+          "type": "Hot"
+        },
+        {
+          "name_en": "Espresso",
+          "name_ar": "اسبريسو",
+          "description_en": "Concentrated coffee brewed by forcing a small amount of nearly boiling water through finely ground beans.",
+          "description_ar": "قهوة مركزة تحضر عن طريق ضغط كمية صغيرة من الماء الساخن عبر البن المطحون.",
+          "caffeine_level": "High",
+          "type": "Hot"
+        },
+        {
+          "name_en": "Black coffee",
+          "name_ar": "قهوة سوداء",
+          "description_en": "Brewed coffee served without milk or cream.",
+          "description_ar": "قهوة مقطرة تقدم بدون حليب أو كريمة.",
+          "caffeine_level": "High",
+          "type": "Hot"
+        },
+        {
+          "name_en": "Cappuccino",
+          "name_ar": "كابتشينو",
+          "description_en": "Espresso-based drink with steamed milk and a thick layer of milk foam.",
+          "description_ar": "مشروب اسبريسو مع حليب مبخر وطبقة سميكة من رغوة الحليب.",
+          "caffeine_level": "Medium",
+          "type": "Hot"
+        },
+        {
+          "name_en": "Latte",
+          "name_ar": "لاتيه",
+          "description_en": "Espresso with a large amount of steamed milk and a thin layer of foam.",
+          "description_ar": "اسبريسو مع كمية كبيرة من الحليب المبخر وطبقة رقيقة من الرغوة.",
+          "caffeine_level": "Medium",
+          "type": "Hot"
+        },
+        {
+          "name_en": "Americano",
+          "name_ar": "أمريكانو",
+          "description_en": "Espresso diluted with hot water, giving it a similar strength to brewed coffee.",
+          "description_ar": "اسبريسو مخفف بالماء الساخن، مما يعطيه قوة مماثلة للقهوة المقطرة.",
+          "caffeine_level": "High",
+          "type": "Hot"
+        },
+        {
+          "name_en": "Flat white",
+          "name_ar": "فلات وايت",
+          "description_en": "Espresso with microfoam (steamed milk with small, fine bubbles) for a velvety texture.",
+          "description_ar": "اسبريسو مع رغوة ناعمة (حليب مبخر بفقاعات دقيقة) لقوام مخملي.",
+          "caffeine_level": "Medium",
+          "type": "Hot"
+        },
+        {
+          "name_en": "Macchiato",
+          "name_ar": "مكياتو",
+          "description_en": "Espresso 'stained' with a small splash of milk or foam.",
+          "description_ar": "اسبريسو مضاف إليه كمية قليلة جداً من الحليب أو الرغوة.",
+          "caffeine_level": "High",
+          "type": "Hot"
+        }
+      ]
+    }
+  ]
+}

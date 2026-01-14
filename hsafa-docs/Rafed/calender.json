@@ -1,0 +1,195 @@
+{
+  "calendar_info": {
+    "year_gregorian": 2026,
+    "year_hijri": "1447 - 1448",
+    "source_organization": {
+      "name_en": "Tatweer Education Holding",
+      "name_ar": "شركة تطوير التعليمية القابضة",
+      "partners": ["TETCO", "TBC", "RAFED", "TALEMIA"]
+    },
+    "weekend_days": ["Friday", "Saturday"]
+  },
+  "legend_keys": [
+    {
+      "name_en": "Founding Day Holiday",
+      "name_ar": "إجازة يوم التأسيس",
+      "color_code": "Dark Blue/Purple"
+    },
+    {
+      "name_en": "Eid Al-Fitr Holiday",
+      "name_ar": "إجازة عيد الفطر",
+      "color_code": "Green"
+    },
+    {
+      "name_en": "Eid Al-Adha Holiday",
+      "name_ar": "إجازة عيد الأضحى",
+      "color_code": "Dark Olive/Grey"
+    },
+    {
+      "name_en": "National Day Holiday",
+      "name_ar": "إجازة اليوم الوطني",
+      "color_code": "Blue"
+    }
+  ],
+  "months": [
+    {
+      "month_number": 1,
+      "name_en": "January",
+      "name_ar": "يناير",
+      "hijri_range_ar": "رجب - شعبان 1447",
+      "hijri_range_en": "Rajab - Sha'ban 1447",
+      "total_days": 31,
+      "starts_on": "Thursday",
+      "gregorian_start_hijri_map": { "1": 12 },
+      "holidays": []
+    },
+    {
+      "month_number": 2,
+      "name_en": "February",
+      "name_ar": "فبراير",
+      "hijri_range_ar": "شعبان - رمضان 1447",
+      "hijri_range_en": "Sha'ban - Ramadan 1447",
+      "total_days": 28,
+      "starts_on": "Sunday",
+      "gregorian_start_hijri_map": { "1": 13 },
+      "holidays": [
+        {
+          "date": "2026-02-22",
+          "name_en": "Founding Day",
+          "name_ar": "يوم التأسيس"
+        }
+      ]
+    },
+    {
+      "month_number": 3,
+      "name_en": "March",
+      "name_ar": "مارس",
+      "hijri_range_ar": "رمضان - شوال 1447",
+      "hijri_range_en": "Ramadan - Shawwal 1447",
+      "total_days": 31,
+      "starts_on": "Sunday",
+      "gregorian_start_hijri_map": { "1": 12 },
+      "holidays": [
+        {
+          "start_date": "2026-03-20",
+          "end_date": "2026-03-23",
+          "name_en": "Eid Al-Fitr",
+          "name_ar": "عيد الفطر"
+        }
+      ]
+    },
+    {
+      "month_number": 4,
+      "name_en": "April",
+      "name_ar": "أبريل",
+      "hijri_range_ar": "شوال - ذو القعدة 1447",
+      "hijri_range_en": "Shawwal - Dhu al-Qi'dah 1447",
+      "total_days": 30,
+      "starts_on": "Wednesday",
+      "gregorian_start_hijri_map": { "1": 13 },
+      "holidays": []
+    },
+    {
+      "month_number": 5,
+      "name_en": "May",
+      "name_ar": "مايو",
+      "hijri_range_ar": "ذو القعدة - ذو الحجة 1447",
+      "hijri_range_en": "Dhu al-Qi'dah - Dhu al-Hijjah 1447",
+      "total_days": 31,
+      "starts_on": "Friday",
+      "gregorian_start_hijri_map": { "1": 14 },
+      "holidays": [
+        {
+          "start_date": "2026-05-27",
+          "end_date": "2026-05-30",
+          "name_en": "Eid Al-Adha",
+          "name_ar": "عيد الأضحى"
+        }
+      ]
+    },
+    {
+      "month_number": 6,
+      "name_en": "June",
+      "name_ar": "يونيو",
+      "hijri_range_ar": "ذو الحجة 1447 - محرم 1448",
+      "hijri_range_en": "Dhu al-Hijjah 1447 - Muharram 1448",
+      "total_days": 30,
+      "starts_on": "Monday",
+      "gregorian_start_hijri_map": { "1": 15 },
+      "note": "Islamic New Year (1448 AH) begins mid-month (approx June 16)",
+      "holidays": []
+    },
+    {
+      "month_number": 7,
+      "name_en": "July",
+      "name_ar": "يوليو",
+      "hijri_range_ar": "محرم - صفر 1448",
+      "hijri_range_en": "Muharram - Safar 1448",
+      "total_days": 31,
+      "starts_on": "Wednesday",
+      "gregorian_start_hijri_map": { "1": 16 },
+      "holidays": []
+    },
+    {
+      "month_number": 8,
+      "name_en": "August",
+      "name_ar": "أغسطس",
+      "hijri_range_ar": "صفر - ربيع الأول 1448",
+      "hijri_range_en": "Safar - Rabi' al-Awwal 1448",
+      "total_days": 31,
+      "starts_on": "Saturday",
+      "gregorian_start_hijri_map": { "1": 18 },
+      "holidays": []
+    },
+    {
+      "month_number": 9,
+      "name_en": "September",
+      "name_ar": "سبتمبر",
+      "hijri_range_ar": "ربيع الأول - ربيع الآخر 1448",
+      "hijri_range_en": "Rabi' al-Awwal - Rabi' al-Thani 1448",
+      "total_days": 30,
+      "starts_on": "Tuesday",
+      "gregorian_start_hijri_map": { "1": 19 },
+      "holidays": [
+        {
+          "date": "2026-09-23",
+          "name_en": "National Day",
+          "name_ar": "اليوم الوطني"
+        }
+      ]
+    },
+    {
+      "month_number": 10,
+      "name_en": "October",
+      "name_ar": "أكتوبر",
+      "hijri_range_ar": "ربيع الآخر - جمادى الأولى 1448",
+      "hijri_range_en": "Rabi' al-Thani - Jumada al-Awwal 1448",
+      "total_days": 31,
+      "starts_on": "Thursday",
+      "gregorian_start_hijri_map": { "1": 19 },
+      "holidays": []
+    },
+    {
+      "month_number": 11,
+      "name_en": "November",
+      "name_ar": "نوفمبر",
+      "hijri_range_ar": "جمادى الأولى - جمادى الآخرة 1448",
+      "hijri_range_en": "Jumada al-Awwal - Jumada al-Thani 1448",
+      "total_days": 30,
+      "starts_on": "Sunday",
+      "gregorian_start_hijri_map": { "1": 21 },
+      "holidays": []
+    },
+    {
+      "month_number": 12,
+      "name_en": "December",
+      "name_ar": "ديسمبر",
+      "hijri_range_ar": "جمادى الآخرة - رجب 1448",
+      "hijri_range_en": "Jumada al-Thani - Rajab 1448",
+      "total_days": 31,
+      "starts_on": "Tuesday",
+      "gregorian_start_hijri_map": { "1": 21 },
+      "holidays": []
+    }
+  ]
+}

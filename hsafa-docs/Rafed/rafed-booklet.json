@@ -1,0 +1,1004 @@
+{
+  "document_info": {
+    "title_ar": "العرض التعريفي | شركة تطوير لخدمات النقل \"رافد\"",
+    "title_en": "Introductory Presentation | Tatweer Transportation Services Company \"Rafed\"",
+    "total_pages": 18,
+    "company_name": {
+      "ar": "رافد",
+      "en": "Rafed"
+    }
+  },
+  "pages": [
+    {
+      "page_number": 1,
+      "type": "cover",
+      "content": {
+        "title": {
+          "ar": "العرض التعريفي",
+          "en": "Introductory Presentation"
+        },
+        "subtitle": {
+          "ar": "شركة تطوير لخدمات النقل \"رافد\"",
+          "en": "Tatweer Transportation Services Company \"Rafed\""
+        }
+      }
+    },
+    {
+      "page_number": 2,
+      "type": "introduction",
+      "content": {
+        "heading": {
+          "ar": "منذ انطلاق رحلة شركة تطوير لخدمات النقل (رافد) في عام 2012 وهي تسعى إلى أن تكون الخيار الأول لعملائها في تقديم حلول النقل والخدمات اللوجستية، مدعمة أداءها بأحدث الأساليب المبتكرة وبأعلى معايير الجودة",
+          "en": "Since the launch of Tatweer Transportation Services Company (Rafed) in 2012, it has strived to be the first choice for its clients in providing transportation solutions and logistics services, supporting its performance with the latest innovative methods and the highest quality standards."
+        },
+        "key_features": [
+          {
+            "title_ar": "شركة سعودية",
+            "title_en": "Saudi Company",
+            "description_ar": "مملوكة لشركة تطوير التعليم القابضة (مملوكة للدولة)",
+            "description_en": "Owned by Tatweer Education Holding Company (State-owned)"
+          },
+          {
+            "title_ar": "شخصية اعتبارية",
+            "title_en": "Legal Entity",
+            "description_ar": "",
+            "description_en": ""
+          },
+          {
+            "title_ar": "ذمة مالية مستقلة",
+            "title_en": "Financial Independence",
+            "description_ar": "",
+            "description_en": ""
+          },
+          {
+            "title_ar": "أهلية كاملة",
+            "title_en": "Full Eligibility",
+            "description_ar": "لتحقيق أغراضها",
+            "description_en": "To achieve its purposes"
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 3,
+      "type": "timeline",
+      "content": {
+        "heading": {
+          "ar": "مسيرة المليار كيلو تبدأ برحلة!",
+          "en": "The Billion Kilometer Journey Begins with a Trip!"
+        },
+        "description": {
+          "ar": "بين البدايات الطموحة والمستقبل المشرق مررنا بمنعطفات تاريخية في مسيرة الرحلة التي أسست لأكبر الكيانات المتخصصة في مجال النقل التعليمي على مستوى العالم، وذلك بما تمتلكه الشركة من إمكانيات ضخمة وسجل حافل بالمنجزات التي تعكسها الأرقام والإحصائيات.",
+          "en": "Between ambitious beginnings and a bright future, we passed through historic turning points in a journey that established one of the largest specialized entities in educational transport globally. This is due to the company's massive capabilities and a track record of achievements reflected in numbers and statistics."
+        },
+        "timeline_events": [
+          {
+            "year": "2012",
+            "event_ar": "تأسيس الشركة",
+            "event_en": "Company Establishment"
+          },
+          {
+            "year": "2013",
+            "event_ar": "انطلاق تقديم الخدمة لعدد 600,000 ألف طالب وطالبة",
+            "event_en": "Service launch for 600,000 male and female students"
+          },
+          {
+            "year": "2015",
+            "event_ar": "تقديم الخدمة لعدد 1.2 مليون طالب وطالبة",
+            "event_en": "Providing service to 1.2 million male and female students"
+          },
+          {
+            "year": "2017",
+            "event_ar": "تجاوز الأسطول مسيرة تفوق المليار كيلومتر في الذكرى الخامسة",
+            "event_en": "The fleet surpassed a journey exceeding one billion kilometers on the fifth anniversary"
+          },
+          {
+            "year": "2018",
+            "event_ar": "إنشاء نظام المراقبة الآلية للحافلات AVL",
+            "event_en": "Establishment of the Automated Vehicle Location (AVL) system"
+          },
+          {
+            "year": "2019",
+            "event_ar": "استحداث إدارة خاصة بالأمن والسلامة",
+            "event_en": "Creation of a dedicated Security and Safety Department"
+          },
+          {
+            "year": "2020",
+            "event_ar": "تقديم خدمة النقل في مبادرة عودة آمنة",
+            "event_en": "Providing transport service in the 'Safe Return' initiative"
+          },
+          {
+            "year": "2021",
+            "event_ar": "تقديم خدمة النقل المدرسي للقطاع الخاص / تأسيس إدارة الالتزام وإدارة المخاطر",
+            "event_en": "Providing school transport service to the private sector / Establishing Compliance and Risk Management departments"
+          },
+          {
+            "year": "2022",
+            "event_ar": "اعتماد الشركة كمزود للتجهيزات الفنية والتقنية من قبل الهيئة العامة للنقل / شهادة الاعتماد في مجال التفتيش على الحافلات (ISO 17020)",
+            "event_en": "Accreditation as a technical equipment provider by TGA / Accreditation certificate in bus inspection (ISO 17020)"
+          },
+          {
+            "year": "2023",
+            "event_ar": "شهادة الاعتماد في مجال التفتيش على الحافلات من المركز الخليجي للاعتماد",
+            "event_en": "Accreditation certificate in bus inspection from the GCC Accreditation Center"
+          },
+          {
+            "year": "2024",
+            "event_ar": "شهادة الآيزو في إدارة السلامة المرورية على الطرق ISO 39001",
+            "event_en": "ISO certification in Road Traffic Safety Management ISO 39001"
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 4,
+      "type": "organizational_structure",
+      "content": {
+        "title": {
+          "ar": "الهيكل التنظيمي",
+          "en": "Organizational Structure"
+        },
+        "structure": {
+          "top_level": {
+            "ar": "الرئيس التنفيذي",
+            "en": "Chief Executive Officer (CEO)"
+          },
+          "second_level": [
+            {
+              "ar": "الإدارة القانونية",
+              "en": "Legal Department"
+            },
+            {
+              "ar": "إدارة مكتب الرئيس",
+              "en": "President's Office Administration"
+            },
+            {
+              "ar": "الأمن السيبراني",
+              "en": "Cybersecurity"
+            }
+          ],
+          "third_level": [
+            {
+              "ar": "التخطيط والأداء",
+              "en": "Planning and Performance"
+            },
+            {
+              "ar": "التيشغيل (7 مناطق إقليمية)",
+              "en": "Operations (7 Regional Areas)"
+            },
+            {
+              "ar": "الإستراتيجية وتطوير القطاع",
+              "en": "Strategy and Sector Development"
+            },
+            {
+              "ar": "العقود والمشتريات",
+              "en": "Contracts and Procurement"
+            },
+            {
+              "ar": "الموارد البشرية",
+              "en": "Human Resources"
+            },
+            {
+              "ar": "الخدمات المؤسسية",
+              "en": "Corporate Services"
+            },
+            {
+              "ar": "التحول الرقمي",
+              "en": "Digital Transformation"
+            },
+            {
+              "ar": "المالية",
+              "en": "Finance"
+            },
+            {
+              "ar": "الأعمال الخاصة",
+              "en": "Special Business/Projects"
+            }
+          ]
+        },
+        "statistics": {
+          "employees": {
+            "value": "335",
+            "label_ar": "موظف",
+            "label_en": "Employee"
+          },
+          "saudization": {
+            "value": "%97",
+            "label_ar": "سعودي",
+            "label_en": "Saudi"
+          },
+          "gender_split": {
+            "men": {
+              "value": "%91",
+              "label_ar": "رجال",
+              "label_en": "Men"
+            },
+            "women": {
+              "value": "%9",
+              "label_ar": "نساء",
+              "label_en": "Women"
+            }
+          }
+        }
+      }
+    },
+    {
+      "page_number": 5,
+      "type": "culture_values",
+      "content": {
+        "title": {
+          "ar": "ثقافتنا ومبادئ رحلتنا",
+          "en": "Our Culture and Journey Principles"
+        },
+        "sections": [
+          {
+            "header_ar": "الرؤية",
+            "header_en": "Vision",
+            "text_ar": "مجتمع يتمتع فيه منسوبو التعليم بنقل آمن ومريح",
+            "text_en": "A society where education personnel enjoy safe and comfortable transport"
+          },
+          {
+            "header_ar": "الرسالة",
+            "header_en": "Mission",
+            "text_ar": "ضمان توفير خدمات نقل تعليمي مستدامة ومريحة وذات موثوقية عالية",
+            "text_en": "Ensuring the provision of sustainable, comfortable, and highly reliable educational transport services"
+          },
+          {
+            "header_ar": "الأهداف",
+            "header_en": "Objectives",
+            "items_ar": [
+              "ضمان أعلى معايير الأمن والسلامة",
+              "توفير تغطية شاملة لخدمات مريحة وذات موثوقية للمستفيدين",
+              "تطوير بيئة تنافسية ذات جودة عالية لمقدمي الخدمات",
+              "تشجيع الاستدامة في عمليات النقل",
+              "تحقيق ربح وعائد مالي أمثل للملّاك"
+            ],
+            "items_en": [
+              "Ensure the highest standards of security and safety",
+              "Provide comprehensive coverage of comfortable and reliable services for beneficiaries",
+              "Develop a high-quality competitive environment for service providers",
+              "Encourage sustainability in transport operations",
+              "Achieve optimal profit and financial return for stakeholders"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 6,
+      "type": "roles",
+      "content": {
+        "title": {
+          "ar": "أدوارنا الأساسية في قطاع النقل التعليمي",
+          "en": "Our Key Roles in the Educational Transport Sector"
+        },
+        "roles_list": [
+          {
+            "ar": "تطوير قطاع النقل التعليمي",
+            "en": "Developing the educational transport sector"
+          },
+          {
+            "ar": "مراقبة قطاع النقل التعليمي",
+            "en": "Monitoring the educational transport sector"
+          },
+          {
+            "ar": "بحث فرص التكامل مع النقل العام",
+            "en": "Exploring integration opportunities with public transport"
+          },
+          {
+            "ar": "الاستدامة",
+            "en": "Sustainability"
+          },
+          {
+            "ar": "زيادة أعداد المستفيدين من الخدمة",
+            "en": "Increasing the number of service beneficiaries"
+          },
+          {
+            "ar": "توعية المستفيدين بالأمن والسلامة",
+            "en": "Educating beneficiaries on security and safety"
+          },
+          {
+            "ar": "رفع جودة خدمات النقل المدرسي",
+            "en": "Raising the quality of school transport services"
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 7,
+      "type": "services",
+      "content": {
+        "title": {
+          "ar": "خدماتنا",
+          "en": "Our Services"
+        },
+        "subtitle": {
+          "ar": "نقدم حزمة من الخدمات المتنوعة والحلول المستدامة لنكون شريكك الموثوق في مجال النقل والخدمات اللوجستية",
+          "en": "We offer a package of diverse services and sustainable solutions to be your trusted partner in transportation and logistics"
+        },
+        "service_list": [
+          {
+            "ar": "إدارة عمليات التعاقد والنقل",
+            "en": "Contracting and Transport Operations Management"
+          },
+          {
+            "ar": "النقل المتخصص",
+            "en": "Specialized Transport"
+          },
+          {
+            "ar": "النقل التعليمي",
+            "en": "Educational Transport"
+          },
+          {
+            "ar": "برامج تدريبية للسائقين",
+            "en": "Driver Training Programs"
+          },
+          {
+            "ar": "الخدمات والحلول التقنية",
+            "en": "Technical Services and Solutions"
+          },
+          {
+            "ar": "الرقابة والإشراف",
+            "en": "Monitoring and Supervision"
+          },
+          {
+            "ar": "الخدمات المساندة",
+            "en": "Support Services"
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 8,
+      "type": "transition_slide",
+      "content": {
+        "title": {
+          "ar": "لماذا رافد؟",
+          "en": "Why Rafed?"
+        },
+        "subtitle": {
+          "ar": "تعرف على أبرز ما يميز رحلتنا",
+          "en": "Discover what distinguishes our journey"
+        }
+      }
+    },
+    {
+      "page_number": 9,
+      "type": "capabilities",
+      "content": {
+        "title": {
+          "ar": "إمكانياتنا",
+          "en": "Our Capabilities"
+        },
+        "description": {
+          "ar": "نمتلك خبرة واسعة وإمكانيات ضخمة تجعلنا قادرين على تنفيذ خدماتنا بأعلى درجات الاحترافية ووفق أفضل الممارسات العالمية",
+          "en": "We possess extensive experience and massive capabilities that enable us to execute our services with the highest degrees of professionalism and according to best global practices"
+        },
+        "stats": [
+          {
+            "value": "13",
+            "text_ar": "سنة خبرة في مجال النقل التعليمي",
+            "text_en": "Years experience in educational transport"
+          },
+          {
+            "value": "13",
+            "text_ar": "منطقة إدارية في المملكة تتوفر بها الخدمة",
+            "text_en": "Administrative regions in the Kingdom where service is available"
+          },
+          {
+            "value": "179",
+            "text_ar": "ورشة متنقلة موزعة في مختلف أنحاء المملكة",
+            "text_en": "Mobile workshops distributed across the Kingdom"
+          },
+          {
+            "value": "1.2M",
+            "text_ar": "طالب وطالبة الطاقة الاستيعابية للأسطول",
+            "text_en": "Student fleet capacity"
+          },
+          {
+            "value": "+200",
+            "text_ar": "مراقب ميداني حول المملكة يراقبون الخدمة",
+            "text_en": "Field monitors around the Kingdom monitoring the service"
+          },
+          {
+            "value": "7",
+            "text_ar": "مكاتب إقليمية للشركة حول المملكة",
+            "text_en": "Regional offices around the Kingdom"
+          },
+          {
+            "value": "+19K",
+            "text_ar": "حافلة ومركبة",
+            "text_en": "Buses and vehicles"
+          },
+          {
+            "value": "42K",
+            "text_ar": "رحلة مدرسية يومية",
+            "text_en": "Daily school trips"
+          },
+          {
+            "value": "+19K",
+            "text_ar": "منشأة تعليمية مخدومة",
+            "text_en": "Educational facilities served"
+          }
+        ],
+        "highlights": [
+          {
+            "title_ar": "جهة معتمدة",
+            "title_en": "Accredited Entity",
+            "desc_ar": "في التجهيزات الفنية للحافلات والمركبات وربطها بمنصة \"وصل\" التابعة للهيئة العامة للنقل",
+            "desc_en": "In technical equipment for buses/vehicles and linking them to the \"Wasl\" platform of the Transport General Authority"
+          },
+          {
+            "title_ar": "أول جهة معتمدة",
+            "title_en": "First Accredited Entity",
+            "desc_ar": "محلياً وخليجياً في مجال التفتيش على الحافلات",
+            "desc_en": "Locally and regionally in the field of bus inspection"
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 10,
+      "type": "safety",
+      "content": {
+        "title": {
+          "ar": "الأمن والسلامة",
+          "en": "Security and Safety"
+        },
+        "description": {
+          "ar": "نولي الأمن والسلامة أقصى درجات العناية والاهتمام، ونضعه في مقدمة أولوياتنا وأول الأهداف التي نسعى إلى تحقيقها، ونعمل على الاستفادة من كافة الحلول الميدانية والتدريبية والتقنية لتقديم خدمات نقل آمنة ومريحة.",
+          "en": "We give security and safety the utmost care and attention, placing it at the forefront of our priorities and the first goal we strive to achieve. We work to utilize all field, training, and technical solutions to provide safe and comfortable transport services."
+        },
+        "points": [
+          {
+            "ar": "سائقين مدربين على برامج تدريبية متخصصة في القيادة الآمنة",
+            "en": "Drivers trained in specialized safe driving programs"
+          },
+          {
+            "ar": "توفير مواد تدريبية للسائقين بعدة لغات",
+            "en": "Providing training materials for drivers in multiple languages"
+          },
+          {
+            "ar": "فحص يومي للحافلات والرقابة الميدانية",
+            "en": "Daily bus inspection and field monitoring"
+          },
+          {
+            "ar": "مركز لرعاية العملاء وقنوات اتصال متنوعة",
+            "en": "Customer care center and diverse communication channels"
+          },
+          {
+            "ar": "سائقين مدربين على التعامل مع طلبة ذوي الإعاقة",
+            "en": "Drivers trained to handle students with disabilities"
+          },
+          {
+            "ar": "تطوير وإنشاء أنظمة تقنية مواكبة لأحدث الحلول المستخدمة عالمياً",
+            "en": "Developing and creating technical systems keeping pace with the latest global solutions"
+          },
+          {
+            "ar": "هوية مميزة للحافلات وأسطول مجهز بأعلى معايير الأمن والسلامة",
+            "en": "Distinctive bus identity and a fleet equipped with the highest security and safety standards"
+          },
+          {
+            "ar": "مراعاة احتياجات تقديم خدمة النقل حسب الفئات (التعليم العام، ذوي الإعاقة، رياض الأطفال)",
+            "en": "Considering transport service needs according to categories (General Education, Disabilities, Kindergartens)"
+          },
+          {
+            "ar": "موظفين مؤهلين ومعتمدين في مجال التدريب",
+            "en": "Qualified and accredited staff in the training field"
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 11,
+      "type": "bus_identity",
+      "content": {
+        "title": {
+          "ar": "هوية متميزة لحافلاتنا وتجهيزات متكاملة",
+          "en": "Distinctive Identity for Our Buses and Integrated Equipment"
+        },
+        "features": [
+          {
+            "ar": "زر الأمان في نهاية الحافلة",
+            "en": "Safety button at the back of the bus (sleeping child check)"
+          },
+          {
+            "ar": "مراقبة الحافلات عن طريق الأقمار الصناعية بنظام GPS",
+            "en": "Bus monitoring via GPS satellite system"
+          },
+          {
+            "ar": "وقوف متكرر",
+            "en": "Frequent stops sign"
+          },
+          {
+            "ar": "حساس يمنع سير الحافلة عند فتح الباب",
+            "en": "Sensor preventing bus movement when door is open"
+          },
+          {
+            "ar": "علامة السرعة القصوى المحددة (80) تكون في الجانب الخلفي",
+            "en": "Max speed limit sign (80) on the rear side"
+          },
+          {
+            "ar": "اللون الأصفر المميز للحافلة المدرسية",
+            "en": "Distinctive yellow color for the school bus"
+          },
+          {
+            "ar": "علامة (قف) على الجانب الأيسر للحافلة (ذراع إلكتروني)",
+            "en": "STOP sign on the left side of the bus (electronic arm)"
+          },
+          {
+            "ar": "علامة (مخرج طوارئ) داخل الحافلة تكون باللون العاكس",
+            "en": "Emergency Exit sign inside the bus in reflective color"
+          },
+          {
+            "ar": "إشارة ضوئية في الجزء الخلفي العلوي من الحافلة",
+            "en": "Light signal on the upper rear part of the bus"
+          },
+          {
+            "ar": "حساسات الاستشعار في المصدات الأمامية والخلفية",
+            "en": "Sensors in front and rear bumpers"
+          },
+          {
+            "ar": "الإسعافات الأولية وطفايات الحريق ومطارق الزجاج",
+            "en": "First aid kits, fire extinguishers, and glass hammers"
+          },
+          {
+            "ar": "كاميرا لمراقبة محيط الحافلة الخارجي",
+            "en": "Camera to monitor the bus's external surroundings"
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 12,
+      "type": "field_monitoring",
+      "content": {
+        "title": {
+          "ar": "الرقابة الميدانية",
+          "en": "Field Monitoring"
+        },
+        "stats": {
+          "monitors": "+200",
+          "desc_ar": "مراقب ميداني مؤهل حول المملكة",
+          "desc_en": "Qualified field monitors around the Kingdom"
+        },
+        "equipment": [
+          {
+            "ar": "سيارة/سيارة دفع رباعي في المناطق الوعرة",
+            "en": "Car/4x4 vehicle in rough terrain areas"
+          },
+          {
+            "ar": "الأدوات المساعدة لعملية الفحص الميداني",
+            "en": "Auxiliary tools for field inspection"
+          },
+          {
+            "ar": "أجهزة ذكية",
+            "en": "Smart devices"
+          }
+        ],
+        "roles": [
+          {
+            "ar": "القيام بعمليات فحص ومراقبة الخدمات",
+            "en": "Conducting inspection and monitoring of services"
+          },
+          {
+            "ar": "المراقبة والإشراف على مقدم الخدمة",
+            "en": "Monitoring and supervising the service provider"
+          },
+          {
+            "ar": "التحقق ميدانياً من معالجة الملاحظات المرصودة",
+            "en": "Field verification of addressing observed notes"
+          },
+          {
+            "ar": "جمع ورصد البيانات في النظام",
+            "en": "Collecting and recording data in the system"
+          },
+          {
+            "ar": "التحقق ميدانياً من شكاوي العملاء ومعالجتها",
+            "en": "Field verification and handling of customer complaints"
+          },
+          {
+            "ar": "إدارة غرف العمليات",
+            "en": "Managing operations rooms"
+          },
+          {
+            "ar": "مباشرة العمليات الميدانية ورفع التقارير",
+            "en": "Directing field operations and submitting reports"
+          },
+          {
+            "ar": "استبعاد الحافلات المخالفة وتأمين الحافلات البديلة",
+            "en": "Excluding violating buses and securing replacement buses"
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 13,
+      "type": "tech_solutions_intro",
+      "content": {
+        "title": {
+          "ar": "الحلول التقنية",
+          "en": "Technical Solutions"
+        },
+        "description": {
+          "ar": "نؤمن بأن الحلول التقنية من شأنها أن تضع قيمة مضافة للخدمات التي نقدمها ونرتقي بمستوى الرقابة والجودة، لذلك يعمل فريق فني متخصص في رافد على بناء منظومة تقنية متكاملة للارتقاء بمستوى الخدمة وتحقيق تطلعات عملائنا.",
+          "en": "We believe that technical solutions add value to the services we provide and elevate the level of control and quality. Therefore, a specialized technical team at Rafed works on building an integrated technical ecosystem to raise the service level and achieve our clients' aspirations."
+        }
+      }
+    },
+    {
+      "page_number": 14,
+      "type": "tech_ecosystem",
+      "content": {
+        "items": [
+          {
+            "title_ar": "تطبيق السائق",
+            "title_en": "Driver App",
+            "desc_ar": "يستطيع السائق من خلاله في مشروع النقل المدرسي تأكيد ركوب الطلاب في الحافلة وتحديد مواقعهم وخدمات أخرى",
+            "desc_en": "Allows the driver in the school transport project to confirm student boarding, determine their locations, and other services"
+          },
+          {
+            "title_ar": "تطبيق رافد",
+            "title_en": "Rafed App",
+            "desc_ar": "يتيح لأولياء أمور الطلبة إدخال موقع المنزل ومتابعة مسار الحافلة وتلقي إشعارات النقل أثناء الرحلة وخدمات أخرى",
+            "desc_en": "Allows guardians to enter home location, track bus route, receive transport notifications during the trip, and other services"
+          },
+          {
+            "title_ar": "نظام تخطيط المسارات",
+            "title_en": "Route Planning System",
+            "desc_ar": "أداة تساهم في رفع جودة الخدمة وتقليل زمن الرحلة المدرسية من خلال تخطيط المسارات بناء على مواقع الطلبة والمدارس",
+            "desc_en": "A tool contributing to raising service quality and reducing trip time by planning routes based on student and school locations"
+          },
+          {
+            "title_ar": "رافد تاق",
+            "title_en": "Rafed Tag",
+            "desc_ar": "بطاقات إلكترونية تتصل عن طريق تقنيات لاسلكية محدودة النطاق داخل الحافلة وترسل إشعارات لأولياء الأمور عند صعود ونزول وتواجد الطالب في الحافلة",
+            "desc_en": "Electronic cards connecting via limited-range wireless tech inside the bus, sending notifications to guardians upon boarding, disembarking, and student presence in the bus"
+          },
+          {
+            "title_ar": "نظام متابعة الشكاوي",
+            "title_en": "Complaint Tracking System",
+            "desc_ar": "نظام يتيح لمنفذ الخدمة الاطلاع بشكل مباشر على جميع الملاحظات المرصودة على الحافلات والمركبات المنفذة للخدمة ومعالجتها",
+            "desc_en": "Allows the service executor to directly view all observations recorded on buses/vehicles executing the service and address them"
+          },
+          {
+            "title_ar": "نظام المراقبة الآلية للحافلات",
+            "title_en": "Automated Vehicle Location (AVL) System",
+            "desc_ar": "يتم من خلال هذا النظام تتبع الحافلات والمركبات في الخدمة ومتابعة أداء السائق، ورصد المخالفات مثل السرعة الزائدة والسير والأبواب المفتوحة",
+            "desc_en": "Tracks buses/vehicles in service, monitors driver performance, and records violations like speeding and moving with open doors"
+          },
+          {
+            "title_ar": "نظام المراقب",
+            "title_en": "Observer System",
+            "desc_ar": "يعمل النظام على تحسين جودة الخدمة من خلال الرقابة الشاملة على الحافلات عبر مؤشرات ومعايير تقييم محددة",
+            "desc_en": "Works to improve service quality through comprehensive monitoring of buses via specific indicators and evaluation criteria"
+          },
+          {
+            "title_ar": "نظام إدارة البيانات التشغيلية",
+            "title_en": "Operational Data Management System",
+            "desc_ar": "نظام يتيح لمقدم الخدمة إدخال البيانات التشغيلية والمستندات المطلوبة من منفذ الخدمة بالإضافة إلى القدرة على تحديثها بشكل مستمر",
+            "desc_en": "Allows the service provider to enter operational data and required documents from the service executor, plus the ability to update them continuously"
+          },
+          {
+            "title_ar": "خدمة عملاء متكاملة",
+            "title_en": "Integrated Customer Service",
+            "desc_ar": "وفرت الشركة عدة قنوات تواصل متنوعة لضمان سهولة التواصل والاستماع للاستفسارات بالإضافة إلى تسخير كوادر وطنية مؤهلة لتلقي صوت المستفيد ومعالجة البلاغات",
+            "desc_en": "The company provided various communication channels to ensure easy contact and listening to inquiries, in addition to employing qualified national cadres to receive beneficiary feedback and handle reports"
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 15,
+      "type": "vision_2030",
+      "content": {
+        "title": {
+          "ar": "رحلتنا في تحقيق مستهدفات رؤية السعودية 2030",
+          "en": "Our Journey in Achieving Saudi Vision 2030 Targets"
+        },
+        "contributions": [
+          {
+            "program_ar": "برنامج جودة الحياة",
+            "program_en": "Quality of Life Program",
+            "objective_ar": "الارتقاء بجودة الخدمات المقدمة في المدن السعودية",
+            "objective_en": "Improving the quality of services provided in Saudi cities",
+            "impact_area": {
+              "ar": "اقتصادية",
+              "en": "Economic"
+            },
+            "impact_desc": {
+              "ar": "دعم مشغلي الحافلات المحليين، بتأهيل متعهدين جدد والشركات الصغيرة لدخول سوق النقل التعليمي",
+              "en": "Supporting local bus operators by qualifying new contractors and small companies to enter the educational transport market"
+            }
+          },
+          {
+            "program_ar": "برنامج التحول الوطني",
+            "program_en": "National Transformation Program",
+            "objective_ar": "الارتقاء بجودة الخدمات المقدمة للمواطنين / الحد من التلوث بمختلف أنواعه / المساهمة في خفض نسب الوفيات والحوادث الجسيمة وتحسين السلامة المرورية",
+            "objective_en": "Improving service quality for citizens / Reducing pollution of all types / Contributing to reducing fatality and serious accident rates and improving traffic safety",
+            "impact_area": {
+              "ar": "اجتماعية",
+              "en": "Social"
+            },
+            "impact_desc": {
+              "ar": "زيادة السلامة المرورية، بحيث تقل احتمالية إصابة الطالب بحادث مروري جسيم بنسبة 44% عند استخدامه حافلة مدرسية مقارنة بسيارة خاصة. الحد من الهدر الوظيفي، حيث أن 30% من أولياء الأمور الموظفين يعود سبب تأخرهم إلى توصيل/إعادة الأبناء من المدارس",
+              "en": "Increasing traffic safety; student serious injury probability drops by 44% when using a school bus vs private car. Reducing job waste, as 30% of employed parents' lateness is due to dropping off/picking up children."
+            }
+          },
+          {
+            "program_ar": "برنامج تنمية القدرات البشرية",
+            "program_en": "Human Capability Development Program",
+            "objective_ar": "تحسين تكافؤ فرص الحصول على التعليم",
+            "objective_en": "Improving equal access to education opportunities"
+          },
+          {
+            "program_ar": "برنامج تطوير الصناعة الوطنية والخدمات اللوجستية",
+            "program_en": "National Industrial Development and Logistics Program (NIDLP)",
+            "objective_ar": "توطين الصناعات الواعدة / رفع نسبة المحتوى المحلي في القطاعات غير النفطية",
+            "objective_en": "Localizing promising industries / Increasing local content in non-oil sectors",
+            "impact_area": {
+              "ar": "بيئية",
+              "en": "Environmental"
+            },
+            "impact_desc": {
+              "ar": "المساهمة في خفض انبعاثات ثاني أكسيد الكربون، وتحقيق مستهدف الاستراتيجية العامة للنقل بمعدل 25% بحلول عام 2030. الاستغناء عن أكثر من 2 مليون رحلة، يومياً بمركبات أولياء الأمور",
+              "en": "Contributing to reducing CO2 emissions, achieving the National Transport Strategy target of 25% by 2030. Eliminating over 2 million daily trips by parents' vehicles."
+            }
+          }
+        ],
+        "general_strategy": {
+          "ar": "الاستراتيجية العامة للنقل",
+          "en": "National Transport Strategy",
+          "points_ar": [
+            "توفير شبكات نقل عام فعالة ومتكاملة تغطي كافة أنماط النقل",
+            "تبني أعلى معايير السلامة والجودة في وسائل النقل والتأكد من توافرها",
+            "تبني المعايير والاشتراطات البيئية للحد من التلوث البيئي وترشيد استهلاك الطاقة"
+          ],
+          "points_en": [
+            "Providing efficient and integrated public transport networks covering all modes",
+            "Adopting highest safety and quality standards in transport means and ensuring availability",
+            "Adopting environmental standards/regulations to reduce pollution and rationalize energy consumption"
+          ]
+        }
+      }
+    },
+    {
+      "page_number": 16,
+      "type": "awards",
+      "content": {
+        "title": {
+          "ar": "للرحلة شواهد ومنجزاتنا تتحدث",
+          "en": "The Journey Has Evidence and Our Achievements Speak"
+        },
+        "awards_list": [
+          {
+            "ar": "شهادة الآيزو في إدارة الجودة",
+            "en": "ISO Certificate in Quality Management"
+          },
+          {
+            "ar": "شهادة الآيزو في إدارة السلامة المرورية على الطرق (ISO 39001)",
+            "en": "ISO Certificate in Road Traffic Safety Management (ISO 39001)"
+          },
+          {
+            "ar": "شهادة اعتماد أفضل بيئة عمل (Great Place to Work)",
+            "en": "Great Place to Work Certification"
+          },
+          {
+            "ar": "شهادة الاعتماد السعودي في الرقابة والتفتيش",
+            "en": "Saudi Accreditation Certificate in Monitoring and Inspection"
+          },
+          {
+            "ar": "شهادة الاعتماد الخليجي في الرقابة والتفتيش",
+            "en": "GCC Accreditation Certificate in Monitoring and Inspection"
+          },
+          {
+            "ar": "جائزة دبي للنقل المستدام",
+            "en": "Dubai Award for Sustainable Transport"
+          },
+          {
+            "ar": "جائزة أفضل مركز اتصال في الشرق الأوسط",
+            "en": "Best Call Center Award in the Middle East"
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 17,
+      "type": "partners_clients",
+      "content": {
+        "title": {
+          "ar": "شركاء رحلتنا",
+          "en": "Our Journey Partners"
+        },
+        "subtitle": {
+          "ar": "عملاؤنا",
+          "en": "Our Clients"
+        },
+        "partners": [
+          {
+            "ar": "وزارة التعليم",
+            "en": "Ministry of Education"
+          },
+          {
+            "ar": "وزارة الداخلية",
+            "en": "Ministry of Interior"
+          },
+          {
+            "ar": "وزارة النقل والخدمات اللوجستية",
+            "en": "Ministry of Transport and Logistic Services"
+          },
+          {
+            "ar": "وزارة الشؤون البلدية والقروية والإسكان",
+            "en": "Ministry of Municipal Rural Affairs and Housing"
+          },
+          {
+            "ar": "وزارة الاستثمار",
+            "en": "Ministry of Investment"
+          },
+          {
+            "ar": "وزارة المالية",
+            "en": "Ministry of Finance"
+          },
+          {
+            "ar": "الهيئة الملكية لمدينة الرياض",
+            "en": "Royal Commission for Riyadh City"
+          },
+          {
+            "ar": "الهيئة الملكية لمحافظة العلا",
+            "en": "Royal Commission for Al-Ula"
+          },
+          {
+            "ar": "الهيئة العامة للنقل (TGA)",
+            "en": "Transport General Authority (TGA)"
+          },
+          {
+            "ar": "تحكم (TAHAKOM)",
+            "en": "Tahakom"
+          },
+          {
+            "ar": "مجلس الغرف السعودية",
+            "en": "Council of Saudi Chambers"
+          },
+          {
+            "ar": "الأكاديمية السعودية اللوجستية",
+            "en": "Saudi Logistics Academy"
+          },
+          {
+            "ar": "كليات التميز",
+            "en": "Colleges of Excellence"
+          },
+          {
+            "ar": "تكامل لخدمات النقل",
+            "en": "Takamol Mobility Services"
+          },
+          {
+            "ar": "سلامة",
+            "en": "Salama"
+          },
+          {
+            "ar": "إي-مشرف",
+            "en": "eMushrif"
+          },
+          {
+            "ar": "هدف",
+            "en": "Hadaf (HRDF)"
+          },
+          {
+            "ar": "المواصفات السعودية (SASO)",
+            "en": "Saudi Standards (SASO)"
+          },
+          {
+            "ar": "معادن",
+            "en": "Ma'aden"
+          }
+        ],
+        "clients": [
+          {
+            "ar": "مدارس معارف",
+            "en": "Maarif Schools"
+          },
+          {
+            "ar": "حافل",
+            "en": "Hafil"
+          },
+          {
+            "ar": "رحال",
+            "en": "Rahal"
+          },
+          {
+            "ar": "غازكو",
+            "en": "Gasco"
+          },
+          {
+            "ar": "دور الكتاب",
+            "en": "Dar Alkuttab"
+          },
+          {
+            "ar": "مدارس علو الأهلية",
+            "en": "Olou National Schools"
+          },
+          {
+            "ar": "مدارس أكاديمية المعارف الأهلية",
+            "en": "AlMaarefa National Academy Schools"
+          },
+          {
+            "ar": "روضة دوحة البيان",
+            "en": "Doha Al-Bayan Kindergarten"
+          },
+          {
+            "ar": "Learning Oasis",
+            "en": "Learning Oasis"
+          },
+          {
+            "ar": "مدارس النخبة النموذجية",
+            "en": "Alnukhbah Modern Schools"
+          },
+          {
+            "ar": "مدارس التميز",
+            "en": "Altamayuz Schools"
+          },
+          {
+            "ar": "مدارس رؤية المستقبل الأهلية",
+            "en": "Future Vision Private Schools"
+          },
+          {
+            "ar": "Beech Hall School Riyadh",
+            "en": "Beech Hall School Riyadh"
+          },
+          {
+            "ar": "مدارس بيتشهول الرياض",
+            "en": "Beech Hall School Riyadh"
+          },
+          {
+            "ar": "مدارس النبراس الأهلية للبنات",
+            "en": "Al-Nibras National Schools for Girls"
+          },
+          {
+            "ar": "مدارس أجيال المواهب",
+            "en": "Ajyal Al-Mawaheb Schools"
+          },
+          {
+            "ar": "مدارس ابن رشد",
+            "en": "Ibn Roshd Schools"
+          }
+        ]
+      }
+    },
+    {
+      "page_number": 18,
+      "type": "contact",
+      "content": {
+        "heading": {
+          "ar": "شكراً",
+          "en": "Thank You"
+        },
+        "emails": [
+          {
+            "label_ar": "لخدمة العملاء",
+            "label_en": "For Customer Service",
+            "email": "CS@rafedsa.com"
+          },
+          {
+            "label_ar": "لطلب المنتجات",
+            "label_en": "For Product Requests",
+            "email": "BD@rafedsa.com"
+          },
+          {
+            "label_ar": "للشراكات والمشاريع",
+            "label_en": "For Partnerships and Projects",
+            "email": "PB@rafedsa.com"
+          }
+        ],
+        "social_media": {
+          "handle": "@Rafedsaudi",
+          "platforms": ["X", "Instagram", "Snapchat", "YouTube", "LinkedIn"]
+        },
+        "website": "www.Rafedsa.com",
+        "slogan": {
+          "ar": "رافد مكم أقرب",
+          "en": "Rafed is closer to you"
+        }
+      }
+    }
+  ]
+}

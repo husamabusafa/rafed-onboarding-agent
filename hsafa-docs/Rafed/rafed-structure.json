@@ -1,0 +1,394 @@
+{
+  "chart_info": {
+    "title": {
+      "en": "TTC Organizational Structure",
+      "ar": "الهيكل التنظيمي لشركة رافد (TTC)"
+    },
+    "organization_name": {
+      "en": "RAFED",
+      "ar": "رافد"
+    },
+    "metadata": {
+      "workforce_count": {
+        "en": "331",
+        "ar": "331"
+      },
+      "date": {
+        "en": "28/04/2022",
+        "ar": "28/04/2022"
+      },
+      "version": {
+        "en": "V6.1.2",
+        "ar": "V6.1.2"
+      }
+    },
+    "legend": {
+      "grey_box": {
+        "en": "Division",
+        "ar": "قطاع"
+      },
+      "blue_box": {
+        "en": "Department",
+        "ar": "إدارة"
+      }
+    }
+  },
+  "structure": {
+    "role": {
+      "en": "TTC CEO",
+      "ar": "الرئيس التنفيذي"
+    },
+    "type": "Executive",
+    "color_code": "Red",
+    "direct_reports": [
+      {
+        "role": {
+          "en": "CEO Office Manager",
+          "ar": "مدير مكتب الرئيس التنفيذي"
+        },
+        "type": "Department",
+        "color_code": "Blue",
+        "children": [
+          {
+            "role": {
+              "en": "Administrative Communication Manager",
+              "ar": "مدير الاتصالات الإدارية"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          }
+        ]
+      },
+      {
+        "role": {
+          "en": "Legal Affairs Director",
+          "ar": "مدير الشؤون القانونية"
+        },
+        "type": "Division",
+        "color_code": "Grey",
+        "children": [
+          {
+            "role": {
+              "en": "Compliance & Litigation Manager",
+              "ar": "مدير الالتزام والتقاضي"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          }
+        ]
+      },
+      {
+        "role": {
+          "en": "Planning & Performance Director",
+          "ar": "مدير التخطيط والأداء"
+        },
+        "type": "Division",
+        "color_code": "Grey",
+        "children": [
+          {
+            "role": {
+              "en": "Safety & Security Manager",
+              "ar": "مدير الأمن والسلامة"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Planning Manager",
+              "ar": "مدير التخطيط"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Customer Care Manager",
+              "ar": "مدير العناية بالعملاء"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Performance & Quality Manager",
+              "ar": "مدير الجودة والأداء"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          }
+        ]
+      },
+      {
+        "role": {
+          "en": "Operation Director",
+          "ar": "مدير التشغيل"
+        },
+        "type": "Division",
+        "color_code": "Grey",
+        "children": [
+          {
+            "role": {
+              "en": "Southern Regional & Technical Manager",
+              "ar": "المدير الفني والإقليمي للمنطقة الجنوبية"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Eastern Regional & Technical Manager",
+              "ar": "المدير الفني والإقليمي للمنطقة الشرقية"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Madinah Regional & Technical Manager",
+              "ar": "المدير الفني والإقليمي لمنطقة المدينة المنورة"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Makkah Regional & Technical Manager",
+              "ar": "المدير الفني والإقليمي لمنطقة مكة المكرمة"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Northern Regional & Technical Manager",
+              "ar": "المدير الفني والإقليمي للمنطقة الشمالية"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Qassim Regional & Technical Manager",
+              "ar": "المدير الفني والإقليمي لمنطقة القصيم"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Riyadh Regional & Technical Manager",
+              "ar": "المدير الفني والإقليمي لمنطقة الرياض"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Oversight Operation & Inspection Manager",
+              "ar": "مدير الرقابة التشغيلية والتفتيش"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          }
+        ]
+      },
+      {
+        "role": {
+          "en": "Procurement & Contracting Director",
+          "ar": "مدير المشتريات والعقود"
+        },
+        "type": "Division",
+        "color_code": "Grey",
+        "children": [
+          {
+            "role": {
+              "en": "Contract Management Manager",
+              "ar": "مدير إدارة العقود"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Planning & Cost Management Manager",
+              "ar": "مدير التخطيط وإدارة التكاليف"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Strategic Sourcing Manager",
+              "ar": "مدير المصادر الاستراتيجية"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          }
+        ]
+      },
+      {
+        "role": {
+          "en": "Strategy Sector Development Director",
+          "ar": "مدير تطوير قطاع الاستراتيجية"
+        },
+        "type": "Division",
+        "color_code": "Grey",
+        "children": [
+          {
+            "role": {
+              "en": "Business Development Manager",
+              "ar": "مدير تطوير الأعمال"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Strategy & QMS Manager",
+              "ar": "مدير الاستراتيجية ونظام إدارة الجودة"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          }
+        ]
+      },
+      {
+        "role": {
+          "en": "Digital Transformation Director",
+          "ar": "مدير التحول الرقمي"
+        },
+        "type": "Division",
+        "color_code": "Grey",
+        "children": [
+          {
+            "role": {
+              "en": "Cloud & Infrastructure Manager",
+              "ar": "مدير السحابة والبنية التحتية"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Digital GRC & PMO Manager",
+              "ar": "مدير الحوكمة والمخاطر الرقمية ومكتب إدارة المشاريع"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Enterprise Applications & Development Manager",
+              "ar": "مدير تطبيقات المؤسسة والتطوير"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          }
+        ]
+      },
+      {
+        "role": {
+          "en": "Finance Director",
+          "ar": "المدير المالي"
+        },
+        "type": "Division",
+        "color_code": "Grey",
+        "children": [
+          {
+            "role": {
+              "en": "Budgeting and Reporting Manager",
+              "ar": "مدير الميزانية والتقارير"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Contract Accounting Transportation Manager",
+              "ar": "مدير محاسبة عقود النقل"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Treasury Manager",
+              "ar": "مدير الخزينة"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Financial Accounting Manager",
+              "ar": "مدير المحاسبة المالية"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          }
+        ]
+      },
+      {
+        "role": {
+          "en": "Corporate Services Director",
+          "ar": "مدير الخدمات المؤسسية"
+        },
+        "type": "Division",
+        "color_code": "Grey",
+        "children": [
+          {
+            "role": {
+              "en": "Corporate Communication Manager",
+              "ar": "مدير الاتصال المؤسسي"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Admin & Facility Manager",
+              "ar": "مدير الشؤون الإدارية والمرافق"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          }
+        ]
+      },
+      {
+        "role": {
+          "en": "Human Resources Director",
+          "ar": "مدير الموارد البشرية"
+        },
+        "type": "Division",
+        "color_code": "Grey",
+        "children": [
+          {
+            "role": {
+              "en": "Organization & Development Manager",
+              "ar": "مدير التنظيم والتطوير"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Compensation and Benefits Manager",
+              "ar": "مدير التعويضات والمزايا"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          },
+          {
+            "role": {
+              "en": "Talent Acquisition & Engagement Manager",
+              "ar": "مدير استقطاب المواهب والارتباط الوظيفي"
+            },
+            "type": "Department",
+            "color_code": "Blue"
+          }
+        ]
+      }
+    ]
+  }
+}

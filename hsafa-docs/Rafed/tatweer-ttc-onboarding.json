@@ -1,0 +1,277 @@
+{
+  "app_metadata": {
+    "app_name": "Hayyak Onboarding Assistant",
+    "version": "2.0",
+    "supported_languages": ["en", "ar"],
+    "company_info": {
+      "name": {
+        "en": "Tatweer Education Holding",
+        "ar": "شركة تطوير التعليم القابضة"
+      },
+      "subsidiaries": [
+        "Tetco", "TBC", "Rafed", "Talemia"
+      ]
+    },
+    "system_prompts": {
+      "persona": {
+        "en": "You are 'Hayyak', a friendly, professional, and knowledgeable onboarding assistant for Tatweer Education Holding. Your goal is to make new employees feel welcome, guide them through logistics, and explain the company culture.",
+        "ar": "أنت 'حياك'، مساعد تهيئة ودود ومحترف لشركة تطوير التعليم القابضة. هدفك هو الترحيب بالموظفين الجدد، وتوجيههم خلال الإجراءات اللوجستية، وشرح ثقافة الشركة."
+      },
+      "tone": {
+        "en": "Professional, Welcoming, Encouraging, Clear.",
+        "ar": "مهني، مرحب، مشجع، واضح."
+      }
+    }
+  },
+  "modules": {
+    "cultural_alignment": {
+      "description": "Brand identity and core values",
+      "content": {
+        "visual_identity": {
+          "concept": {
+            "en": "The 'Hayyak' visual pattern represents growing power and the individual's journey. The square symbolizes stability and strength (the company), while the diamond represents the individual adding value.",
+            "ar": "يعكس النمط البصري لـ 'حياك' القوة المتنامية ورحلة الفرد. يرمز المربع إلى الثبات والقوة (الشركة)، بينما يرمز المعين إلى الفرد الذي يضيف قيمة."
+          },
+          "motto": {
+            "en": "Development starts with the individuals who make the difference.",
+            "ar": "يتحقق التميز، لأن التطوير يبدأ من الأفراد الذين يصنعون الفرق."
+          }
+        },
+        "leadership_message": {
+          "sender": {
+            "en": "Eng. Metab AL. Shahrani (THC Group CEO)",
+            "ar": "م. متعب الشهراني (الرئيس التنفيذي للمجموعة)"
+          },
+          "message_body": {
+            "en": "Welcome to the Tatweer family! We are delighted to have you on board. Together, we enhance education, empower a globally competitive generation, and build a brighter future for our children.",
+            "ar": "حياك في أسرة تطوير! يسعدنا انضمامك إلينا. معاً، نسعى لتطوير التعليم وصناعة جيل منافس عالمياً، لنترك أثراً إيجابياً ونبني مستقبلاً مشرقاً لأبنائنا وبناتنا."
+          }
+        }
+      }
+    },
+    "onboarding_journey": {
+      "description": "Timeline of tasks and events for the new hire",
+      "phases": [
+        {
+          "phase_id": "phase_1_pre_boarding",
+          "title": { "en": "Pre-Joining Phase", "ar": "مرحلة ما قبل الانضمام" },
+          "trigger": "Signed Job Offer & Medical Fit",
+          "tasks": [
+            {
+              "task_id": "doc_submission",
+              "role": "New Hire",
+              "action": {
+                "en": "Submit required documents and digitally sign NDA & Code of Ethics.",
+                "ar": "تقديم المستندات المطلوبة وتوقيع اتفاقية عدم الإفصاح وميثاق الأخلاقيات رقمياً."
+              },
+              "status": "pending"
+            },
+            {
+              "task_id": "medical_check",
+              "role": "New Hire",
+              "action": {
+                "en": "Complete medical check-up.",
+                "ar": "إتمام الفحص الطبي."
+              },
+              "status": "pending"
+            },
+             {
+              "task_id": "photo_session",
+              "role": "New Hire",
+              "action": {
+                "en": "Attend scheduled photo session for ID Badge.",
+                "ar": "حضور جلسة التصوير المجدولة للبطاقة التعريفية."
+              },
+              "status": "pending"
+            }
+          ]
+        },
+        {
+          "phase_id": "phase_2_first_day",
+          "title": { "en": "Day One", "ar": "اليوم الأول" },
+          "events": [
+            {
+              "event_name": { "en": "Welcome Reception", "ar": "الاستقبال والترحيب" },
+              "details": {
+                "en": "Receive Welcome Kit (Notebook, Pen, CEO Message) and Welcome Gift (Flowers/Coffee Card).",
+                "ar": "استلام باقة الترحيب (مذكرة، قلم، رسالة الرئيس التنفيذي) وهدية الترحيب (ورد/بطاقة قهوة)."
+              }
+            },
+            {
+              "event_name": { "en": "Manager Meeting", "ar": "لقاء المدير المباشر" },
+              "details": {
+                "en": "Initial meeting to discuss role and expectations.",
+                "ar": "اجتماع أولي لمناقشة الدور والتوقعات."
+              }
+            },
+            {
+              "event_name": { "en": "Office Tour", "ar": "جولة في المكتب" },
+              "details": {
+                "en": "Tour with Assigned Buddy to meet the team and see facilities.",
+                "ar": "جولة مع الزميل المرشد للتعرف على الفريق والمرافق."
+              }
+            }
+          ]
+        },
+        {
+          "phase_id": "phase_3_first_week",
+          "title": { "en": "First Week", "ar": "الأسبوع الأول" },
+          "tasks": [
+            {
+              "task_id": "it_setup",
+              "action": {
+                "en": "Setup email, laptop, and system access.",
+                "ar": "إعداد البريد الإلكتروني، الحاسب المحمول، والدخول للأنظمة."
+              }
+            },
+            {
+              "task_id": "subsidiary_visit",
+              "action": {
+                "en": "Visit subsidiaries (Tetco, TBC, etc.) if arranged by manager.",
+                "ar": "زيارة الشركات التابعة (تيتكو، تطوير للمباني، إلخ) إذا تم الترتيب من قبل المدير."
+              }
+            }
+          ]
+        },
+        {
+          "phase_id": "phase_4_probation",
+          "title": { "en": "Probation Period (3 Months)", "ar": "فترة التجربة (3 أشهر)" },
+          "milestones": [
+            {
+              "milestone": { "en": "Set KPIs", "ar": "تحديد مؤشرات الأداء" },
+              "timing": { "en": "First Month", "ar": "الشهر الأول" }
+            },
+            {
+              "milestone": { "en": "Satisfaction Survey", "ar": "استبيان الرضا" },
+              "timing": { "en": "Month 1 & Post-Probation", "ar": "الشهر الأول وبعد التجربة" }
+            }
+          ]
+        }
+      ]
+    },
+    "knowledge_base": {
+      "description": "FAQ for the AI to answer user queries",
+      "faqs": [
+        {
+          "intent": "ask_working_hours",
+          "keywords": ["hours", "time", "start", "end", "attendance"],
+          "question": { "en": "What are the working hours?", "ar": "ما هي ساعات العمل؟" },
+          "answer": {
+            "en": "The standard working day is 8 hours. We offer flexy time between 7:00 AM and 8:30 AM.",
+            "ar": "يوم العمل القياسي هو 8 ساعات. نوفر ساعات عمل مرنة تبدأ بين الساعة 7:00 صباحاً و 8:30 صباحاً."
+          }
+        },
+        {
+          "intent": "ask_parking",
+          "keywords": ["parking", "car", "park", "garage"],
+          "question": { "en": "Is there parking available?", "ar": "هل تتوفر مواقف للسيارات؟" },
+          "answer": {
+            "en": "Yes, you are eligible for general parking. We also provide a shuttle service to the Metro station.",
+            "ar": "نعم، أنت مؤهل لاستخدام المواقف العامة. نوفر أيضاً خدمة نقل ترددي إلى محطة المترو."
+          }
+        },
+        {
+          "intent": "ask_location",
+          "keywords": ["location", "map", "office", "where"],
+          "question": { "en": "Where is the office located?", "ar": "أين يقع المكتب؟" },
+          "answer": {
+            "en": "We are located at Tatweer Building. Please refer to the QR code sent in your onboarding email for the exact Google Maps location.",
+            "ar": "نحن نقع في مبنى تطوير. يرجى الرجوع إلى رمز QR المرسل في بريد التهيئة للحصول على الموقع الدقيق على خرائط جوجل."
+          }
+        },
+        {
+          "intent": "ask_id_badge",
+          "keywords": ["badge", "id", "card", "security"],
+          "question": { "en": "How do I get my ID badge?", "ar": "كيف أحصل على بطاقتي التعريفية؟" },
+          "answer": {
+            "en": "An ID card with your photo (taken during the photo session) and QR code will be prepared for you. It serves as your security access pass.",
+            "ar": "سيتم تجهيز بطاقة تعريفية تحتوي على صورتك (التي تم التقاطها في جلسة التصوير) ورمز QR. وتعتبر هذه البطاقة تصريح الدخول الأمني الخاص بك."
+          }
+        },
+        {
+          "intent": "ask_wifi",
+          "keywords": ["wifi", "internet", "network", "connect"],
+          "question": { "en": "How do I connect to Wi-Fi?", "ar": "كيف أتصل بالواي فاي؟" },
+          "answer": {
+            "en": "Your laptop will be set up by IT. For mobile access, please use the 'Guest' network or ask IT for the secure credentials.",
+            "ar": "سيتم إعداد جهاز الكمبيوتر الخاص بك بواسطة تقنية المعلومات. للدخول عبر الجوال، يرجى استخدام شبكة 'الضيوف' أو طلب بيانات الدخول من تقنية المعلومات."
+          }
+        }
+      ]
+    },
+    "buddy_system": {
+      "role_description": {
+        "en": "A Buddy is a colleague assigned to help you settle in, answer day-to-day questions, and introduce you to the company culture.",
+        "ar": "الزميل المرشد (Buddy) هو زميل يتم تعيينه لمساعدتك على الاستقرار، والإجابة على الأسئلة اليومية، وتعريفك بثقافة الشركة."
+      },
+      "buddy_directory": [
+        {
+           "department": "Legal",
+           "name": { "en": "Abdulmajid Al. Othman", "ar": "عبدالمجيد العثمان" }
+        },
+        {
+           "department": "GRC",
+           "name": { "en": "Bejad Almuraibdh", "ar": "بجاد المريبض" }
+        },
+        {
+           "department": "Human Capital",
+           "name": { "en": "Ghaida Al. Fawaz", "ar": "غيداء الفواز" }
+        },
+        {
+           "department": "Internal Audit",
+           "name": { "en": "Fahd Al-Owardhi", "ar": "فهد العورضي" }
+        },
+        {
+           "department": "Shared Services",
+           "name": { "en": "Mohammed Al. Sharari", "ar": "محمد الشراري" }
+        },
+        {
+           "department": "Corporate Comm.",
+           "name": { "en": "Najd Al. Otaibi", "ar": "نجد العتيبي" }
+        }
+      ],
+      "expectations": [
+        {
+           "timing": "First Week",
+           "action": { "en": "Workplace tour and lunch/coffee.", "ar": "جولة في مكان العمل وغداء/قهوة." }
+        },
+        {
+           "timing": "First Month",
+           "action": { "en": "Weekly check-ins.", "ar": "اجتماعات متابعة أسبوعية." }
+        }
+      ]
+    },
+    "resources_and_documents": {
+      "manuals": [
+        { "id": "pre_joining", "title": { "en": "Pre-Joining Manual", "ar": "دليل ما قبل الانضمام" }, "url": "{{link_to_pdf}}" },
+        { "id": "post_joining", "title": { "en": "Post-Joining Manual", "ar": "دليل ما بعد الانضمام" }, "url": "{{link_to_pdf}}" },
+        { "id": "induction", "title": { "en": "New Member Induction", "ar": "التهيئة للأعضاء الجدد" }, "url": "{{link_to_pdf}}" },
+        { "id": "calendar", "title": { "en": "2025 Annual Calendar", "ar": "التقويم السنوي 2025" }, "url": "{{link_to_image}}" }
+      ],
+      "forms": [
+        { "id": "nda", "title": { "en": "Non-Disclosure Agreement", "ar": "اتفاقية عدم الإفصاح" }, "status": "digital_sign_required" },
+        { "id": "code_ethics", "title": { "en": "Code of Ethics", "ar": "ميثاق الأخلاقيات" }, "status": "digital_sign_required" }
+      ]
+    },
+    "dynamic_templates": {
+      "email_notifications": {
+        "welcome_email": {
+          "subject": { "en": "Welcome Aboard, {{employee_name}}!", "ar": "أهلاً بك، {{employee_name}}!" },
+          "body_key_points": ["Date of Joining", "Location", "Line Manager", "Agenda"]
+        },
+        "team_announcement": {
+          "subject": { "en": "Welcoming a New Team Member", "ar": "الترحيب بزميل جديد في الفريق" },
+          "body": { "en": "We are pleased to announce that {{employee_name}} will join the {{department_name}} team.", "ar": "يسرنا إبلاغكم بانضمام {{employee_name}} إلى فريق {{department_name}}." }
+        }
+      },
+      "agendas": {
+        "first_day_structure": [
+          { "time": "09:00", "activity": { "en": "Arrival & Reception", "ar": "الوصول والاستقبال" } },
+          { "time": "10:00", "activity": { "en": "HR Induction", "ar": "تهيئة الموارد البشرية" } },
+          { "time": "11:00", "activity": { "en": "Line Manager Meeting", "ar": "اجتماع المدير المباشر" } },
+          { "time": "12:00", "activity": { "en": "Team Lunch", "ar": "غداء الفريق" } }
+        ]
+      }
+    }
+  }
+}
