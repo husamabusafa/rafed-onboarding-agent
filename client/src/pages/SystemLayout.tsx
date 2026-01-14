@@ -1,21 +1,21 @@
 import {
   IconBell,
   IconCalendar,
-  IconChevronRight,
+  IconChecklist,
+  IconCrown,
+  IconHeartHandshake,
   IconLayoutDashboard,
   IconMenu2,
   IconMessageCircle,
   IconMoon,
   IconSettings,
   IconSun,
+  IconTools,
   IconUsers,
   IconX,
 } from '@tabler/icons-react'
 import { useState } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
-
-const NAVY = '#002855'
-const CORAL = '#E1523E'
 
 type ThemeMode = 'light' | 'dark'
 
@@ -29,6 +29,10 @@ export function SystemLayout({ themeMode, onThemeToggle }: Props) {
 
   const navItems = [
     { to: '/', label: 'Home', Icon: IconLayoutDashboard },
+    { to: '/actions', label: 'Actions', Icon: IconChecklist },
+    { to: '/tools', label: 'Tools', Icon: IconTools },
+    { to: '/leadership', label: 'Leadership', Icon: IconCrown },
+    { to: '/buddy-team', label: 'Buddy Team', Icon: IconHeartHandshake },
     { to: '/employees', label: 'Employees', Icon: IconUsers },
     { to: '/calendar', label: 'Calendar', Icon: IconCalendar },
     { to: '/settings', label: 'Settings', Icon: IconSettings },
@@ -49,139 +53,118 @@ export function SystemLayout({ themeMode, onThemeToggle }: Props) {
         />
 
         <aside
-          className={`group/sidebar fixed inset-y-0 left-0 z-30 flex h-screen w-72 flex-col overflow-hidden border-r border-[#002855]/10 bg-white/70 backdrop-blur transition-[transform,width] duration-300 ease-out hover:w-72 dark:border-white/10 dark:bg-slate-950/55 md:w-16 md:bg-white/60 md:hover:w-72 md:dark:bg-slate-950/45 lg:sticky lg:translate-x-0 ${
-            mobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+          className={`group/sidebar fixed inset-y-0 left-0 z-30 flex h-screen w-72 flex-col overflow-hidden bg-white/50 backdrop-blur-xl transition-[transform,width] duration-300 ease-out hover:w-72 dark:bg-slate-950/50 md:w-20 md:hover:w-72 ${
+            mobileMenuOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0'
           }`}
         >
-          <div className="flex items-center gap-3 px-4 py-5">
-            <div className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-linear-to-br from-[#002855] to-[#E1523E] text-sm font-extrabold tracking-tight text-white shadow-sm">
+          <div className="flex h-16 items-center gap-3 px-6">
+            <div className="grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-[#002855] text-sm font-extrabold text-white shadow-sm shadow-[#002855]/20">
               H
             </div>
             <div className="min-w-0 transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100">
-              <p className="truncate text-sm font-semibold text-[#002855] dark:text-white">Hayyak</p>
-              <p className="truncate text-xs text-slate-500 dark:text-slate-400">System</p>
+              <p className="truncate font-bold text-[#002855] dark:text-white">Hayyak</p>
             </div>
           </div>
 
-          <nav className="flex-1 space-y-1 px-2">
+          <nav className="flex-1 space-y-1 px-3 py-4">
             {navItems.map(({ to, label, Icon }) => (
               <NavLink
                 key={to}
                 to={to}
                 onClick={() => setMobileMenuOpen(false)}
                 className={({ isActive }) =>
-                  `group/nav-item flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm md:px-1 md:py-1 md:group-hover/sidebar:px-3 md:group-hover/sidebar:py-2 ${
+                  `group/nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
                     isActive
-                      ? 'bg-[#002855] text-white shadow-sm'
-                      : 'text-slate-700 hover:bg-[#002855]/5 dark:text-slate-200 dark:hover:bg-white/5'
+                      ? 'bg-white text-[#002855] shadow-sm ring-1 ring-slate-900/5 dark:bg-white/10 dark:text-white dark:ring-white/10'
+                      : 'text-slate-600 hover:bg-white/50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white'
                   }`
                 }
               >
-                <span className="grid h-[38px] w-[38px] shrink-0 place-items-center rounded-2xl border border-transparent bg-white/40 text-slate-700 shadow-sm transition-colors group-hover/nav-item:border-[#E1523E]/20 dark:bg-slate-950/25 dark:text-slate-100">
-                  <Icon className="h-4 w-4" />
-                </span>
-                <span className="min-w-0 flex-1 transition-all duration-300 md:translate-x-2 md:opacity-0 md:group-hover/sidebar:translate-x-0 md:group-hover/sidebar:opacity-100">
-                  <span className="truncate">{label}</span>
-                </span>
-                <span className="transition-all duration-300 md:translate-x-2 md:opacity-0 md:group-hover/sidebar:translate-x-0 md:group-hover/sidebar:opacity-100">
-                  <IconChevronRight className="h-4 w-4 opacity-60" />
-                </span>
+                <Icon className={`h-5 w-5 shrink-0 transition-colors ${
+                  ({ isActive }: { isActive: boolean }) => isActive ? 'text-[#E1523E] dark:text-white' : 'text-slate-400 group-hover/nav-item:text-slate-600 dark:text-slate-500 dark:group-hover/nav-item:text-slate-300'
+                }`} />
+                <span className="min-w-0 flex-1 truncate transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100">{label}</span>
               </NavLink>
             ))}
           </nav>
 
-          <div className="px-2 pb-4">
-              <button
-                type="button"
-                className="group/bottom-item flex w-full items-center gap-3 rounded-2xl px-3 py-2 text-sm font-semibold text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#002855]/5 hover:shadow-sm md:px-1 md:py-1 md:group-hover/sidebar:px-3 md:group-hover/sidebar:py-2 dark:text-slate-200 dark:hover:bg-white/5"
-                aria-label="Notifications"
-              >
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-2xl bg-[#E1523E]/10 text-[#002855] shadow-sm dark:text-white">
-                  <IconBell className="h-4 w-4" />
-                </span>
-                <span className="min-w-0 flex-1 text-left transition-all duration-300 md:translate-x-2 md:opacity-0 md:group-hover/sidebar:translate-x-0 md:group-hover/sidebar:opacity-100">
-                  <span className="block truncate">Notifications</span>
-                  <span className="block truncate text-[11px] font-medium text-slate-500 dark:text-slate-400">All caught up</span>
-                </span>
-                <span className="transition-all duration-300 md:translate-x-2 md:opacity-0 md:group-hover/sidebar:translate-x-0 md:group-hover/sidebar:opacity-100">
-                  <span className="inline-flex items-center rounded-full bg-[#002855]/10 px-2 py-1 text-[11px] font-semibold text-[#002855] dark:bg-white/10 dark:text-white">
-                    0
-                  </span>
-                </span>
-              </button>
+          <div className="p-3">
+            <button
+              type="button"
+              className="group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-white/50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
+              aria-label="Notifications"
+            >
+              <IconBell className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300" />
+              <span className="min-w-0 flex-1 truncate text-left transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100">Notifications</span>
+              <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[#E1523E]/10 px-1 text-[10px] font-bold text-[#E1523E] transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100 dark:bg-[#E1523E]/20">
+                0
+              </span>
+            </button>
 
-              <Link
-                to="/chat"
-                onClick={() => setMobileMenuOpen(false)}
-                className="group/bottom-item mt-1 flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-semibold text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#E1523E]/10 hover:shadow-sm md:px-1 md:py-1 md:group-hover/sidebar:px-3 md:group-hover/sidebar:py-2 dark:text-slate-200 dark:hover:bg-[#E1523E]/15"
-                aria-label="Open chat"
-              >
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-2xl bg-[#E1523E]/10 text-[#E1523E] shadow-sm">
-                  <IconMessageCircle className="h-4 w-4" />
-                </span>
-                <span className="min-w-0 flex-1 transition-all duration-300 md:translate-x-2 md:opacity-0 md:group-hover/sidebar:translate-x-0 md:group-hover/sidebar:opacity-100">
-                  <span className="block truncate">Chat</span>
-                  <span className="block truncate text-[11px] font-medium text-slate-500 dark:text-slate-400">Open assistant</span>
-                </span>
-                <span className="transition-all duration-300 md:translate-x-2 md:opacity-0 md:group-hover/sidebar:translate-x-0 md:group-hover/sidebar:opacity-100">
-                  <IconChevronRight className="h-4 w-4 opacity-60" />
-                </span>
-              </Link>
+            <Link
+              to="/chat"
+              onClick={() => setMobileMenuOpen(false)}
+              className="group mt-1 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-white/50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
+              aria-label="Open chat"
+            >
+              <IconMessageCircle className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300" />
+              <span className="min-w-0 flex-1 truncate transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100">Chat</span>
+            </Link>
 
-              <button
-                type="button"
-                onClick={onThemeToggle}
-                className="group/bottom-item mt-1 flex w-full items-center gap-3 rounded-2xl px-3 py-2 text-sm font-semibold text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-500/10 hover:shadow-sm md:px-1 md:py-1 md:group-hover/sidebar:px-3 md:group-hover/sidebar:py-2 dark:text-slate-200 dark:hover:bg-amber-500/15"
-                aria-label={themeMode === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-              >
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-2xl bg-amber-500/10 text-amber-700 shadow-sm dark:text-amber-300">
-                  {themeMode === 'dark' ? <IconSun className="h-4 w-4" /> : <IconMoon className="h-4 w-4" />}
-                </span>
-                <span className="min-w-0 flex-1 text-left transition-all duration-300 md:translate-x-2 md:opacity-0 md:group-hover/sidebar:translate-x-0 md:group-hover/sidebar:opacity-100">
-                  <span className="block truncate">Theme</span>
-                  <span className="block truncate text-[11px] font-medium text-slate-500 dark:text-slate-400">
-                    {themeMode === 'dark' ? 'Dark mode' : 'Light mode'}
-                  </span>
-                </span>
-              </button>
+            <button
+              type="button"
+              onClick={onThemeToggle}
+              className="group mt-1 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-white/50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
+              aria-label={themeMode === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+            >
+              {themeMode === 'dark' ? (
+                <IconSun className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300" />
+              ) : (
+                <IconMoon className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300" />
+              )}
+              <span className="min-w-0 flex-1 truncate text-left transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100">
+                {themeMode === 'dark' ? 'Light mode' : 'Dark mode'}
+              </span>
+            </button>
           </div>
         </aside>
 
-        <div className="min-w-0 flex flex-1 flex-col">
-          <header className="sticky top-0 z-20 border-b border-[#002855]/10 bg-white/60 backdrop-blur dark:border-white/10 dark:bg-slate-950/45">
-            <div className="flex items-center justify-between px-4 py-3 md:px-6 md:py-4">
+        <div className="min-w-0 flex flex-1 flex-col md:pl-20">
+          <header className="sticky top-0 z-20 flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+            <div className="absolute inset-0 bg-slate-50/80 backdrop-blur-xl dark:bg-slate-950/80" />
+            
+            <div className="relative flex flex-1 items-center gap-4">
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="grid h-9 w-9 place-items-center rounded-xl border border-[#002855]/10 bg-white/70 text-[#002855] transition-colors hover:bg-[#002855]/5 md:hidden dark:border-white/10 dark:bg-slate-950/30 dark:text-white dark:hover:bg-white/5"
+                className="grid h-9 w-9 place-items-center rounded-xl border border-slate-200 bg-white text-slate-500 transition-colors hover:bg-slate-50 md:hidden dark:border-white/10 dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-white/5"
                 aria-label="Toggle menu"
               >
                 {mobileMenuOpen ? <IconX className="h-5 w-5" /> : <IconMenu2 className="h-5 w-5" />}
               </button>
-              <div className="min-w-0">
-                <p className="truncate text-sm font-semibold text-slate-900 dark:text-white">Hayyak</p>
-                <p className="truncate text-xs text-slate-500 dark:text-slate-400">System workspace</p>
+              
+              <div className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-400">
+                <span className="hidden sm:inline">Hayyak System</span>
+                <span className="hidden text-slate-300 sm:inline dark:text-slate-600">/</span>
+                <span className="text-slate-900 dark:text-white">Workspace</span>
               </div>
+            </div>
 
-              <div className="flex items-center gap-3">
-                <div className="hidden sm:flex items-center rounded-full border border-[#002855]/10 bg-white/70 px-3 py-2 text-xs text-slate-500 dark:border-white/10 dark:bg-slate-950/30 dark:text-slate-400">
-                  <span className="font-semibold" style={{ color: NAVY }}>
-                    {NAVY}
-                  </span>
-                  <span className="px-2">/</span>
-                  <span className="font-semibold" style={{ color: CORAL }}>
-                    {CORAL}
-                  </span>
-                </div>
-                <div className="grid h-9 w-9 place-items-center rounded-full border border-[#002855]/10 bg-white/70 text-xs font-bold text-[#002855] shadow-sm dark:border-white/10 dark:bg-slate-950/30 dark:text-white">
-                  HY
-                </div>
+            <div className="relative flex items-center gap-3">
+              <div className="hidden sm:flex items-center gap-3 rounded-full bg-white px-3 py-1.5 shadow-sm ring-1 ring-slate-900/5 dark:bg-white/5 dark:ring-white/10">
+                <span className="h-2 w-2 rounded-full bg-[#002855] dark:bg-blue-400" />
+                <span className="text-xs font-medium text-slate-600 dark:text-slate-300">Online</span>
+              </div>
+              <div className="grid h-9 w-9 place-items-center rounded-full bg-linear-to-br from-[#002855] to-[#E1523E] text-xs font-bold text-white shadow-md shadow-[#E1523E]/20">
+                HY
               </div>
             </div>
           </header>
 
           <main className="flex-1 px-4 py-6 md:px-6 md:py-10">
-            <Outlet />
+            <div className="mx-auto max-w-7xl">
+              <Outlet />
+            </div>
           </main>
         </div>
       </div>

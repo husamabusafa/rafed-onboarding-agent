@@ -27,12 +27,12 @@ type InputOf<T> = PropsOf<T> extends { input?: infer I } ? I : never
 
 function Section({ title, subtitle, children }: { title: string; subtitle?: string; children: ReactNode }) {
   return (
-    <section className="space-y-3">
-      <div className="rounded-3xl border border-[#002855]/10 bg-white/70 p-5 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-950/30">
-        <h2 className="text-lg font-semibold text-[#002855] dark:text-white">{title}</h2>
-        {subtitle && <p className="text-sm text-slate-500 dark:text-slate-400">{subtitle}</p>}
+    <section className="space-y-6">
+      <div className="border-b border-slate-200 pb-2 dark:border-slate-800">
+        <h2 className="text-xl font-bold text-[#002855] dark:text-white">{title}</h2>
+        {subtitle && <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{subtitle}</p>}
       </div>
-      <div>{children}</div>
+      <div className="rounded-2xl bg-slate-50/50 p-6 ring-1 ring-slate-900/5 dark:bg-slate-900/20 dark:ring-white/5">{children}</div>
     </section>
   )
 }
@@ -483,8 +483,15 @@ export function TestComponentsPage() {
   }, [])
 
   return (
-    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
-      <div className="space-y-8">
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_380px]">
+      <div className="space-y-12 pb-12">
+        <div className="border-b border-slate-200 pb-6 dark:border-slate-800">
+          <h1 className="text-3xl font-extrabold tracking-tight text-[#002855] dark:text-white">Component Library</h1>
+          <p className="mt-2 text-slate-600 dark:text-slate-400">
+            Interactive playground for testing all UI components with mock data.
+          </p>
+        </div>
+
         <Section title="WelcomeOnboarding" subtitle="Static component (no tool props)">
           <WelcomeOnboarding />
         </Section>
@@ -570,22 +577,22 @@ export function TestComponentsPage() {
         </Section>
       </div>
 
-      <aside className="sticky top-6 h-fit rounded-3xl border border-[#002855]/10 bg-white/70 p-5 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-950/30">
-        <h3 className="text-sm font-semibold text-[#002855] dark:text-white">Tool Results</h3>
+      <aside className="sticky top-24 h-fit rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-900/5 dark:bg-slate-900 dark:ring-white/10">
+        <h3 className="font-bold text-[#002855] dark:text-white">Tool Results</h3>
         <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
           Latest results from components calling <span className="font-semibold">addToolResult</span>.
         </p>
 
         <div className="mt-4 max-h-[70vh] space-y-3 overflow-auto pr-1">
           {toolResults.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-[#002855]/20 bg-white/60 p-4 text-sm text-slate-500 dark:border-white/10 dark:bg-slate-950/25 dark:text-slate-400">
+            <div className="rounded-xl border border-dashed border-[#002855]/20 bg-slate-50/50 p-4 text-center text-sm text-slate-500 dark:border-white/10 dark:bg-slate-950/25 dark:text-slate-400">
               No results yet.
             </div>
           ) : (
             toolResults.map((r, idx) => (
               <pre
                 key={idx}
-                className="overflow-auto rounded-2xl border border-[#002855]/10 bg-white p-3 text-xs text-slate-700 shadow-sm dark:border-white/10 dark:bg-slate-950/30 dark:text-slate-200"
+                className="overflow-auto rounded-xl border border-[#002855]/10 bg-slate-50 p-3 text-xs text-slate-700 shadow-sm dark:border-white/10 dark:bg-slate-950/30 dark:text-slate-200"
               >
                 {JSON.stringify(r, null, 2)}
               </pre>

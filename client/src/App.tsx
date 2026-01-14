@@ -23,10 +23,15 @@ import { BenefitsOverview } from './components/BenefitsOverview'
 import { ProbationTracker } from './components/ProbationTracker'
 import { FeedbackSurvey } from './components/FeedbackSurvey'
 import { ChatPage } from './pages/ChatPage'
+import { ActionDetailPage } from './pages/ActionDetailPage'
+import { ActionsPage } from './pages/ActionsPage'
+import { BuddyTeamPage } from './pages/BuddyTeamPage'
 import { HomePage } from './pages/HomePage'
+import { LeadershipPage } from './pages/LeadershipPage'
 import { LoginPage } from './pages/LoginPage'
 import { SystemLayout } from './pages/SystemLayout'
 import { TestComponentsPage } from './pages/TestComponentsPage'
+import { ToolsFacilitiesPage } from './pages/ToolsFacilitiesPage'
 
 const uiComponents = {
   WelcomeOnboarding,
@@ -95,6 +100,11 @@ function App() {
       <Routes>
         <Route path="/" element={<SystemLayout themeMode={themeMode} onThemeToggle={() => setThemeMode((t) => (t === 'dark' ? 'light' : 'dark'))} />}>
           <Route index element={<HomePage />} />
+          <Route path="leadership" element={<LeadershipPage />} />
+          <Route path="buddy-team" element={<BuddyTeamPage />} />
+          <Route path="tools" element={<ToolsFacilitiesPage />} />
+          <Route path="actions" element={<ActionsPage />} />
+          <Route path="actions/:actionId" element={<ActionDetailPage />} />
           <Route
             path="employees"
             element={<h1 className="text-3xl font-bold tracking-tight text-[#002855] dark:text-white md:text-4xl">Employees</h1>}
