@@ -4,17 +4,27 @@ import {
   IconChevronRight,
   IconLayoutDashboard,
   IconMenu2,
+  IconMessageCircle,
+  IconMoon,
   IconSettings,
+  IconSun,
   IconUsers,
   IconX,
 } from '@tabler/icons-react'
 import { useState } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 
 const NAVY = '#002855'
 const CORAL = '#E1523E'
 
-export function SystemLayout() {
+type ThemeMode = 'light' | 'dark'
+
+type Props = {
+  themeMode: ThemeMode
+  onThemeToggle: () => void
+}
+
+export function SystemLayout({ themeMode, onThemeToggle }: Props) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const navItems = [
@@ -31,12 +41,23 @@ export function SystemLayout() {
       <div className="pointer-events-none absolute left-1/3 top-1/4 h-72 w-72 rounded-full bg-[#002855]/5 blur-2xl dark:bg-[#002855]/12" />
 
       <div className="relative flex min-h-screen">
-        <aside className="group/sidebar fixed inset-y-0 left-0 z-30 flex h-screen w-16 flex-col border-r border-[#002855]/10 bg-white/60 backdrop-blur transition-all duration-300 hover:w-72 lg:sticky lg:translate-x-0 dark:border-white/10 dark:bg-slate-950/45 md:w-16 ${mobileMenuOpen ? 'translate-x-0 w-72' : '-translate-x-full md:translate-x-0'}">
+        <div
+          className={`fixed inset-0 z-20 bg-slate-950/40 backdrop-blur-sm transition-opacity duration-200 md:hidden ${
+            mobileMenuOpen ? 'opacity-100' : 'pointer-events-none opacity-0'
+          }`}
+          onClick={() => setMobileMenuOpen(false)}
+        />
+
+        <aside
+          className={`group/sidebar fixed inset-y-0 left-0 z-30 flex h-screen w-72 flex-col overflow-hidden border-r border-[#002855]/10 bg-white/70 backdrop-blur transition-[transform,width] duration-300 ease-out hover:w-72 dark:border-white/10 dark:bg-slate-950/55 md:w-16 md:bg-white/60 md:hover:w-72 md:dark:bg-slate-950/45 lg:sticky lg:translate-x-0 ${
+            mobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+          }`}
+        >
           <div className="flex items-center gap-3 px-4 py-5">
             <div className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-linear-to-br from-[#002855] to-[#E1523E] text-sm font-extrabold tracking-tight text-white shadow-sm">
               H
             </div>
-            <div className="min-w-0 opacity-0 transition-all duration-300 group-hover/sidebar:opacity-100">
+            <div className="min-w-0 transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100">
               <p className="truncate text-sm font-semibold text-[#002855] dark:text-white">Hayyak</p>
               <p className="truncate text-xs text-slate-500 dark:text-slate-400">System</p>
             </div>
@@ -49,45 +70,84 @@ export function SystemLayout() {
                 to={to}
                 onClick={() => setMobileMenuOpen(false)}
                 className={({ isActive }) =>
-                  `group/nav-item flex items-center gap-3 rounded-2xl px-1 py-1 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm group-hover/sidebar:px-3 group-hover/sidebar:py-2 ${
+                  `group/nav-item flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm md:px-1 md:py-1 md:group-hover/sidebar:px-3 md:group-hover/sidebar:py-2 ${
                     isActive
                       ? 'bg-[#002855] text-white shadow-sm'
                       : 'text-slate-700 hover:bg-[#002855]/5 dark:text-slate-200 dark:hover:bg-white/5'
                   }`
                 }
               >
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-2xl border border-transparent bg-white/40 text-slate-700 shadow-sm transition-colors group-hover/nav-item:border-[#E1523E]/20 dark:bg-slate-950/25 dark:text-slate-100">
+                <span className="grid h-[38px] w-[38px] shrink-0 place-items-center rounded-2xl border border-transparent bg-white/40 text-slate-700 shadow-sm transition-colors group-hover/nav-item:border-[#E1523E]/20 dark:bg-slate-950/25 dark:text-slate-100">
                   <Icon className="h-4 w-4" />
                 </span>
-                <span className="min-w-0 flex-1 translate-x-2 opacity-0 transition-all duration-300 group-hover/sidebar:translate-x-0 group-hover/sidebar:opacity-100">
+                <span className="min-w-0 flex-1 transition-all duration-300 md:translate-x-2 md:opacity-0 md:group-hover/sidebar:translate-x-0 md:group-hover/sidebar:opacity-100">
                   <span className="truncate">{label}</span>
                 </span>
-                <span className="translate-x-2 opacity-0 transition-all duration-300 group-hover/sidebar:translate-x-0 group-hover/sidebar:opacity-100">
+                <span className="transition-all duration-300 md:translate-x-2 md:opacity-0 md:group-hover/sidebar:translate-x-0 md:group-hover/sidebar:opacity-100">
                   <IconChevronRight className="h-4 w-4 opacity-60" />
                 </span>
               </NavLink>
             ))}
           </nav>
 
-            <div className="flex items-center justify-between rounded-2xl border border-[#002855]/10 bg-white/60 px-3 py-3 backdrop-blur dark:border-white/10 dark:bg-slate-950/30">
-              <div className="flex items-center gap-3">
-                <span className="grid h-9 w-9 place-items-center rounded-2xl bg-[#E1523E]/10 text-[#002855] dark:text-white">
+          <div className="px-2 pb-4">
+              <button
+                type="button"
+                className="group/bottom-item flex w-full items-center gap-3 rounded-2xl px-3 py-2 text-sm font-semibold text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#002855]/5 hover:shadow-sm md:px-1 md:py-1 md:group-hover/sidebar:px-3 md:group-hover/sidebar:py-2 dark:text-slate-200 dark:hover:bg-white/5"
+                aria-label="Notifications"
+              >
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-2xl bg-[#E1523E]/10 text-[#002855] shadow-sm dark:text-white">
                   <IconBell className="h-4 w-4" />
                 </span>
-                <div className="min-w-0 translate-x-2 opacity-0 transition-all duration-300 group-hover/sidebar:translate-x-0 group-hover/sidebar:opacity-100">
-                  <p className="truncate text-xs font-semibold text-slate-800 dark:text-slate-200">Notifications</p>
-                  <p className="truncate text-[11px] text-slate-500 dark:text-slate-400">All caught up</p>
-              </div>
-              <span className="opacity-0 transition-opacity duration-300 group-hover/sidebar:opacity-100">
-                <span className="inline-flex items-center rounded-full bg-[#002855]/10 px-2 py-1 text-[11px] font-semibold text-[#002855] dark:bg-white/10 dark:text-white">
-                  0
+                <span className="min-w-0 flex-1 text-left transition-all duration-300 md:translate-x-2 md:opacity-0 md:group-hover/sidebar:translate-x-0 md:group-hover/sidebar:opacity-100">
+                  <span className="block truncate">Notifications</span>
+                  <span className="block truncate text-[11px] font-medium text-slate-500 dark:text-slate-400">All caught up</span>
                 </span>
-              </span>
-            </div>
+                <span className="transition-all duration-300 md:translate-x-2 md:opacity-0 md:group-hover/sidebar:translate-x-0 md:group-hover/sidebar:opacity-100">
+                  <span className="inline-flex items-center rounded-full bg-[#002855]/10 px-2 py-1 text-[11px] font-semibold text-[#002855] dark:bg-white/10 dark:text-white">
+                    0
+                  </span>
+                </span>
+              </button>
+
+              <Link
+                to="/chat"
+                onClick={() => setMobileMenuOpen(false)}
+                className="group/bottom-item mt-1 flex items-center gap-3 rounded-2xl px-3 py-2 text-sm font-semibold text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#E1523E]/10 hover:shadow-sm md:px-1 md:py-1 md:group-hover/sidebar:px-3 md:group-hover/sidebar:py-2 dark:text-slate-200 dark:hover:bg-[#E1523E]/15"
+                aria-label="Open chat"
+              >
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-2xl bg-[#E1523E]/10 text-[#E1523E] shadow-sm">
+                  <IconMessageCircle className="h-4 w-4" />
+                </span>
+                <span className="min-w-0 flex-1 transition-all duration-300 md:translate-x-2 md:opacity-0 md:group-hover/sidebar:translate-x-0 md:group-hover/sidebar:opacity-100">
+                  <span className="block truncate">Chat</span>
+                  <span className="block truncate text-[11px] font-medium text-slate-500 dark:text-slate-400">Open assistant</span>
+                </span>
+                <span className="transition-all duration-300 md:translate-x-2 md:opacity-0 md:group-hover/sidebar:translate-x-0 md:group-hover/sidebar:opacity-100">
+                  <IconChevronRight className="h-4 w-4 opacity-60" />
+                </span>
+              </Link>
+
+              <button
+                type="button"
+                onClick={onThemeToggle}
+                className="group/bottom-item mt-1 flex w-full items-center gap-3 rounded-2xl px-3 py-2 text-sm font-semibold text-slate-700 transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-500/10 hover:shadow-sm md:px-1 md:py-1 md:group-hover/sidebar:px-3 md:group-hover/sidebar:py-2 dark:text-slate-200 dark:hover:bg-amber-500/15"
+                aria-label={themeMode === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+              >
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-2xl bg-amber-500/10 text-amber-700 shadow-sm dark:text-amber-300">
+                  {themeMode === 'dark' ? <IconSun className="h-4 w-4" /> : <IconMoon className="h-4 w-4" />}
+                </span>
+                <span className="min-w-0 flex-1 text-left transition-all duration-300 md:translate-x-2 md:opacity-0 md:group-hover/sidebar:translate-x-0 md:group-hover/sidebar:opacity-100">
+                  <span className="block truncate">Theme</span>
+                  <span className="block truncate text-[11px] font-medium text-slate-500 dark:text-slate-400">
+                    {themeMode === 'dark' ? 'Dark mode' : 'Light mode'}
+                  </span>
+                </span>
+              </button>
           </div>
         </aside>
 
-        <div className="min-w-0 flex flex-1 flex-col md:ml-16">
+        <div className="min-w-0 flex flex-1 flex-col">
           <header className="sticky top-0 z-20 border-b border-[#002855]/10 bg-white/60 backdrop-blur dark:border-white/10 dark:bg-slate-950/45">
             <div className="flex items-center justify-between px-4 py-3 md:px-6 md:py-4">
               <button

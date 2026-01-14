@@ -1,5 +1,4 @@
 import { HsafaProvider } from '@hsafa/ui-sdk'
-import { IconMoon, IconSun } from '@tabler/icons-react'
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { WelcomeOnboarding } from './components/WelcomeOnboarding'
@@ -94,7 +93,7 @@ function App() {
   return (
     <HsafaProvider baseUrl="https://server.hsafa.com">
       <Routes>
-        <Route path="/" element={<SystemLayout />}>
+        <Route path="/" element={<SystemLayout themeMode={themeMode} onThemeToggle={() => setThemeMode((t) => (t === 'dark' ? 'light' : 'dark'))} />}>
           <Route index element={<HomePage />} />
           <Route
             path="employees"
@@ -120,18 +119,6 @@ function App() {
         <Route path="login" element={<LoginPage />} />
         <Route path="test-components" element={<TestComponentsPage />} />
       </Routes>
-
-      <button
-        type="button"
-        onClick={() => setThemeMode((t) => (t === 'dark' ? 'light' : 'dark'))}
-        className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full border border-amber-200/60 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-900 shadow-lg backdrop-blur motion-safe:transition-all motion-safe:duration-300 hover:-translate-y-0.5 hover:shadow-xl dark:border-amber-500/20 dark:bg-slate-950/50 dark:text-slate-100"
-        aria-label={themeMode === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-      >
-        <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-linear-to-br from-amber-500/20 to-rose-500/20 text-amber-800 motion-safe:transition-transform motion-safe:duration-300 hover:scale-[1.03] dark:from-amber-500/25 dark:to-rose-500/25 dark:text-amber-200">
-          {themeMode === 'dark' ? <IconSun className="h-5 w-5" /> : <IconMoon className="h-5 w-5" />}
-        </span>
-        <span className="hidden sm:block">{themeMode === 'dark' ? 'Light' : 'Dark'}</span>
-      </button>
     </HsafaProvider>
   )
 }
