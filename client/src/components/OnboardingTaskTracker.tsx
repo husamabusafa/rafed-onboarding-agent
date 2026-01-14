@@ -1,6 +1,62 @@
-import { useEffect } from 'react'
+import { useEffect, type ComponentType } from 'react'
 import { IconChecklist, IconClock, IconCircleCheck, IconAlertCircle } from '@tabler/icons-react'
-import { theme, iconBackgrounds } from './theme'
+
+const theme = {
+  card: {
+    base: 'rounded-3xl border border-[#002855]/10 bg-linear-to-br from-[#002855]/10 via-white/70 to-[#E1523E]/10 p-6 shadow-[0_10px_30px_rgba(0,40,85,0.10)] backdrop-blur dark:border-white/10 dark:bg-linear-to-br dark:from-[#002855]/25 dark:via-slate-950/55 dark:to-[#E1523E]/15',
+  },
+  header: {
+    icon: 'p-3 rounded-2xl',
+    title: 'text-2xl font-semibold tracking-tight text-[#002855] dark:text-white',
+    subtitle: 'text-sm text-slate-500 dark:text-slate-400',
+  },
+  gradient: {
+    primary: 'bg-linear-to-r from-[#002855]/30 via-[#002855]/15 to-[#E1523E]/25 dark:from-[#002855]/35 dark:via-[#002855]/15 dark:to-[#E1523E]/20',
+  },
+  section: {
+    light: 'bg-white/60 dark:bg-slate-950/25',
+  },
+  item: {
+    compact:
+      'p-3 rounded-2xl border border-[#002855]/10 bg-white shadow-sm transition-all group hover:border-[#E1523E]/25 hover:shadow-md dark:border-white/10 dark:bg-slate-950/30 dark:hover:border-[#E1523E]/30',
+  },
+  badge: {
+    base: 'text-xs px-2 py-1 rounded-full border',
+    primary: 'bg-[#E1523E]/10 text-[#E1523E] border-[#E1523E]/20 dark:bg-[#E1523E]/10 dark:text-white dark:border-[#E1523E]/25',
+    navy: 'bg-[#002855]/5 text-[#002855] border-[#002855]/10 dark:bg-white/5 dark:text-white dark:border-white/10',
+    teal: 'bg-white text-[#002855] border-[#002855]/10 dark:bg-slate-950/30 dark:text-white dark:border-white/10',
+    green: 'bg-emerald-50 text-emerald-800 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-200 dark:border-emerald-500/25',
+    gold: 'bg-white text-slate-700 border-[#002855]/10 dark:bg-slate-950/30 dark:text-slate-200 dark:border-white/10',
+  },
+  text: {
+    primary: 'text-[#002855] dark:text-white',
+    muted: 'text-slate-500 dark:text-slate-300',
+    subtle: 'text-slate-500/80 dark:text-slate-400/80',
+  },
+  icon: {
+    primary: 'text-[#002855] dark:text-white',
+    teal: 'text-[#002855]/70 dark:text-white/70',
+    green: 'text-emerald-700 dark:text-emerald-200',
+    muted: 'text-[#002855]/55 dark:text-white/60',
+  },
+  infoBox: {
+    base: 'p-3 rounded-2xl border',
+    primary: 'bg-white/70 border-[#002855]/10 shadow-sm dark:bg-slate-950/35 dark:border-white/10',
+  },
+}
+
+const iconBackgrounds = {
+  primary: 'bg-linear-to-br from-[#002855]/12 via-[#002855]/6 to-[#E1523E]/12 dark:from-[#002855]/35 dark:via-[#002855]/15 dark:to-[#E1523E]/25',
+  navy: 'bg-[#002855]/10 dark:bg-white/10',
+  teal: 'bg-[#E1523E]/10 dark:bg-[#E1523E]/15',
+  green: 'bg-emerald-500/10 dark:bg-emerald-500/15',
+}
+
+type StatusConfigEntry = {
+  icon: ComponentType<{ className?: string }>
+  color: string
+  bg: string
+}
 
 interface Task {
   taskId: number
@@ -23,10 +79,10 @@ interface Props {
   }
   toolName?: string
   toolCallId?: string
-  addToolResult?: (result: any) => void
+  addToolResult?: (result: unknown) => void
 }
 
-const statusConfig: Record<string, any> = {
+const statusConfig: Record<string, StatusConfigEntry> = {
   pending: { icon: IconClock, color: theme.icon.muted, bg: theme.badge.navy },
   PENDING: { icon: IconClock, color: theme.icon.muted, bg: theme.badge.navy },
   in_progress: { icon: IconClock, color: theme.icon.teal, bg: theme.badge.teal },
@@ -37,9 +93,11 @@ const statusConfig: Record<string, any> = {
   BLOCKED: { icon: IconAlertCircle, color: theme.icon.primary, bg: theme.badge.primary },
 }
 
+const EMPTY_TASKS: Task[] = []
+
 export function OnboardingTaskTracker({ input, toolName, toolCallId, addToolResult }: Props) {
   const onboardingStage = input?.onboardingStage || 'pre_joining';
-  const tasks = input?.tasks || [];
+  const tasks = input?.tasks ?? EMPTY_TASKS;
   const progressPercentage = input?.progressPercentage || 0;
   
   useEffect(() => {

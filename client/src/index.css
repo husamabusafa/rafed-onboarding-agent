@@ -1,1 +1,8 @@
+@config "../tailwind.config.cjs";
+@custom-variant dark {
+  &:where(.dark, .dark *) {
+    @slot;
+  }
+}
+
 @import "tailwindcss";

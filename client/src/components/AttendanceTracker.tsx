@@ -1,6 +1,68 @@
 import { useEffect } from 'react'
 import { IconClock, IconMapPin, IconCheck, IconX } from '@tabler/icons-react'
-import { theme, iconBackgrounds, statusColors } from './theme'
+
+const theme = {
+  card: {
+    base: 'rounded-3xl border border-[#002855]/10 bg-linear-to-br from-[#002855]/10 via-white/70 to-[#E1523E]/10 p-6 shadow-[0_10px_30px_rgba(0,40,85,0.10)] backdrop-blur dark:border-white/10 dark:bg-linear-to-br dark:from-[#002855]/25 dark:via-slate-950/55 dark:to-[#E1523E]/15',
+  },
+  header: {
+    icon: 'p-3 rounded-2xl',
+    title: 'text-2xl font-semibold tracking-tight text-[#002855] dark:text-white',
+    subtitle: 'text-sm text-slate-500 dark:text-slate-400',
+  },
+  gradient: {
+    success: 'bg-linear-to-r from-[#002855]/20 via-white/40 to-[#E1523E]/15 dark:from-[#002855]/25 dark:via-slate-950/20 dark:to-[#E1523E]/15',
+  },
+  item: {
+    compact:
+      'p-3 rounded-2xl border border-[#002855]/10 bg-white shadow-sm transition-all group hover:border-[#E1523E]/25 hover:shadow-md dark:border-white/10 dark:bg-slate-950/30 dark:hover:border-[#E1523E]/30',
+  },
+  badge: {
+    base: 'text-xs px-2 py-1 rounded-full border',
+    navy: 'bg-[#002855]/5 text-[#002855] border-[#002855]/10 dark:bg-white/5 dark:text-white dark:border-white/10',
+  },
+  text: {
+    primary: 'text-[#002855] dark:text-white',
+    secondary: 'text-slate-700 dark:text-slate-200',
+    muted: 'text-slate-500 dark:text-slate-300',
+  },
+  icon: {
+    primary: 'text-[#002855] dark:text-white',
+    green: 'text-emerald-700 dark:text-emerald-200',
+    muted: 'text-[#002855]/55 dark:text-white/60',
+  },
+  infoBox: {
+    base: 'p-3 rounded-2xl border',
+    success: 'bg-white/70 border-[#002855]/10 shadow-sm dark:bg-slate-950/35 dark:border-white/10',
+  },
+  table: {
+    container: 'overflow-x-auto rounded-2xl border border-[#002855]/10 bg-white/70 shadow-sm dark:border-white/10 dark:bg-slate-950/30',
+    header: 'border-b border-[#002855]/10 bg-white/70 dark:border-white/10 dark:bg-slate-950/35',
+    headerCell: 'text-left py-3 px-4 text-xs font-semibold text-[#002855] dark:text-slate-200',
+    body: 'bg-white/60 dark:bg-slate-950/25',
+    row: 'border-b border-[#002855]/10 last:border-0 hover:bg-[#E1523E]/5 transition-colors dark:border-white/10 dark:hover:bg-[#E1523E]/10',
+    cell: 'py-3 px-4 text-sm',
+  },
+}
+
+const iconBackgrounds = {
+  green: 'bg-linear-to-br from-[#002855]/12 via-[#002855]/6 to-[#E1523E]/12 dark:from-[#002855]/35 dark:via-[#002855]/15 dark:to-[#E1523E]/25',
+}
+
+const statusColors = {
+  attendance: {
+    present: 'border border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-500/25 dark:bg-emerald-500/10 dark:text-emerald-200',
+    absent: 'border border-[#E1523E]/20 bg-[#E1523E]/10 text-[#E1523E] dark:border-[#E1523E]/25 dark:bg-[#E1523E]/10 dark:text-white',
+    late: 'border border-[#E1523E]/20 bg-[#E1523E]/10 text-[#E1523E] dark:border-[#E1523E]/25 dark:bg-[#E1523E]/10 dark:text-white',
+    on_leave: 'border border-[#002855]/10 bg-[#002855]/5 text-[#002855] dark:border-white/10 dark:bg-white/5 dark:text-white',
+    remote: 'border border-[#002855]/10 bg-white text-[#002855] dark:border-white/10 dark:bg-slate-950/30 dark:text-white',
+    PRESENT: 'border border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-500/25 dark:bg-emerald-500/10 dark:text-emerald-200',
+    ABSENT: 'border border-[#E1523E]/20 bg-[#E1523E]/10 text-[#E1523E] dark:border-[#E1523E]/25 dark:bg-[#E1523E]/10 dark:text-white',
+    LATE: 'border border-[#E1523E]/20 bg-[#E1523E]/10 text-[#E1523E] dark:border-[#E1523E]/25 dark:bg-[#E1523E]/10 dark:text-white',
+    ON_LEAVE: 'border border-[#002855]/10 bg-[#002855]/5 text-[#002855] dark:border-white/10 dark:bg-white/5 dark:text-white',
+    REMOTE: 'border border-[#002855]/10 bg-white text-[#002855] dark:border-white/10 dark:bg-slate-950/30 dark:text-white',
+  } as Record<string, string>,
+}
 
 interface AttendanceHistory {
   date: string
@@ -9,6 +71,8 @@ interface AttendanceHistory {
   hoursWorked: number
   status: string
 }
+
+const EMPTY_RECENT_HISTORY: AttendanceHistory[] = []
 
 interface Props {
   input?: {
@@ -23,7 +87,7 @@ interface Props {
   }
   toolName?: string
   toolCallId?: string
-  addToolResult?: (result: any) => void
+  addToolResult?: (result: unknown) => void
 }
 
 
@@ -34,7 +98,7 @@ export function AttendanceTracker({ input, toolName, toolCallId, addToolResult }
   const status = input?.status || 'ABSENT';
   const location = input?.location;
   const biometricVerified = input?.biometricVerified || false;
-  const recentHistory = input?.recentHistory || [];
+  const recentHistory = input?.recentHistory ?? EMPTY_RECENT_HISTORY;
   
   useEffect(() => {
     if (addToolResult && toolName && toolCallId) {

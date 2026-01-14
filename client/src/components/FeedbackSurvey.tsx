@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { IconMessageCircle, IconStarFilled } from '@tabler/icons-react'
 
 interface Question {
@@ -8,15 +9,20 @@ interface Question {
 }
 
 interface Props {
-  surveyId?: string
-  employeeId: number
-  surveyType: 'onboarding_satisfaction' | 'workplace_environment' | 'manager_feedback' | 'facilities_feedback' | 'it_services' | 'hr_services' | 'general_suggestion'
-  isAnonymous: boolean
-  questions: Question[]
-  overallRating?: number
-  additionalComments?: string
-  submittedDate?: string
-  status: 'draft' | 'submitted' | 'reviewed'
+  input?: {
+    surveyId?: string
+    employeeId?: number
+    surveyType?: 'onboarding_satisfaction' | 'workplace_environment' | 'manager_feedback' | 'facilities_feedback' | 'it_services' | 'hr_services' | 'general_suggestion'
+    isAnonymous?: boolean
+    questions?: Question[]
+    overallRating?: number
+    additionalComments?: string
+    submittedDate?: string
+    status?: 'draft' | 'submitted' | 'reviewed'
+  }
+  toolName?: string
+  toolCallId?: string
+  addToolResult?: (result: unknown) => void
 }
 
 const surveyTypeLabels = {
@@ -30,12 +36,41 @@ const surveyTypeLabels = {
 }
 
 const statusColors = {
-  draft: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
-  submitted: 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
-  reviewed: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
+  draft: 'border border-[#002855]/10 bg-[#002855]/5 text-[#002855] dark:border-white/10 dark:bg-white/5 dark:text-white',
+  submitted: 'border border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-500/25 dark:bg-emerald-500/10 dark:text-emerald-200',
+  reviewed: 'border border-[#002855]/10 bg-white text-[#002855] dark:border-white/10 dark:bg-slate-950/30 dark:text-white',
 }
 
-export function FeedbackSurvey({ surveyType, isAnonymous, questions = [], overallRating, additionalComments, submittedDate, status }: Props) {
+const EMPTY_QUESTIONS: Question[] = []
+
+export function FeedbackSurvey({ input, toolName, toolCallId, addToolResult }: Props) {
+  const surveyType = input?.surveyType ?? 'general_suggestion'
+  const isAnonymous = input?.isAnonymous ?? false
+  const questions = input?.questions ?? EMPTY_QUESTIONS
+  const overallRating = input?.overallRating
+  const additionalComments = input?.additionalComments
+  const submittedDate = input?.submittedDate
+  const status = input?.status ?? 'draft'
+
+  useEffect(() => {
+    if (addToolResult && toolName && toolCallId) {
+      addToolResult({
+        tool: toolName,
+        toolCallId: toolCallId,
+        output: {
+          status: 'displayed',
+          surveyType: surveyType,
+          surveyStatus: status,
+          isAnonymous: isAnonymous,
+          questionsCount: questions.length,
+          overallRating: overallRating,
+          submittedDate: submittedDate,
+          message: `Survey: ${surveyTypeLabels[surveyType]} (${status})`,
+        },
+      })
+    }
+  }, [surveyType, isAnonymous, questions, overallRating, additionalComments, submittedDate, status, toolName, toolCallId, addToolResult])
+
   const renderAnswer = (question: Question) => {
     switch (question.questionType) {
       case 'rating':
@@ -44,16 +79,18 @@ export function FeedbackSurvey({ surveyType, isAnonymous, questions = [], overal
             {[1, 2, 3, 4, 5].map((star) => (
               <IconStarFilled 
                 key={star} 
-                className={`w-5 h-5 ${star <= (question.answer as number) ? 'text-yellow-500' : 'text-gray-300'}`}
+                className={`w-5 h-5 ${star <= (question.answer as number) ? 'text-[#E1523E]' : 'text-slate-300 dark:text-slate-600'}`}
               />
             ))}
-            <span className="ml-2 font-medium text-gray-900 dark:text-white">{question.answer}/5</span>
+            <span className="ml-2 font-medium text-[#002855] dark:text-white">{question.answer}/5</span>
           </div>
         )
       case 'yes_no':
         return (
-          <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-            question.answer ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300'
+          <span className={`rounded-full px-3 py-1 text-sm font-medium ${
+            question.answer
+              ? 'border border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-500/25 dark:bg-emerald-500/10 dark:text-emerald-200'
+              : 'border border-[#E1523E]/20 bg-[#E1523E]/10 text-[#E1523E] dark:border-[#E1523E]/25 dark:bg-[#E1523E]/10 dark:text-white'
           }`}>
             {question.answer ? 'Yes' : 'No'}
           </span>
@@ -63,69 +100,69 @@ export function FeedbackSurvey({ surveyType, isAnonymous, questions = [], overal
           return (
             <div className="flex flex-wrap gap-2">
               {question.answer.map((choice, idx) => (
-                <span key={idx} className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-full text-sm">
+                <span key={idx} className="rounded-full border border-[#002855]/10 bg-white px-3 py-1 text-sm text-[#002855] shadow-sm dark:border-white/10 dark:bg-slate-950/30 dark:text-white">
                   {choice}
                 </span>
               ))}
             </div>
           )
         }
-        return <p className="text-gray-900 dark:text-white">{question.answer as string}</p>
+        return <p className="text-[#002855] dark:text-white">{question.answer as string}</p>
       case 'text':
       default:
-        return <p className="text-gray-900 dark:text-white">{question.answer as string}</p>
+        return <p className="text-[#002855] dark:text-white">{question.answer as string}</p>
     }
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 max-w-2xl">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-xl">
-          <IconMessageCircle className="w-6 h-6 text-indigo-600 dark:text-indigo-300" />
+    <div className="max-w-2xl rounded-3xl border border-[#002855]/10 bg-linear-to-br from-[#002855]/10 via-white/70 to-[#E1523E]/10 p-6 shadow-[0_10px_30px_rgba(0,40,85,0.10)] backdrop-blur dark:border-white/10 dark:bg-linear-to-br dark:from-[#002855]/25 dark:via-slate-950/55 dark:to-[#E1523E]/15">
+      <div className="mb-6 flex items-center gap-3">
+        <div className="rounded-2xl bg-linear-to-br from-[#002855]/12 via-[#002855]/6 to-[#E1523E]/12 p-3 text-[#002855] dark:from-[#002855]/35 dark:via-[#002855]/15 dark:to-[#E1523E]/25 dark:text-white">
+          <IconMessageCircle className="h-6 w-6" />
         </div>
         <div className="flex-1">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Feedback & Survey</h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">الملاحظات والاستبيان</p>
+          <h2 className="text-2xl font-semibold tracking-tight text-[#002855] dark:text-white">Feedback & Survey</h2>
+          <p className="text-sm text-slate-500 dark:text-slate-400">الملاحظات والاستبيان</p>
         </div>
         {isAnonymous && (
-          <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 rounded-full text-sm font-medium">
+          <span className="rounded-full border border-[#002855]/10 bg-[#002855]/5 px-3 py-1 text-sm font-medium text-[#002855] dark:border-white/10 dark:bg-white/5 dark:text-white">
             Anonymous
           </span>
         )}
       </div>
 
       <div className="space-y-4">
-        <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-xl">
+        <div className="flex items-center justify-between rounded-2xl border border-[#002855]/10 bg-white/70 p-4 shadow-sm dark:border-white/10 dark:bg-slate-950/35">
           <div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Survey Type</p>
-            <p className="text-lg font-bold text-gray-900 dark:text-white">{surveyTypeLabels[surveyType]}</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Survey Type</p>
+            <p className="text-lg font-semibold text-[#002855] dark:text-white">{surveyTypeLabels[surveyType]}</p>
           </div>
-          <span className={`px-4 py-2 rounded-full font-medium ${statusColors[status]}`}>
+          <span className={`rounded-full px-4 py-2 font-medium ${statusColors[status]}`}>
             {status}
           </span>
         </div>
 
         {overallRating && (
-          <div className="p-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900 dark:to-purple-900 rounded-xl border border-indigo-200 dark:border-indigo-700">
-            <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">Overall Rating</p>
+          <div className="rounded-2xl border border-[#002855]/10 bg-white/80 p-4 shadow-sm dark:border-white/10 dark:bg-slate-950/30">
+            <p className="mb-2 text-sm text-slate-500 dark:text-slate-400">Overall Rating</p>
             <div className="flex items-center gap-2">
               {[1, 2, 3, 4, 5].map((star) => (
                 <IconStarFilled 
                   key={star} 
-                  className={`w-6 h-6 ${star <= overallRating ? 'text-yellow-500' : 'text-gray-300'}`}
+                  className={`w-6 h-6 ${star <= overallRating ? 'text-[#E1523E]' : 'text-slate-300 dark:text-slate-600'}`}
                 />
               ))}
-              <span className="ml-2 text-2xl font-bold text-indigo-600 dark:text-indigo-400">{overallRating}/5</span>
+              <span className="ml-2 text-2xl font-semibold text-[#002855] dark:text-white">{overallRating}/5</span>
             </div>
           </div>
         )}
 
-        <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-xl">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Survey Responses</h3>
+        <div className="rounded-2xl border border-[#002855]/10 bg-white/70 p-4 shadow-sm dark:border-white/10 dark:bg-slate-950/35">
+          <h3 className="mb-4 font-semibold text-[#002855] dark:text-white">Survey Responses</h3>
           <div className="space-y-4">
             {questions.map((question, idx) => (
-              <div key={idx} className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                <p className="text-sm font-medium text-gray-900 dark:text-white mb-2">
+              <div key={idx} className="rounded-2xl border border-[#002855]/10 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/30">
+                <p className="mb-2 text-sm font-medium text-[#002855] dark:text-white">
                   {idx + 1}. {question.questionText}
                 </p>
                 <div className="mt-2">
@@ -137,22 +174,22 @@ export function FeedbackSurvey({ surveyType, isAnonymous, questions = [], overal
         </div>
 
         {additionalComments && (
-          <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-xl">
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Additional Comments</h3>
-            <p className="text-gray-700 dark:text-gray-300">{additionalComments}</p>
+          <div className="rounded-2xl border border-[#002855]/10 bg-white/70 p-4 shadow-sm dark:border-white/10 dark:bg-slate-950/35">
+            <h3 className="mb-2 font-semibold text-[#002855] dark:text-white">Additional Comments</h3>
+            <p className="text-slate-700 dark:text-slate-300">{additionalComments}</p>
           </div>
         )}
 
         {submittedDate && (
-          <div className="p-3 bg-green-50 dark:bg-green-900/30 rounded-lg border border-green-200 dark:border-green-700">
-            <p className="text-sm text-green-700 dark:text-green-300">
+          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-3 shadow-sm dark:border-emerald-500/25 dark:bg-emerald-500/10">
+            <p className="text-sm text-emerald-800 dark:text-emerald-200">
               ✓ Submitted on {submittedDate}
             </p>
           </div>
         )}
 
         {status === 'draft' && (
-          <button className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl font-medium transition-colors">
+          <button className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#002855] px-6 py-3 font-medium text-white shadow-sm transition-colors hover:bg-[#001f44]">
             Submit Survey
           </button>
         )}

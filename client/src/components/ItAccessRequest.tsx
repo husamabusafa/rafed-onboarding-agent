@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { IconKey, IconShieldCheck } from '@tabler/icons-react'
 
 interface SystemAccess {
@@ -14,83 +15,116 @@ interface ManagerApproval {
 }
 
 interface Props {
-  requestId?: string
-  employeeId: number
-  systems: SystemAccess[]
-  urgency: 'standard' | 'high' | 'critical'
-  managerApproval?: ManagerApproval
-  status: 'draft' | 'pending_manager_approval' | 'pending_it_review' | 'in_progress' | 'completed' | 'rejected'
-  requestedDate: string
-  completionDate?: string
+  input?: {
+    requestId?: string
+    employeeId?: number
+    systems?: SystemAccess[]
+    urgency?: 'standard' | 'high' | 'critical'
+    managerApproval?: ManagerApproval
+    status?: 'draft' | 'pending_manager_approval' | 'pending_it_review' | 'in_progress' | 'completed' | 'rejected'
+    requestedDate?: string
+    completionDate?: string
+  }
+  toolName?: string
+  toolCallId?: string
+  addToolResult?: (result: unknown) => void
 }
 
 const accessLevelColors = {
-  read_only: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
-  standard: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
-  power_user: 'bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300',
-  admin: 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300',
+  read_only: 'border border-[#002855]/10 bg-[#002855]/5 text-[#002855] dark:border-white/10 dark:bg-white/5 dark:text-white',
+  standard: 'border border-[#002855]/10 bg-white text-[#002855] dark:border-white/10 dark:bg-slate-950/30 dark:text-white',
+  power_user: 'border border-[#002855]/10 bg-[#002855]/5 text-[#002855] dark:border-white/10 dark:bg-white/5 dark:text-white',
+  admin: 'border border-[#E1523E]/20 bg-[#E1523E]/10 text-[#E1523E] dark:border-[#E1523E]/25 dark:bg-[#E1523E]/10 dark:text-white',
 }
 
 const statusColors = {
-  draft: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
-  pending_manager_approval: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300',
-  pending_it_review: 'bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300',
-  in_progress: 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300',
-  completed: 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300',
-  rejected: 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300',
+  draft: 'border border-[#002855]/10 bg-[#002855]/5 text-[#002855] dark:border-white/10 dark:bg-white/5 dark:text-white',
+  pending_manager_approval: 'border border-[#E1523E]/20 bg-[#E1523E]/10 text-[#E1523E] dark:border-[#E1523E]/25 dark:bg-[#E1523E]/10 dark:text-white',
+  pending_it_review: 'border border-[#E1523E]/20 bg-[#E1523E]/10 text-[#E1523E] dark:border-[#E1523E]/25 dark:bg-[#E1523E]/10 dark:text-white',
+  in_progress: 'border border-[#002855]/10 bg-white text-[#002855] dark:border-white/10 dark:bg-slate-950/30 dark:text-white',
+  completed: 'border border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-500/25 dark:bg-emerald-500/10 dark:text-emerald-200',
+  rejected: 'border border-[#E1523E]/20 bg-[#E1523E]/10 text-[#E1523E] dark:border-[#E1523E]/25 dark:bg-[#E1523E]/10 dark:text-white',
 }
 
 const urgencyColors = {
-  standard: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300',
-  high: 'bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-300',
-  critical: 'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300',
+  standard: 'border border-[#002855]/10 bg-[#002855]/5 text-[#002855] dark:border-white/10 dark:bg-white/5 dark:text-white',
+  high: 'border border-[#E1523E]/20 bg-[#E1523E]/10 text-[#E1523E] dark:border-[#E1523E]/25 dark:bg-[#E1523E]/10 dark:text-white',
+  critical: 'border border-[#E1523E]/25 bg-[#E1523E]/15 text-[#E1523E] dark:border-[#E1523E]/30 dark:bg-[#E1523E]/15 dark:text-white',
 }
 
-export function ItAccessRequest({ systems = [], urgency, managerApproval, status, requestedDate, completionDate }: Props) {
+const EMPTY_SYSTEMS: SystemAccess[] = []
+
+export function ItAccessRequest({ input, toolName, toolCallId, addToolResult }: Props) {
+  const systems = input?.systems ?? EMPTY_SYSTEMS
+  const urgency = input?.urgency ?? 'standard'
+  const managerApproval = input?.managerApproval
+  const status = input?.status ?? 'draft'
+  const requestedDate = input?.requestedDate ?? ''
+  const completionDate = input?.completionDate
+
+  useEffect(() => {
+    if (addToolResult && toolName && toolCallId) {
+      addToolResult({
+        tool: toolName,
+        toolCallId: toolCallId,
+        output: {
+          status: 'displayed',
+          requestStatus: status,
+          urgency: urgency,
+          systemsCount: systems.length,
+          requestedDate: requestedDate,
+          completionDate: completionDate,
+          managerApproval: managerApproval,
+          message: `IT access request: ${status} (${systems.length} system(s))`,
+        },
+      })
+    }
+  }, [systems, urgency, managerApproval, status, requestedDate, completionDate, toolName, toolCallId, addToolResult])
+
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 max-w-2xl">
-      <div className="flex items-center gap-3 mb-6">
-        <div className="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-xl">
-          <IconKey className="w-6 h-6 text-indigo-600 dark:text-indigo-300" />
+    <div className="max-w-2xl rounded-3xl border border-[#002855]/10 bg-linear-to-br from-[#002855]/10 via-white/70 to-[#E1523E]/10 p-6 shadow-[0_10px_30px_rgba(0,40,85,0.10)] backdrop-blur dark:border-white/10 dark:bg-linear-to-br dark:from-[#002855]/25 dark:via-slate-950/55 dark:to-[#E1523E]/15">
+      <div className="mb-6 flex items-center gap-3">
+        <div className="rounded-2xl bg-linear-to-br from-[#002855]/12 via-[#002855]/6 to-[#E1523E]/12 p-3 text-[#002855] dark:from-[#002855]/35 dark:via-[#002855]/15 dark:to-[#E1523E]/25 dark:text-white">
+          <IconKey className="h-6 w-6" />
         </div>
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">IT Access Request</h2>
-          <p className="text-sm text-gray-600 dark:text-gray-400">طلب الوصول لأنظمة تقنية المعلومات</p>
+          <h2 className="text-2xl font-semibold tracking-tight text-[#002855] dark:text-white">IT Access Request</h2>
+          <p className="text-sm text-slate-500 dark:text-slate-400">طلب الوصول لأنظمة تقنية المعلومات</p>
         </div>
       </div>
 
       <div className="space-y-4">
-        <div className="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 rounded-xl">
+        <div className="flex items-center justify-between rounded-2xl border border-[#002855]/10 bg-white/70 p-4 shadow-sm dark:border-white/10 dark:bg-slate-950/35">
           <div>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Request Status</p>
-            <p className="text-lg font-bold text-gray-900 dark:text-white">{status.replace(/_/g, ' ').toUpperCase()}</p>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Request Status</p>
+            <p className="text-lg font-semibold text-[#002855] dark:text-white">{status.replace(/_/g, ' ').toUpperCase()}</p>
           </div>
           <div className="flex items-center gap-2">
-            <span className={`px-3 py-1 rounded-full text-sm font-medium ${urgencyColors[urgency]}`}>
+            <span className={`rounded-full px-3 py-1 text-sm font-medium ${urgencyColors[urgency]}`}>
               {urgency.toUpperCase()}
             </span>
-            <span className={`px-4 py-2 rounded-full font-medium ${statusColors[status]}`}>
+            <span className={`rounded-full px-4 py-2 font-medium ${statusColors[status]}`}>
               {status.replace(/_/g, ' ')}
             </span>
           </div>
         </div>
 
-        <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-xl">
-          <div className="flex items-center gap-2 mb-4">
-            <IconShieldCheck className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
-            <h3 className="font-semibold text-gray-900 dark:text-white">Requested Systems ({systems.length})</h3>
+        <div className="rounded-2xl border border-[#002855]/10 bg-white/70 p-4 shadow-sm dark:border-white/10 dark:bg-slate-950/35">
+          <div className="mb-4 flex items-center gap-2">
+            <IconShieldCheck className="h-5 w-5 text-[#E1523E] dark:text-[#E1523E]" />
+            <h3 className="font-semibold text-[#002855] dark:text-white">Requested Systems ({systems.length})</h3>
           </div>
           
           <div className="space-y-3">
             {systems.map((system, idx) => (
-              <div key={idx} className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <div key={idx} className="rounded-2xl border border-[#002855]/10 bg-white p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/30">
                 <div className="flex items-start justify-between mb-2">
-                  <h4 className="font-medium text-gray-900 dark:text-white">{system.systemName}</h4>
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${accessLevelColors[system.accessLevel]}`}>
+                  <h4 className="font-medium text-[#002855] dark:text-white">{system.systemName}</h4>
+                  <span className={`rounded-full px-3 py-1 text-xs font-medium ${accessLevelColors[system.accessLevel]}`}>
                     {system.accessLevel.replace('_', ' ')}
                   </span>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-slate-600 dark:text-slate-300">
                   <strong>Justification:</strong> {system.justification}
                 </p>
               </div>
@@ -99,50 +133,50 @@ export function ItAccessRequest({ systems = [], urgency, managerApproval, status
         </div>
 
         {managerApproval && (
-          <div className={`p-4 border rounded-xl ${
-            managerApproval.approved 
-              ? 'bg-green-50 dark:bg-green-900/30 border-green-200 dark:border-green-700' 
-              : 'bg-yellow-50 dark:bg-yellow-900/30 border-yellow-200 dark:border-yellow-700'
+          <div className={`rounded-2xl border p-4 shadow-sm ${
+            managerApproval.approved
+              ? 'border-emerald-200 bg-emerald-50 dark:border-emerald-500/25 dark:bg-emerald-500/10'
+              : 'border-[#E1523E]/20 bg-[#E1523E]/10 dark:border-[#E1523E]/25 dark:bg-[#E1523E]/10'
           }`}>
-            <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Manager Approval</h3>
+            <h3 className="mb-2 font-semibold text-[#002855] dark:text-white">Manager Approval</h3>
             <div className="space-y-2 text-sm">
               {managerApproval.approved !== undefined && (
                 <div className="flex items-center gap-2">
-                  <span className={`font-medium ${managerApproval.approved ? 'text-green-700 dark:text-green-300' : 'text-yellow-700 dark:text-yellow-300'}`}>
+                  <span className={`font-medium ${managerApproval.approved ? 'text-emerald-800 dark:text-emerald-200' : 'text-[#E1523E] dark:text-white'}`}>
                     {managerApproval.approved ? '✓ Approved' : '⏳ Pending'}
                   </span>
                 </div>
               )}
               {managerApproval.approverName && (
                 <div>
-                  <span className="text-gray-600 dark:text-gray-400">Approver:</span> {managerApproval.approverName}
+                  <span className="text-slate-500 dark:text-slate-400">Approver:</span> {managerApproval.approverName}
                 </div>
               )}
               {managerApproval.approvalDate && (
                 <div>
-                  <span className="text-gray-600 dark:text-gray-400">Date:</span> {managerApproval.approvalDate}
+                  <span className="text-slate-500 dark:text-slate-400">Date:</span> {managerApproval.approvalDate}
                 </div>
               )}
               {managerApproval.comments && (
-                <div className="mt-2 p-2 bg-white dark:bg-gray-800 rounded">
-                  <span className="text-gray-600 dark:text-gray-400">Comments:</span> {managerApproval.comments}
+                <div className="mt-2 rounded-2xl border border-[#002855]/10 bg-white p-2 dark:border-white/10 dark:bg-slate-950/30">
+                  <span className="text-slate-500 dark:text-slate-400">Comments:</span> {managerApproval.comments}
                 </div>
               )}
             </div>
           </div>
         )}
 
-        <div className="p-4 border border-gray-200 dark:border-gray-700 rounded-xl">
-          <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Timeline</h3>
+        <div className="rounded-2xl border border-[#002855]/10 bg-white/70 p-4 shadow-sm dark:border-white/10 dark:bg-slate-950/35">
+          <h3 className="mb-3 font-semibold text-[#002855] dark:text-white">Timeline</h3>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-gray-600 dark:text-gray-400">Requested Date:</span>
-              <span className="font-medium text-gray-900 dark:text-white">{requestedDate}</span>
+              <span className="text-slate-500 dark:text-slate-400">Requested Date:</span>
+              <span className="font-medium text-[#002855] dark:text-white">{requestedDate}</span>
             </div>
             {completionDate && (
               <div className="flex justify-between">
-                <span className="text-gray-600 dark:text-gray-400">Completion Date:</span>
-                <span className="font-medium text-gray-900 dark:text-white">{completionDate}</span>
+                <span className="text-slate-500 dark:text-slate-400">Completion Date:</span>
+                <span className="font-medium text-[#002855] dark:text-white">{completionDate}</span>
               </div>
             )}
           </div>

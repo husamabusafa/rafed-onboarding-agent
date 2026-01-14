@@ -1,6 +1,44 @@
 import { useEffect } from 'react'
 import { IconCalendar } from '@tabler/icons-react'
-import { theme, iconBackgrounds, borders } from './theme'
+
+const theme = {
+  card: {
+    base: 'rounded-3xl border border-[#002855]/10 bg-linear-to-br from-[#002855]/10 via-white/70 to-[#E1523E]/10 p-6 shadow-[0_10px_30px_rgba(0,40,85,0.10)] backdrop-blur dark:border-white/10 dark:bg-linear-to-br dark:from-[#002855]/25 dark:via-slate-950/55 dark:to-[#E1523E]/15',
+  },
+  header: {
+    icon: 'p-3 rounded-2xl',
+    title: 'text-2xl font-semibold tracking-tight text-[#002855] dark:text-white',
+    subtitle: 'text-sm text-slate-500 dark:text-slate-400',
+  },
+  gradient: {
+    primary: 'bg-linear-to-r from-[#002855]/18 via-white/40 to-[#E1523E]/14 dark:from-[#002855]/25 dark:via-slate-950/30 dark:to-[#E1523E]/15',
+  },
+  section: {
+    light: 'bg-white/60 dark:bg-slate-950/25',
+  },
+  infoBox: {
+    base: 'p-3 rounded-2xl border',
+    primary: 'bg-white/70 border-[#002855]/10 shadow-sm dark:bg-slate-950/35 dark:border-white/10',
+    info: 'bg-white/70 border-[#002855]/10 shadow-sm dark:bg-slate-950/35 dark:border-white/10',
+  },
+  text: {
+    primary: 'text-[#002855] dark:text-white',
+    secondary: 'text-slate-700 dark:text-slate-200',
+    muted: 'text-slate-500 dark:text-slate-300',
+    subtle: 'text-slate-500/80 dark:text-slate-400/80',
+  },
+  icon: {
+    teal: 'text-[#002855] dark:text-white',
+  },
+}
+
+const iconBackgrounds = {
+  teal: 'bg-linear-to-br from-[#002855]/12 via-[#002855]/6 to-[#E1523E]/12 dark:from-[#002855]/35 dark:via-[#002855]/15 dark:to-[#E1523E]/25',
+}
+
+const borders = {
+  base: 'border-[#002855]/10 dark:border-white/10',
+}
 
 interface Holiday {
   date?: string
@@ -21,6 +59,9 @@ interface Month {
   holidays: Holiday[]
 }
 
+const EMPTY_MONTHS: Month[] = []
+const EMPTY_WEEKEND_DAYS: string[] = []
+
 interface Props {
   input?: {
     year?: number
@@ -30,13 +71,13 @@ interface Props {
   }
   toolName?: string
   toolCallId?: string
-  addToolResult?: (result: any) => void
+  addToolResult?: (result: unknown) => void
 }
 
 export function CompanyCalendar({ input, toolName, toolCallId, addToolResult }: Props) {
   const year = input?.year || 2026;
-  const months = input?.months || [];
-  const weekendDays = input?.weekendDays || [];
+  const months = input?.months ?? EMPTY_MONTHS;
+  const weekendDays = input?.weekendDays ?? EMPTY_WEEKEND_DAYS;
   
   useEffect(() => {
     if (addToolResult && toolName && toolCallId) {
