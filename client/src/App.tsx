@@ -62,25 +62,28 @@ function App() {
     document.documentElement.classList.toggle('dark', themeMode === 'dark')
     localStorage.setItem('theme', themeMode)
   }, [themeMode])
-
-  const initialMessages: unknown[] = [
-    // {
-    //   id: "welcome_message",
-    //   role: "assistant",
-    //   parts: [
-    //     {
-    //       type: "tool-WelcomeOnboarding",
-    //       toolName: "WelcomeOnboarding",
-    //       toolCallId: "welcome_1",
-    //       input: {},
-    //       output: {
-    //         "status": "completed"
-    //       }
-    //     },
-    //   ],
-    //   createdAt: INITIAL_TIMESTAMP,
-    // },
-  ]
+const initialMessages: unknown[] = [
+  {
+    id: "welcome_message",
+    role: "assistant",
+    parts: [
+      {
+        type: "tool-WelcomeOnboarding",
+        toolName: "WelcomeOnboarding",
+        toolCallId: "welcome_1",
+        input: {},
+        output: {
+          "status": "completed"
+        },
+        // Add these fields to mark it as completed
+        state: "output-available", // or "finished"
+        status: "output-available",
+        startDate: Date.now(),
+        endDate: Date.now()
+      },
+    ],
+  },
+];
 
   return (
     <HsafaProvider baseUrl="https://server.hsafa.com">
