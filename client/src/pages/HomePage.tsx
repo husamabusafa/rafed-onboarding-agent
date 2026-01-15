@@ -6,12 +6,14 @@ import {
   IconHeartHandshake,
   IconLayoutGrid,
   IconMessageCircle,
+  IconPaperclip,
+  IconSend,
   IconRoute,
   IconTools,
 } from '@tabler/icons-react'
 import type { ComponentType } from 'react'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { PeopleGrid } from '../components/PeopleGrid'
 import { l, ls } from '../data/localization'
 import { onboardingActions } from '../data/onboardingActions'
@@ -19,6 +21,7 @@ import { onboardingDocuments } from '../data/onboardingDocuments'
 import { tatweerInduction } from '../data/tatweerInduction'
 import { useI18n } from '../i18n/i18n'
 import { computeProgress, getCompletedIds } from '../utils/onboardingProgress'
+import { getPersonImageSrc } from '../utils/peopleImages'
 
 const quickActionBase =
   'group flex flex-col gap-3 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-900/5 transition-all hover:-translate-y-1 hover:shadow-md dark:bg-slate-900 dark:ring-white/10'
@@ -93,6 +96,8 @@ function ProgressRing({ percent }: { percent: number }) {
 export function HomePage() {
   const { locale, t } = useI18n()
   const [, setTick] = useState(0)
+  const [chatDraft, setChatDraft] = useState('')
+  const navigate = useNavigate()
 
   const welcome = ls(
     'Welcome to Tatweer. Your onboarding plan, next actions, and support network are all here to keep you on track.',
@@ -104,6 +109,9 @@ export function HomePage() {
     'Keep momentum. Finish your top tasks today and explore your support network.',
     'حافظ على الزخم. أنجز أهم المهام اليوم وتعرّف على شبكة الدعم الخاصة بك.',
   )
+
+  const ceo = tatweerInduction.governanceAndLeadership.thcGroupCeo
+  const ceoImageSrc = getPersonImageSrc(ceo.name)
 
   const working = tatweerInduction.newMemberInformation.attendanceAndLeaves.workingHours
   const holidays = tatweerInduction.newMemberInformation.attendanceAndLeaves.publicHolidays
@@ -139,6 +147,23 @@ export function HomePage() {
   const effortQuick = ls('~10 min', 'حوالي ١٠ دقائق')
   const effortFocus = ls('~20 min', 'حوالي ٢٠ دقيقة')
   const nextHolidayLabel = ls('Next holiday', 'العطلة القادمة')
+  const chatDraftPlaceholder = ls('Ask about tasks, documents, or your first week…', 'اسأل عن المهام أو المستندات أو أسبوعك الأول...')
+  const chatSuggestions = [
+    ls('Summarize my onboarding tasks', 'لخّص مهام التهيئة الخاصة بي'),
+    ls('Where do I find required documents?', 'أين أجد المستندات المطلوبة؟'),
+    ls('Who is my buddy and how do I contact them?', 'من هو زميلي المساند وكيف أتواصل معه؟'),
+    ls('Explain working hours and leave policy', 'اشرح ساعات العمل وسياسة الإجازات'),
+  ]
+
+  const startChat = (text?: string) => {
+    const draft = (text ?? chatDraft).trim()
+    if (draft) {
+      localStorage.setItem('rafed.chatDraft', draft)
+      navigate('/chat', { state: { draft } })
+      return
+    }
+    navigate('/chat')
+  }
   const todayFocusItems = [
     ...upNextDocuments.map((d) => ({
       id: d.id,
@@ -201,7 +226,98 @@ export function HomePage() {
           {/* Welcome Message */}
           <div className="col-span-2 overflow-hidden rounded-3xl bg-linear-to-br from-[#002855] to-[#003B73] p-8 text-white shadow-xl shadow-[#002855]/10 md:p-10">
             <div dir={locale === 'ar' ? 'rtl' : 'ltr'} lang={locale} className="relative z-10">
-              <p className="whitespace-pre-line text-lg leading-loose opacity-90">{l(locale, welcome)}</p>
+              <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/15">
+                      <IconHeartHandshake className="h-5 w-5" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
+                        {l(locale, ls('Welcome', 'مرحبًا'))}
+                      </p>
+                      <p className="truncate text-lg font-extrabold">
+                        {l(locale, ls('Your onboarding starts here', 'رحلة التهيئة تبدأ من هنا'))}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    <Link
+                      to="/onboarding"
+                      className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-bold text-[#002855] shadow-sm transition hover:bg-white/90"
+                    >
+                      <IconRoute className="h-4 w-4" />
+                      {t('home.quick.onboardingJourney')}
+                    </Link>
+                    <Link
+                      to="/resources"
+                      className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-bold text-white ring-1 ring-white/20 transition hover:bg-white/15"
+                    >
+                      <IconFileTypePdf className="h-4 w-4" />
+                      {t('nav.resources')}
+                    </Link>
+                  </div>
+                </div>
+
+                <p className="whitespace-pre-line text-lg leading-loose opacity-90">{l(locale, welcome)}</p>
+
+                <div className="rounded-2xl bg-white/10 p-4 ring-1 ring-white/15 backdrop-blur-sm">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-5">
+                    <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-3xl bg-white/10 ring-1 ring-white/15 sm:h-28 sm:w-28">
+                      {ceoImageSrc ? (
+                        <img src={ceoImageSrc} alt={ceo.name} className="h-full w-full object-cover" />
+                      ) : (
+                        <div className="grid h-full w-full place-items-center text-sm font-extrabold text-white/70">CEO</div>
+                      )}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-semibold uppercase tracking-widest text-white/70">
+                        {l(locale, ls('A message from our CEO', 'رسالة من الرئيس التنفيذي'))}
+                      </p>
+                      <p className="mt-1 text-base font-extrabold text-white sm:text-lg">{ceo.name}</p>
+                      <p className="mt-1 text-sm text-white/80">{l(locale, ceo.title)}</p>
+                    </div>
+                    <Link
+                      to={`/leadership/${ceo.id}`}
+                      className="inline-flex items-center gap-1 rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                    >
+                      {l(locale, ls('Read', 'اقرأ'))}
+                      <IconChevronRight className="h-4 w-4 opacity-80" />
+                    </Link>
+                  </div>
+                  <p className="mt-3 line-clamp-3 whitespace-pre-line text-sm leading-relaxed text-white/90">
+                    {l(locale, ceo.message)}
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  <Link
+                    to="/buddy-team"
+                    className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                  >
+                    <IconHeartHandshake className="h-4 w-4" />
+                    {t('home.quick.buddyTeam')}
+                    <IconChevronRight className="h-4 w-4 opacity-70" />
+                  </Link>
+                  <Link
+                    to="/actions"
+                    className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                  >
+                    <IconChecklist className="h-4 w-4" />
+                    {t('nav.actions')}
+                    <IconChevronRight className="h-4 w-4 opacity-70" />
+                  </Link>
+                  <Link
+                    to="/chat"
+                    className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white ring-1 ring-white/15 transition hover:bg-white/15"
+                  >
+                    <IconMessageCircle className="h-4 w-4" />
+                    {t('nav.chat')}
+                    <IconChevronRight className="h-4 w-4 opacity-70" />
+                  </Link>
+                </div>
+              </div>
             </div>
             {/* Decorative background elements */}
             <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
@@ -337,6 +453,75 @@ export function HomePage() {
                     </div>
                   </Link>
                 ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Chat Prompt */}
+      <section className="reveal-up" style={{ animationDelay: '120ms' }}>
+        <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white/80 p-8 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-slate-950/60">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,40,85,0.08),_transparent_55%)]" />
+          <div className="absolute inset-0 opacity-40 [background-image:radial-gradient(#d1d5db_1px,transparent_1px)] [background-size:16px_16px] dark:opacity-20 dark:[background-image:radial-gradient(#1f2937_1px,transparent_1px)]" />
+          <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+            <div className="w-full">
+              <span className="inline-flex items-center rounded-full bg-slate-900 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white">
+                {t('home.startChat')}
+              </span>
+              <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
+                {l(locale, ls('Ask Rafed to organize your onboarding.', 'اسأل رافد لترتيب رحلة تهيئتك.'))}
+              </h2>
+              <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
+                {l(locale, ls('Summarize tasks, find documents, or get answers instantly.', 'لخّص المهام، اعثر على المستندات، أو احصل على إجابات فورية.'))}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                {chatSuggestions.map((suggestion) => (
+                  <button
+                    key={suggestion.en}
+                    type="button"
+                    onClick={() => {
+                      const text = l(locale, suggestion)
+                      setChatDraft(text)
+                    }}
+                    className="rounded-full bg-slate-900/5 px-3 py-1 text-xs font-semibold text-slate-700 transition hover:bg-slate-900/10 dark:bg-white/10 dark:text-slate-200 dark:hover:bg-white/15"
+                  >
+                    {l(locale, suggestion)}
+                  </button>
+                ))}
+              </div>
+              <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-slate-200 bg-white/80 p-3 shadow-sm dark:border-white/10 dark:bg-slate-950/70">
+                <textarea
+                  rows={3}
+                  value={chatDraft}
+                  onChange={(e) => setChatDraft(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault()
+                      startChat()
+                    }
+                  }}
+                  placeholder={l(locale, chatDraftPlaceholder)}
+                  className="w-full resize-none rounded-xl border border-transparent bg-transparent px-3 py-2 text-sm text-slate-700 outline-none placeholder:text-slate-400 focus:border-[#002855]/30 dark:text-slate-100 dark:placeholder:text-slate-500"
+                />
+                <div className="flex flex-wrap items-center justify-between gap-3 px-1">
+                  <div className="flex items-center gap-2 text-xs font-semibold text-slate-400">
+                    <span className="inline-flex items-center gap-1">
+                      <IconPaperclip className="h-4 w-4" />
+                      {l(locale, ls('Attach in chat', 'إرفاق داخل الدردشة'))}
+                    </span>
+                    <span className="hidden sm:inline">·</span>
+                    <span className="hidden sm:inline">{l(locale, ls('Enter to continue', 'اضغط Enter للمتابعة'))}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => startChat()}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-[#002855] px-5 py-2 text-xs font-bold text-white shadow-lg shadow-[#002855]/20 transition-all hover:bg-[#001f44]"
+                  >
+                    <IconSend className="h-4 w-4" />
+                    {l(locale, ls('Continue in chat', 'تابع في الدردشة'))}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
