@@ -59,14 +59,14 @@ type StatusConfigEntry = {
 }
 
 interface Task {
-  taskId: number
-  stage: string
-  taskAr: string
-  taskEn: string
-  responsibleParty: string
-  status: 'pending' | 'in_progress' | 'completed' | 'blocked'
-  dueDate?: string
-  completedDate?: string
+  taskId: string
+  titleEn: string
+  titleAr: string
+  descriptionEn: string
+  descriptionAr: string
+  status: 'pending' | 'PENDING' | 'in_progress' | 'IN_PROGRESS' | 'completed' | 'COMPLETED' | 'blocked' | 'BLOCKED'
+  dueDate: string
+  owner: string
   priority: 'high' | 'medium' | 'low'
 }
 
@@ -102,7 +102,7 @@ export function OnboardingTaskTracker({ input, toolName, toolCallId, addToolResu
   
   useEffect(() => {
     if (addToolResult && toolName && toolCallId) {
-      const completedTasks = tasks.filter(t => t.status === 'completed').length;
+      const completedTasks = tasks.filter((t) => t.status.toLowerCase() === 'completed').length;
       addToolResult({
         tool: toolName,
         toolCallId: toolCallId,
@@ -149,20 +149,20 @@ export function OnboardingTaskTracker({ input, toolName, toolCallId, addToolResu
 
       <div className="space-y-3 max-h-96 overflow-y-auto">
         {tasks.map((task: Task) => {
+          const normalizedStatus = task.status.toLowerCase() as 'pending' | 'in_progress' | 'completed' | 'blocked'
           const StatusIcon = statusConfig[task.status].icon
           
           return (
             <div key={task.taskId} className={theme.item.compact}>
               <div className="flex items-start gap-3">
-                <div className={`p-2 rounded-xl ${iconBackgrounds[task.status === 'completed' ? 'green' : task.status === 'blocked' ? 'primary' : task.status === 'in_progress' ? 'teal' : 'navy']}`}>
+                <div className={`p-2 rounded-xl ${iconBackgrounds[normalizedStatus === 'completed' ? 'green' : normalizedStatus === 'blocked' ? 'primary' : normalizedStatus === 'in_progress' ? 'teal' : 'navy']}`}>
                   <StatusIcon className={`w-5 h-5 ${statusConfig[task.status].color}`} />
                 </div>
                 <div className="flex-1">
-                  <h3 className={`font-semibold ${theme.text.primary}`}>{task.taskEn}</h3>
-                  <p className={`text-sm ${theme.text.subtle}`}>{task.taskAr}</p>
+                  <h3 className={`font-semibold ${theme.text.primary}`}>{task.titleEn}</h3>
+                  <p className={`text-sm ${theme.text.subtle}`}>{task.titleAr}</p>
                   <div className={`flex items-center gap-3 mt-2 text-xs ${theme.text.muted}`}>
-                    <span className={`px-2 py-1 ${theme.badge.base} ${theme.badge.navy} rounded`}>Stage: {task.stage}</span>
-                    <span className={`px-2 py-1 ${theme.badge.base} ${theme.badge.teal} rounded`}>{task.responsibleParty}</span>
+                    <span className={`${theme.badge.base} ${theme.badge.navy}`}>{task.owner}</span>
                     {task.dueDate && <span>Due: {task.dueDate}</span>}
                   </div>
                 </div>

@@ -5,4 +5,16 @@
   }
 }
 
+@custom-variant rtl {
+  &:where([dir="rtl"], [dir="rtl"] *) {
+    @slot;
+  }
+}
+
+@custom-variant ltr {
+  &:where([dir="ltr"], [dir="ltr"] *) {
+    @slot;
+  }
+}
+
 @import "tailwindcss";

@@ -8,7 +8,9 @@ import {
   IconShieldLock,
 } from '@tabler/icons-react'
 import type { ComponentType } from 'react'
+import { l } from '../data/localization'
 import { tatweerInduction } from '../data/tatweerInduction'
+import { useI18n } from '../i18n/i18n'
 
 function Feature({
   title,
@@ -46,31 +48,62 @@ function Feature({
 }
 
 export function ToolsFacilitiesPage() {
+  const { locale, t } = useI18n()
   const tools = tatweerInduction.toolsAndFacilities
 
   return (
     <div className="space-y-12 pb-12">
       <div className="max-w-3xl">
         <h1 className="text-4xl font-extrabold tracking-tight text-[#002855] dark:text-white sm:text-5xl">
-          Tools & Facilities
+          {t('tools.title')}
         </h1>
         <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
-          Everything you need to operate smoothly: systems, facilities, and employee services.
+          {t('tools.subtitle')}
         </p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <Feature title={tools.hrSystem.name} subtitle={tools.hrSystem.purpose} icon={IconLayoutGrid} items={tools.hrSystem.signInSteps} />
-        <Feature title="Internal Portal" subtitle={tools.internalPortal.description} icon={IconShieldLock} items={tools.internalPortal.whatToFind} />
-        <Feature title="Fingerprint Registration" subtitle={tools.fingerprintRegistration.when} icon={IconFingerprint} items={[tools.fingerprintRegistration.when]} />
-        <Feature title={tools.walaPlus.programName} subtitle={tools.walaPlus.description} icon={IconPercentage} items={[tools.walaPlus.onboardingNote]} />
-        <Feature title="Shuttle Service" subtitle={tools.shuttleService.description} icon={IconBus} items={[tools.shuttleService.description]} />
-        <Feature title="Uber Service" subtitle={tools.uberService.description} icon={IconBrandUber} items={[tools.uberService.coverage, `Criteria: ${tools.uberService.criteria}`]} />
+        <Feature
+          title={l(locale, tools.hrSystem.name)}
+          subtitle={l(locale, tools.hrSystem.purpose)}
+          icon={IconLayoutGrid}
+          items={tools.hrSystem.signInSteps.map((x) => l(locale, x))}
+        />
+        <Feature
+          title={t('tools.internalPortal')}
+          subtitle={l(locale, tools.internalPortal.description)}
+          icon={IconShieldLock}
+          items={tools.internalPortal.whatToFind.map((x) => l(locale, x))}
+        />
+        <Feature
+          title={t('tools.fingerprintRegistration')}
+          subtitle={l(locale, tools.fingerprintRegistration.when)}
+          icon={IconFingerprint}
+          items={[l(locale, tools.fingerprintRegistration.when)]}
+        />
+        <Feature
+          title={l(locale, tools.walaPlus.programName)}
+          subtitle={l(locale, tools.walaPlus.description)}
+          icon={IconPercentage}
+          items={[l(locale, tools.walaPlus.onboardingNote)]}
+        />
+        <Feature
+          title={t('tools.shuttleService')}
+          subtitle={l(locale, tools.shuttleService.description)}
+          icon={IconBus}
+          items={[l(locale, tools.shuttleService.description)]}
+        />
+        <Feature
+          title={t('tools.uberService')}
+          subtitle={l(locale, tools.uberService.description)}
+          icon={IconBrandUber}
+          items={[l(locale, tools.uberService.coverage), `${t('tools.criteria')}: ${l(locale, tools.uberService.criteria)}`]}
+        />
       </div>
 
       <section>
         <div className="mb-6 flex items-center gap-3">
-          <h2 className="text-2xl font-bold tracking-tight text-[#002855] dark:text-white">Transport</h2>
+          <h2 className="text-2xl font-bold tracking-tight text-[#002855] dark:text-white">{t('tools.transport')}</h2>
           <div className="h-px flex-1 bg-slate-200 dark:bg-slate-800" />
         </div>
         <div className="rounded-2xl bg-slate-50 p-6 dark:bg-slate-900/50">
@@ -86,7 +119,7 @@ export function ToolsFacilitiesPage() {
                   <IconBus className="h-5 w-5 text-[#002855] dark:text-white" />
                 </div>
              </div>
-             <p className="text-sm">Multiple transport options available depending on your eligibility.</p>
+             <p className="text-sm">{t('tools.transport.note')}</p>
           </div>
         </div>
       </section>

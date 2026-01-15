@@ -1,4 +1,5 @@
 import { HsafaChat } from '@hsafa/ui-sdk'
+import { useI18n } from '../i18n/i18n'
 
 type ThemeMode = 'light' | 'dark'
 
@@ -13,6 +14,7 @@ type Props = {
 }
 
 export function ChatPage({ themeMode, uiComponents, initialMessages }: Props) {
+  const { t } = useI18n()
   return (
     <div className="fixed inset-0 overflow-hidden bg-slate-50 dark:bg-slate-950">
       <div className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-[#002855]/10 blur-3xl dark:bg-[#002855]/20" />
@@ -26,7 +28,7 @@ export function ChatPage({ themeMode, uiComponents, initialMessages }: Props) {
           HsafaUI={uiComponents}
           backgroundColor='transparent'
           fullPageChat
-          title="Hayyak"
+          title={t('chat.title')}
           initialMessages={initialMessages}
         />
       </div>

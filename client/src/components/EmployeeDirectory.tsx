@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { IconBuilding, IconMail, IconPhone, IconSearch, IconUser, IconUsers } from '@tabler/icons-react'
+import { useI18n } from '../i18n/i18n'
 
 interface Employee {
   empId: number
@@ -32,15 +33,16 @@ interface Props {
 const EMPTY_EMPLOYEES: Employee[] = []
 
 export function EmployeeDirectory({ input, toolName, toolCallId, addToolResult }: Props) {
+  const { t, locale } = useI18n()
   const employees = input?.employees ?? EMPTY_EMPLOYEES;
   const searchQuery = input?.searchQuery || '';
   const filters = input?.filters;
 
   const visibleEmployees = employees.slice(0, 12);
   const activeFilters: Array<{ label: string; value: string }> = [];
-  if (filters?.department) activeFilters.push({ label: 'Department', value: filters.department });
-  if (filters?.division) activeFilters.push({ label: 'Division', value: filters.division });
-  if (filters?.region) activeFilters.push({ label: 'Region', value: filters.region });
+  if (filters?.department) activeFilters.push({ label: t('common.department'), value: filters.department });
+  if (filters?.division) activeFilters.push({ label: t('common.division'), value: filters.division });
+  if (filters?.region) activeFilters.push({ label: t('common.region'), value: filters.region });
   
   useEffect(() => {
     if (addToolResult && toolName && toolCallId) {
@@ -66,27 +68,27 @@ export function EmployeeDirectory({ input, toolName, toolCallId, addToolResult }
             <IconUsers className="h-6 w-6" />
           </div>
           <div>
-            <h2 className="text-2xl font-semibold tracking-tight text-[#002855] dark:text-white">Employee Directory</h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400">دليل الموظفين</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-[#002855] dark:text-white">{t('common.employeeDirectory')}</h2>
+            <p className="text-sm text-slate-500 dark:text-slate-400">{t('common.employeeDirectoryAr')}</p>
           </div>
         </div>
 
         <div className="text-sm text-slate-600 dark:text-slate-300">
-          <span className="font-semibold text-[#002855] dark:text-white">{employees.length}</span> employee(s)
+          <span className="font-semibold text-[#002855] dark:text-white">{employees.length}</span> {t('common.employees')}
           <span className="text-slate-400 dark:text-slate-500"> · </span>
-          Showing {Math.min(visibleEmployees.length, employees.length)}
+          {t('common.showing')} {Math.min(visibleEmployees.length, employees.length)}
         </div>
       </div>
 
       <div className="mt-5">
         <div className="relative">
-          <IconSearch className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-[#002855]/50 dark:text-white/60" />
+          <IconSearch className="pointer-events-none absolute left-3 rtl:left-auto rtl:right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-[#002855]/50 dark:text-white/60" />
           <input
             type="text"
-            placeholder="Search employees..."
+            placeholder={t('common.searchEmployees')}
             value={searchQuery}
             readOnly
-            className="w-full rounded-2xl border border-[#002855]/10 bg-white px-4 py-3 pl-11 text-sm text-slate-900 outline-none ring-0 shadow-sm motion-safe:transition-all motion-safe:duration-200 focus:border-[#E1523E]/45 focus:shadow-[0_0_0_4px_rgba(225,82,62,0.18)] dark:border-white/10 dark:bg-slate-950/40 dark:text-slate-100 dark:focus:shadow-[0_0_0_4px_rgba(225,82,62,0.12)]"
+            className="w-full rounded-2xl border border-[#002855]/10 bg-white px-4 py-3 pl-11 rtl:pl-4 rtl:pr-11 text-sm text-slate-900 outline-none ring-0 shadow-sm motion-safe:transition-all motion-safe:duration-200 focus:border-[#E1523E]/45 focus:shadow-[0_0_0_4px_rgba(225,82,62,0.18)] dark:border-white/10 dark:bg-slate-950/40 dark:text-slate-100 dark:focus:shadow-[0_0_0_4px_rgba(225,82,62,0.12)]"
           />
         </div>
 
@@ -94,7 +96,7 @@ export function EmployeeDirectory({ input, toolName, toolCallId, addToolResult }
           <div className="mt-3 flex flex-wrap items-center gap-2">
             {searchQuery && (
               <span className="inline-flex items-center gap-2 rounded-full border border-[#E1523E]/20 bg-white/80 px-3 py-1 text-xs font-medium text-[#002855] shadow-sm motion-safe:transition-colors dark:border-[#E1523E]/25 dark:bg-slate-950/35 dark:text-white">
-                Search: <span className="font-semibold">{searchQuery}</span>
+                {t('common.searchLabel')}: <span className="font-semibold">{searchQuery}</span>
               </span>
             )}
             {activeFilters.map((f) => (
@@ -116,8 +118,8 @@ export function EmployeeDirectory({ input, toolName, toolCallId, addToolResult }
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-linear-to-br from-[#002855]/15 to-[#E1523E]/15 text-[#002855] dark:from-[#002855]/35 dark:to-[#E1523E]/25 dark:text-white">
               <IconUser className="h-6 w-6" />
             </div>
-            <p className="mt-4 text-sm font-semibold text-[#002855] dark:text-white">No employees to display</p>
-            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Try adjusting your search query or filters.</p>
+            <p className="mt-4 text-sm font-semibold text-[#002855] dark:text-white">{t('common.noEmployees')}</p>
+            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{t('common.adjustSearch')}</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -132,10 +134,18 @@ export function EmployeeDirectory({ input, toolName, toolCallId, addToolResult }
                   </div>
 
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-semibold text-slate-900 dark:text-white">{emp.nameEn}</p>
-                    <p className="mt-0.5 truncate text-xs text-slate-500 dark:text-slate-400">{emp.nameAr}</p>
-                    <p className="mt-2 truncate text-xs font-medium text-slate-700 dark:text-slate-300">{emp.positionEn}</p>
-                    <p className="mt-0.5 truncate text-xs text-slate-500 dark:text-slate-400">{emp.positionAr}</p>
+                    <p className="truncate text-sm font-semibold text-slate-900 dark:text-white">
+                      {locale === 'ar' ? emp.nameAr : emp.nameEn}
+                    </p>
+                    <p className="mt-0.5 truncate text-xs text-slate-500 dark:text-slate-400">
+                      {locale === 'ar' ? emp.nameEn : emp.nameAr}
+                    </p>
+                    <p className="mt-2 truncate text-xs font-medium text-slate-700 dark:text-slate-300">
+                      {locale === 'ar' ? emp.positionAr : emp.positionEn}
+                    </p>
+                    <p className="mt-0.5 truncate text-xs text-slate-500 dark:text-slate-400">
+                      {locale === 'ar' ? emp.positionEn : emp.positionAr}
+                    </p>
 
                     <div className="mt-3 flex flex-wrap gap-2">
                       <span className="inline-flex items-center gap-1 rounded-full border border-[#002855]/10 bg-[#002855]/5 px-2.5 py-1 text-xs text-[#002855] motion-safe:transition-colors dark:border-white/10 dark:bg-white/5 dark:text-white">
@@ -184,7 +194,7 @@ export function EmployeeDirectory({ input, toolName, toolCallId, addToolResult }
 
       {employees.length > visibleEmployees.length && (
         <div className="mt-6 rounded-2xl border border-[#002855]/10 bg-white/70 px-4 py-3 text-center text-sm text-slate-600 shadow-sm dark:border-white/10 dark:bg-slate-950/35 dark:text-slate-300">
-          Showing {visibleEmployees.length} of {employees.length} employees
+          {t('common.showing')} {visibleEmployees.length} {t('common.of')} {employees.length} {t('common.employees')}
         </div>
       )}
     </div>

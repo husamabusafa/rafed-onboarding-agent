@@ -1,8 +1,11 @@
+import type { LocalizedString } from '../data/localization'
+import { l } from '../data/localization'
+import { useI18n } from '../i18n/i18n'
 import { getPersonImageSrc } from '../utils/peopleImages'
 
 type Person = {
   name: string
-  title?: string
+  title?: string | LocalizedString
   team?: string
 }
 
@@ -20,6 +23,8 @@ function getCols(columns: Props['columns']) {
 }
 
 export function PeopleGrid({ title, subtitle, people, columns = 'three' }: Props) {
+  const { locale, t } = useI18n()
+
   return (
     <section>
       {(title || subtitle) && (
@@ -32,9 +37,11 @@ export function PeopleGrid({ title, subtitle, people, columns = 'three' }: Props
       <div className={`grid gap-4 ${getCols(columns)}`}>
         {people.map((person) => {
           const imageSrc = getPersonImageSrc(person.name)
+          const resolvedTitle =
+            typeof person.title === 'string' ? person.title : person.title ? l(locale, person.title) : undefined
           return (
             <div
-              key={`${person.name}-${person.title ?? person.team ?? ''}`}
+              key={`${person.name}-${resolvedTitle ?? person.team ?? ''}`}
               className="group flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-900/5 transition-all hover:-translate-y-0.5 hover:shadow-md dark:bg-slate-900 dark:ring-white/10"
             >
               <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-slate-100 shadow-inner dark:bg-slate-800">
@@ -54,11 +61,13 @@ export function PeopleGrid({ title, subtitle, people, columns = 'three' }: Props
 
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-bold text-slate-900 dark:text-white">{person.name}</p>
-                {person.title ? (
-                  <p className="mt-0.5 line-clamp-2 text-[12px] text-slate-500 dark:text-slate-400">{person.title}</p>
+                {resolvedTitle ? (
+                  <p className="mt-0.5 line-clamp-2 text-[12px] text-slate-500 dark:text-slate-400">{resolvedTitle}</p>
                 ) : null}
-                {!person.title && person.team ? (
-                  <p className="mt-0.5 text-[12px] text-slate-500 dark:text-slate-400">Team: {person.team}</p>
+                {!resolvedTitle && person.team ? (
+                  <p className="mt-0.5 text-[12px] text-slate-500 dark:text-slate-400">
+                    {t('common.team')}: {person.team}
+                  </p>
                 ) : null}
               </div>
             </div>

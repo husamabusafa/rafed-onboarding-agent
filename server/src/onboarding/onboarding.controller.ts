@@ -49,4 +49,34 @@ export class OnboardingController {
   submitFeedback(@Param('employeeId') employeeId: string, @Body() data: any) {
     return this.onboardingService.submitFeedback(+employeeId, data);
   }
+
+  @Get('plan/:employeeId')
+  getOnboardingPlan(@Param('employeeId') employeeId: string) {
+    return this.onboardingService.getOnboardingPlan(+employeeId);
+  }
+
+  @Get('policies/:employeeId')
+  getPolicyAcknowledgments(@Param('employeeId') employeeId: string) {
+    return this.onboardingService.getPolicyAcknowledgments(+employeeId);
+  }
+
+  @Get('training/:employeeId')
+  getTrainingModules(@Param('employeeId') employeeId: string) {
+    return this.onboardingService.getTrainingModules(+employeeId);
+  }
+
+  @Get('checkins/:employeeId')
+  getCheckIns(@Param('employeeId') employeeId: string) {
+    return this.onboardingService.getCheckIns(+employeeId);
+  }
+
+  @Post('checkins/:employeeId')
+  createCheckIn(@Param('employeeId') employeeId: string, @Body() data: any) {
+    return this.onboardingService.createCheckIn(+employeeId, data);
+  }
+
+  @Get('events/:employeeId')
+  getOnboardingEvents(@Param('employeeId') employeeId: string) {
+    return this.onboardingService.getOnboardingEvents(+employeeId);
+  }
 }
