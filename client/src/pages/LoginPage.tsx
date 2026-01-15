@@ -1,13 +1,25 @@
 import { IconLock, IconMail, IconUser } from '@tabler/icons-react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useI18n } from '../i18n/i18n'
+import { useAuth } from '../auth/AuthContext'
 
 export function LoginPage() {
   const { t } = useI18n()
+  const { login } = useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const fromPath = (location.state as { from?: Location })?.from?.pathname ?? '/'
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    login()
+    navigate(fromPath, { replace: true })
+  }
+
   return (
-    <div className="grid min-h-screen grid-cols-1 lg:grid-cols-2">
+    <div className="grid min-h-screen grid-cols-1 bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 lg:grid-cols-2">
       {/* Left Column: Form */}
-      <div className="flex flex-col justify-center px-8 py-12 sm:px-12 lg:px-20 xl:px-24">
+      <div className="flex flex-col justify-center bg-white/70 px-8 py-12 backdrop-blur-sm dark:bg-slate-950/60 sm:px-12 lg:px-20 xl:px-24">
         <div className="w-full max-w-sm mx-auto lg:mx-0">
           <div className="mb-10 flex items-center gap-3">
             <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#002855] text-white shadow-lg shadow-[#002855]/20">
@@ -20,7 +32,7 @@ export function LoginPage() {
           </h1>
           <p className="mt-4 text-slate-600 dark:text-slate-400">{t('login.subtitle')}</p>
 
-          <form className="mt-10 space-y-6" onSubmit={(e) => e.preventDefault()}>
+          <form className="mt-10 space-y-6" onSubmit={handleSubmit}>
             <div>
               <label className="mb-2 block text-sm font-bold text-[#002855] dark:text-white">{t('login.email')}</label>
               <div className="relative">

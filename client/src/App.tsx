@@ -1,6 +1,7 @@
 import { HsafaProvider } from '@hsafa/ui-sdk'
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { ProtectedRoute } from './auth/ProtectedRoute'
 import { I18nProvider } from './i18n/i18n'
 import { WelcomeOnboarding } from './components/WelcomeOnboarding'
 import { EmployeeDirectory } from './components/EmployeeDirectory'
@@ -30,7 +31,13 @@ import { ActionsPage } from './pages/ActionsPage'
 import { BuddyTeamPage } from './pages/BuddyTeamPage'
 import { BuddyTeamMemberPage } from './pages/BuddyTeamMemberPage'
 import { CalendarPage } from './pages/CalendarPage'
+import { CafeteriaOrderPage } from './pages/CafeteriaOrderPage'
+import { CompanyEventsPage } from './pages/CompanyEventsPage'
+import { ExperienceHubPage } from './pages/ExperienceHubPage'
+import { GalleryPage } from './pages/GalleryPage'
 import { HomePage } from './pages/HomePage'
+import { MeetingRoomsPage } from './pages/MeetingRoomsPage'
+import { NewsPage } from './pages/NewsPage'
 import { EmployeesPage } from './pages/EmployeesPage'
 import { JourneyPage } from './pages/JourneyPage'
 import { LeaderDetailPage } from './pages/LeaderDetailPage'
@@ -109,32 +116,40 @@ function App() {
     <I18nProvider>
       <HsafaProvider baseUrl="https://server.hsafa.com">
         <Routes>
-          <Route path="/" element={<SystemLayout themeMode={themeMode} onThemeToggle={() => setThemeMode((t) => (t === 'dark' ? 'light' : 'dark'))} />}>
-            <Route index element={<HomePage />} />
-            <Route path="onboarding" element={<OnboardingJourneyPage />} />
-            <Route path="journey" element={<JourneyPage />} />
-            <Route path="resources" element={<ResourcesDocumentsPage />} />
-            <Route path="leadership" element={<LeadershipPage />} />
-            <Route path="leadership/:leaderId" element={<LeaderDetailPage />} />
-            <Route path="buddy-team" element={<BuddyTeamPage />} />
-            <Route path="buddy-team/:memberId" element={<BuddyTeamMemberPage />} />
-            <Route path="tools" element={<ToolsFacilitiesPage />} />
-            <Route path="actions" element={<ActionsPage />} />
-            <Route path="actions/:actionId" element={<ActionDetailPage />} />
-            <Route path="employees" element={<EmployeesPage />} />
-            <Route path="calendar" element={<CalendarPage />} />
-            <Route path="settings" element={<SettingsPage themeMode={themeMode} onThemeToggle={() => setThemeMode((t) => (t === 'dark' ? 'light' : 'dark'))} />} />
-            <Route
-              path="*"
-              element={<PageTitle labelKey="nav.comingSoon" />}
-            />
-          </Route>
-          <Route
-            path="chat"
-            element={<ChatPage themeMode={themeMode} uiComponents={uiComponents} initialMessages={initialMessages} />}
-          />
           <Route path="login" element={<LoginPage />} />
-          <Route path="test-components" element={<TestComponentsPage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<SystemLayout themeMode={themeMode} onThemeToggle={() => setThemeMode((t) => (t === 'dark' ? 'light' : 'dark'))} />}>
+              <Route index element={<HomePage />} />
+              <Route path="onboarding" element={<OnboardingJourneyPage />} />
+              <Route path="journey" element={<JourneyPage />} />
+              <Route path="resources" element={<ResourcesDocumentsPage />} />
+              <Route path="experience" element={<ExperienceHubPage />} />
+              <Route path="experience/cafeteria" element={<CafeteriaOrderPage />} />
+              <Route path="experience/rooms" element={<MeetingRoomsPage />} />
+              <Route path="experience/events" element={<CompanyEventsPage />} />
+              <Route path="experience/news" element={<NewsPage />} />
+              <Route path="experience/gallery" element={<GalleryPage />} />
+              <Route path="leadership" element={<LeadershipPage />} />
+              <Route path="leadership/:leaderId" element={<LeaderDetailPage />} />
+              <Route path="buddy-team" element={<BuddyTeamPage />} />
+              <Route path="buddy-team/:memberId" element={<BuddyTeamMemberPage />} />
+              <Route path="tools" element={<ToolsFacilitiesPage />} />
+              <Route path="actions" element={<ActionsPage />} />
+              <Route path="actions/:actionId" element={<ActionDetailPage />} />
+              <Route path="employees" element={<EmployeesPage />} />
+              <Route path="calendar" element={<CalendarPage />} />
+              <Route path="settings" element={<SettingsPage themeMode={themeMode} onThemeToggle={() => setThemeMode((t) => (t === 'dark' ? 'light' : 'dark'))} />} />
+              <Route
+                path="*"
+                element={<PageTitle labelKey="nav.comingSoon" />}
+              />
+            </Route>
+            <Route
+              path="chat"
+              element={<ChatPage themeMode={themeMode} uiComponents={uiComponents} initialMessages={initialMessages} />}
+            />
+            <Route path="test-components" element={<TestComponentsPage />} />
+          </Route>
         </Routes>
       </HsafaProvider>
     </I18nProvider>

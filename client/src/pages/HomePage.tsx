@@ -4,6 +4,7 @@ import {
   IconCrown,
   IconFileTypePdf,
   IconHeartHandshake,
+  IconLayoutGrid,
   IconMessageCircle,
   IconRoute,
   IconTools,
@@ -272,6 +273,13 @@ export function HomePage() {
             description={t('home.quick.supportNetwork')}
             icon={IconHeartHandshake}
             accent="coral"
+          />
+          <QuickAction
+            to="/experience"
+            title={t('home.quick.experience')}
+            description={t('home.quick.experienceSubtitle')}
+            icon={IconLayoutGrid}
+            accent="gold"
           />
         </div>
       </section>
