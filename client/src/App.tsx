@@ -28,10 +28,12 @@ import { ChatPage } from './pages/ChatPage'
 import { ActionDetailPage } from './pages/ActionDetailPage'
 import { ActionsPage } from './pages/ActionsPage'
 import { BuddyTeamPage } from './pages/BuddyTeamPage'
+import { BuddyTeamMemberPage } from './pages/BuddyTeamMemberPage'
 import { CalendarPage } from './pages/CalendarPage'
 import { HomePage } from './pages/HomePage'
 import { EmployeesPage } from './pages/EmployeesPage'
 import { JourneyPage } from './pages/JourneyPage'
+import { LeaderDetailPage } from './pages/LeaderDetailPage'
 import { LeadershipPage } from './pages/LeadershipPage'
 import { LoginPage } from './pages/LoginPage'
 import { OnboardingJourneyPage } from './pages/OnboardingJourneyPage'
@@ -113,7 +115,9 @@ function App() {
             <Route path="journey" element={<JourneyPage />} />
             <Route path="resources" element={<ResourcesDocumentsPage />} />
             <Route path="leadership" element={<LeadershipPage />} />
+            <Route path="leadership/:leaderId" element={<LeaderDetailPage />} />
             <Route path="buddy-team" element={<BuddyTeamPage />} />
+            <Route path="buddy-team/:memberId" element={<BuddyTeamMemberPage />} />
             <Route path="tools" element={<ToolsFacilitiesPage />} />
             <Route path="actions" element={<ActionsPage />} />
             <Route path="actions/:actionId" element={<ActionDetailPage />} />

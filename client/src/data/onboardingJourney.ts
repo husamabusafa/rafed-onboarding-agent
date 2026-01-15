@@ -54,7 +54,7 @@ export const onboardingJourney = {
     {
       id: 'tl-1',
       stage: 'pre_joining',
-      title: ls('Submit required documents', 'تسليم الوثائق المطلوبة'),
+      title: ls('Submit required documents', 'تسليم المستندات المطلوبة'),
       date: '2026-01-06',
       owner: 'New Employee',
     },
@@ -68,7 +68,7 @@ export const onboardingJourney = {
     {
       id: 'tl-3',
       stage: 'post_joining',
-      title: ls('30-day check-in', 'متابعة اليوم 30'),
+      title: ls('30-day check-in', 'متابعة بعد 30 يومًا'),
       date: '2026-02-12',
       owner: 'Manager',
     },
@@ -158,12 +158,12 @@ export type JourneyPhase = {
 export const onboardingJourneyPhases: JourneyPhase[] = [
   {
     id: 'phase-1',
-    title: ls('Phase 1: Pre-Joining Phase', 'المرحلة ١: ما قبل المباشرة'),
-    subtitle: ls("Let's get you ready for day one.", 'لنجهزك لليوم الأول.'),
+    title: ls('Phase 1: Pre-Joining Phase', 'المرحلة الأولى: ما قبل المباشرة'),
+    subtitle: ls("Let's get you ready for day one.", 'لنجهّزك لليوم الأول.'),
     items: [
       { id: 'doc:nda', title: ls('Submit documents & signatures', 'تسليم المستندات والتواقيع'), status: 'in_progress' },
       { id: 'action:fingerprint-registration', title: ls('Fingerprint registration', 'تسجيل البصمة'), status: 'pending' },
-      { id: 'doc:code-of-ethics', title: ls('Review Code of Ethics', 'مراجعة ميثاق أخلاقيات العمل'), status: 'pending' },
+      { id: 'doc:code-of-ethics', title: ls('Review Code of Ethics', 'مراجعة مدوّنة أخلاقيات العمل'), status: 'pending' },
     ],
   },
 ]

@@ -12,7 +12,7 @@ const manuals = [
   },
   {
     id: 'manual:company-info',
-    title: ls('Company Manuals & Info', 'أدلة الشركة ومعلومات عامة'),
+    title: ls('Company Manuals & Info', 'أدلة ومعلومات الشركة'),
   },
 ] as const
 

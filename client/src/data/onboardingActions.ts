@@ -15,9 +15,9 @@ export const onboardingActions: OnboardingAction[] = [
   {
     id: 'fingerprint-registration',
     title: ls('Fingerprint Registration', 'تسجيل البصمة'),
-    description: ls('Register your fingerprint for office attendance access and time tracking.', 'سجّل بصمتك للوصول لنظام الحضور وتتبع الدوام.'),
+    description: ls('Register your fingerprint for office attendance access and time tracking.', 'سجّل بصمتك للوصول إلى نظام الحضور والانصراف وتتبع الدوام.'),
     category: 'Facilities',
-    sessionDate: ls('Within 48 hours of receiving the Operations email', 'خلال 48 ساعة من استلام بريد العمليات'),
+    sessionDate: ls('Within 48 hours of receiving the Operations email', 'خلال 48 ساعة من استلام رسالة فريق العمليات'),
     steps: [
       ls('Wait for the notification email from the Operations team.', 'انتظر بريد الإشعار من فريق العمليات.'),
       ls('Meet the representative in the office to complete the registration.', 'قابل ممثل العمليات في المكتب لإكمال التسجيل.'),
@@ -41,7 +41,7 @@ export const onboardingActions: OnboardingAction[] = [
     description: ls('Get familiar with the internal portal to access information and services.', 'تعرّف على البوابة الداخلية للوصول إلى المعلومات والخدمات.'),
     category: 'HR',
     steps: [
-      ls('Sign in to the internal portal using your company credentials.', 'سجّل الدخول للبوابة الداخلية باستخدام بيانات الشركة.'),
+      ls('Sign in to the internal portal using your company credentials.', 'سجّل الدخول إلى البوابة الداخلية باستخدام بيانات الشركة.'),
       ls('Review your sector overview and available services.', 'استعرض نبذة القطاع والخدمات المتاحة.'),
       ls('Check internal mobility (Step), news, and announcements.', 'اطّلع على التنقل الداخلي (Step) والأخبار والإعلانات.'),
     ],
@@ -53,7 +53,7 @@ export const onboardingActions: OnboardingAction[] = [
     category: 'HR',
     steps: [
       ls('On day 1, Operations will register you in Wala Plus.', 'في اليوم الأول سيقوم فريق العمليات بتسجيلك في ولاء بلس.'),
-      ls('Check your email for the notification and user guide.', 'تحقق من بريدك لرسالة الإشعار ودليل المستخدم.'),
+      ls('Check your email for the notification and user guide.', 'تحقّق من بريدك لرسالة الإشعار ودليل المستخدم.'),
       ls('Follow the guide to activate access and start browsing offers.', 'اتبع الدليل لتفعيل الوصول والبدء بتصفح العروض.'),
     ],
   },
