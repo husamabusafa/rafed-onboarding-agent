@@ -64,8 +64,8 @@ export function PeopleGrid({ title, subtitle, people, columns = 'three' }: Props
                 {resolvedTitle ? (
                   <p className="mt-0.5 line-clamp-2 text-[12px] text-slate-500 dark:text-slate-400">{resolvedTitle}</p>
                 ) : null}
-                {!resolvedTitle && person.team ? (
-                  <p className="mt-0.5 text-[12px] text-slate-500 dark:text-slate-400">
+                {person.team ? (
+                  <p className="mt-1 inline-flex w-fit items-center rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-500 dark:bg-slate-800 dark:text-slate-300">
                     {t('common.team')}: {person.team}
                   </p>
                 ) : null}

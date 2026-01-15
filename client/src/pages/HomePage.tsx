@@ -95,15 +95,19 @@ export function HomePage() {
   const [, setTick] = useState(0)
 
   const welcome = ls(
-    'Welcome to our family! We’re excited to have you with us as you start your journey at Tatweer.',
-    'حياك الله ضمن فريق تطوير.\nيسعدنا انضمامك إلينا، ونتطلع لدعمك خلال رحلة التهيئة الوظيفية حتى تكون جاهزًا ليومك الأول.\nستجد هنا كل ما تحتاجه من إجراءات ومستندات وموارد تساعدك على البدء بثقة.',
+    'Welcome to Tatweer. Your onboarding plan, next actions, and support network are all here to keep you on track.',
+    'مرحبًا بك في تطوير. هنا ستجد خطة التهيئة، أهم الخطوات القادمة، والأشخاص الذين سيدعمونك خلال رحلتك.',
   )
 
-  const arabicWelcome =
-    'حياك الله ضمن فريق تطوير.\nيسعدنا انضمامك إلينا، ونتطلع لدعمك خلال رحلة التهيئة الوظيفية حتى تكون جاهزًا ليومك الأول.\nستجد هنا كل ما تحتاجه من إجراءات ومستندات وموارد تساعدك على البدء بثقة.'
+  const heroStatus = ls('Day 3 · Pre-start checklist 72%', 'اليوم ٣ · قائمة ما قبل المباشرة ٧٢٪')
+  const heroSubline = ls(
+    'Keep momentum. Finish your top tasks today and explore your support network.',
+    'حافظ على الزخم. أنجز أهم المهام اليوم وتعرّف على شبكة الدعم الخاصة بك.',
+  )
 
   const working = tatweerInduction.newMemberInformation.attendanceAndLeaves.workingHours
   const holidays = tatweerInduction.newMemberInformation.attendanceAndLeaves.publicHolidays
+  const nextHoliday = holidays[0]
 
   const leadersPreview = tatweerInduction.governanceAndLeadership.tatweersLeaders.slice(0, 6)
   const buddyPreview = tatweerInduction.buddyProgram.assignedBuddyTeam.slice(0, 6)
@@ -115,35 +119,89 @@ export function HomePage() {
 
   const upNextDocuments = onboardingDocuments.filter((d) => !completed.has(d.id)).slice(0, 2)
   const upNextActions = onboardingActions.filter((a) => !completed.has(`action:${a.id}`)).slice(0, 4 - upNextDocuments.length)
+  const nextBestDocument = upNextDocuments[0]
+  const nextBestAction = upNextActions[0]
+  const nextBest = nextBestDocument
+    ? {
+        label: l(locale, nextBestDocument.title),
+        to: '/resources',
+        kind: 'doc' as const,
+      }
+    : nextBestAction
+      ? {
+          label: l(locale, nextBestAction.title),
+          to: `/actions/${nextBestAction.id}`,
+          kind: 'action' as const,
+        }
+      : null
+  const dueSoon = ls('Due soon', 'مستحق قريبًا')
+  const dueToday = ls('Due today', 'مستحق اليوم')
+  const effortQuick = ls('~10 min', 'حوالي ١٠ دقائق')
+  const effortFocus = ls('~20 min', 'حوالي ٢٠ دقيقة')
+  const nextHolidayLabel = ls('Next holiday', 'العطلة القادمة')
+  const todayFocusItems = [
+    ...upNextDocuments.map((d) => ({
+      id: d.id,
+      title: l(locale, d.title),
+      description: l(locale, d.description),
+      to: '/resources',
+      due: l(locale, dueToday),
+      effort: l(locale, effortQuick),
+      kind: 'doc' as const,
+    })),
+    ...upNextActions.map((a) => ({
+      id: a.id,
+      title: l(locale, a.title),
+      description: a.sessionDate ? l(locale, a.sessionDate) : l(locale, a.description),
+      to: `/actions/${a.id}`,
+      due: l(locale, dueSoon),
+      effort: l(locale, effortFocus),
+      kind: 'action' as const,
+    })),
+  ].slice(0, 2)
 
   return (
     <div className="space-y-16 pb-12">
       {/* Hero Section */}
-      <section>
+      <section className="reveal-up" style={{ animationDelay: '80ms' }}>
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#002855]/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#002855] dark:bg-white/10 dark:text-white">
+              {l(locale, heroStatus)}
+            </span>
             <h1 className="text-5xl font-extrabold tracking-tight text-[#002855] dark:text-white sm:text-6xl">
               Hayyak
             </h1>
             <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
               {t('home.subtitle')}
             </p>
+            <p className="mt-4 text-sm font-medium text-slate-500 dark:text-slate-400">
+              {l(locale, heroSubline)}
+            </p>
           </div>
 
-          <Link
-            to="/chat"
-            className="group inline-flex items-center gap-2 rounded-full bg-[#E1523E] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-[#E1523E]/20 transition-all hover:bg-[#E1523E]/90 hover:shadow-xl hover:shadow-[#E1523E]/30"
-          >
-            <IconMessageCircle className="h-5 w-5" />
-            {t('home.startChat')}
-          </Link>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              to="/onboarding"
+              className="inline-flex items-center gap-2 rounded-full bg-[#002855] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-[#002855]/20 transition-all hover:bg-[#001f44] hover:shadow-xl"
+            >
+              {t('home.quick.onboardingJourney')}
+            </Link>
+            <Link
+              to="/chat"
+              className="group inline-flex items-center gap-2 rounded-full border border-[#E1523E]/40 bg-white px-6 py-3 text-sm font-bold text-[#E1523E] shadow-sm transition-all hover:border-[#E1523E] hover:bg-[#E1523E]/5 dark:bg-slate-900"
+            >
+              <IconMessageCircle className="h-5 w-5" />
+              {t('home.startChat')}
+            </Link>
+          </div>
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-3">
           {/* Welcome Message */}
           <div className="col-span-2 overflow-hidden rounded-3xl bg-linear-to-br from-[#002855] to-[#003B73] p-8 text-white shadow-xl shadow-[#002855]/10 md:p-10">
             <div dir={locale === 'ar' ? 'rtl' : 'ltr'} lang={locale} className="relative z-10">
-              <p className="whitespace-pre-line text-lg leading-loose opacity-90">{l(locale, welcome) || arabicWelcome}</p>
+              <p className="whitespace-pre-line text-lg leading-loose opacity-90">{l(locale, welcome)}</p>
             </div>
             {/* Decorative background elements */}
             <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
@@ -165,6 +223,12 @@ export function HomePage() {
 
             <div className="flex-1 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-900/5 dark:bg-slate-900 dark:ring-white/10">
               <h3 className="font-bold text-[#002855] dark:text-white">{t('home.publicHolidays')}</h3>
+              {nextHoliday ? (
+                <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#002855]/5 px-3 py-1 text-xs font-semibold text-[#002855] dark:bg-white/10 dark:text-white">
+                  <span className="uppercase tracking-wider text-[10px]">{l(locale, nextHolidayLabel)}</span>
+                  <span className="font-bold">{l(locale, nextHoliday)}</span>
+                </div>
+              ) : null}
               <div className="mt-4 flex flex-wrap gap-2">
                 {holidays.map((h) => (
                   <span
@@ -194,6 +258,19 @@ export function HomePage() {
                   <div className="text-sm font-semibold text-slate-600 dark:text-slate-300">
                     {progress.completedCount} {t('journey.of')} {progress.totalCount}
                   </div>
+                  {nextBest ? (
+                    <div className="mt-3">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                        {t('home.actionRequired')}
+                      </p>
+                      <Link
+                        to={nextBest.to}
+                        className="mt-2 inline-flex items-center gap-2 rounded-full bg-[#E1523E] px-4 py-2 text-xs font-bold text-white shadow-sm shadow-[#E1523E]/20 transition hover:bg-[#E1523E]/90"
+                      >
+                        {nextBest.label}
+                      </Link>
+                    </div>
+                  ) : null}
                   <div className="mt-3 space-y-2">
                     {upNextDocuments.slice(0, 1).map((d) => (
                       <Link
@@ -229,63 +306,118 @@ export function HomePage() {
                 </div>
               </div>
             </div>
+            <div className="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-900/5 dark:bg-slate-900 dark:ring-white/10">
+              <div className="flex items-center justify-between">
+                <h3 className="font-bold text-[#002855] dark:text-white">{t('home.upNext.title')}</h3>
+                <Link to="/actions" className="text-xs font-semibold text-[#E1523E]">
+                  {t('home.viewAll')}
+                </Link>
+              </div>
+              <div className="mt-4 space-y-3">
+                {todayFocusItems.map((item) => (
+                  <Link
+                    key={item.id}
+                    to={item.to}
+                    className="group flex items-start gap-3 rounded-2xl bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100 dark:bg-slate-950/30 dark:text-slate-200 dark:hover:bg-slate-950/50"
+                  >
+                    <div className="mt-0.5 flex h-10 w-10 items-center justify-center rounded-xl bg-[#002855]/5 text-[#002855] dark:bg-white/10 dark:text-white">
+                      {item.kind === 'doc' ? <IconFileTypePdf className="h-5 w-5" /> : <IconChecklist className="h-5 w-5" />}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate font-bold text-slate-900 dark:text-white">{item.title}</p>
+                      <p className="mt-1 line-clamp-2 text-xs text-slate-500 dark:text-slate-400">{item.description}</p>
+                      <div className="mt-2 flex flex-wrap gap-2 text-[10px] font-semibold text-slate-500 dark:text-slate-400">
+                        <span className="rounded-full bg-white px-2 py-0.5 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-white/10">
+                          {item.due}
+                        </span>
+                        <span className="rounded-full bg-white px-2 py-0.5 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-white/10">
+                          {item.effort}
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Quick Actions Grid */}
-      <section>
+      <section className="reveal-up" style={{ animationDelay: '140ms' }}>
         <div className="mb-6 flex items-end justify-between">
           <h2 className="text-2xl font-bold text-[#002855] dark:text-white">{t('home.quickAccess')}</h2>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <QuickAction
-            to="/onboarding"
-            title={t('home.quick.onboardingJourney')}
-            description={t('home.quick.viewPlan')}
-            icon={IconRoute}
-            accent="navy"
-          />
-          <QuickAction
-            to="/actions"
-            title={t('home.quick.onboardingActions')}
-            description={t('home.quick.trackJourney')}
-            icon={IconChecklist}
-            accent="coral"
-          />
-          <QuickAction
-            to="/tools"
-            title={t('home.quick.toolsFacilities')}
-            description={t('home.quick.accessSystems')}
-            icon={IconTools}
-            accent="navy"
-          />
-          <QuickAction
-            to="/leadership"
-            title={t('home.quick.leadership')}
-            description={t('home.quick.meetLeaders')}
-            icon={IconCrown}
-            accent="gold"
-          />
-          <QuickAction
-            to="/buddy-team"
-            title={t('home.quick.buddyTeam')}
-            description={t('home.quick.supportNetwork')}
-            icon={IconHeartHandshake}
-            accent="coral"
-          />
-          <QuickAction
-            to="/experience"
-            title={t('home.quick.experience')}
-            description={t('home.quick.experienceSubtitle')}
-            icon={IconLayoutGrid}
-            accent="gold"
-          />
+        <div className="space-y-6">
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              {l(locale, ls('Operational', 'تشغيلي'))}
+            </p>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <QuickAction
+                to="/onboarding"
+                title={t('home.quick.onboardingJourney')}
+                description={t('home.quick.viewPlan')}
+                icon={IconRoute}
+                accent="navy"
+              />
+              <QuickAction
+                to="/actions"
+                title={t('home.quick.onboardingActions')}
+                description={t('home.quick.trackJourney')}
+                icon={IconChecklist}
+                accent="coral"
+              />
+              <QuickAction
+                to="/tools"
+                title={t('home.quick.toolsFacilities')}
+                description={t('home.quick.accessSystems')}
+                icon={IconTools}
+                accent="navy"
+              />
+            </div>
+          </div>
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              {l(locale, ls('People', 'الأشخاص'))}
+            </p>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <QuickAction
+                to="/leadership"
+                title={t('home.quick.leadership')}
+                description={t('home.quick.meetLeaders')}
+                icon={IconCrown}
+                accent="gold"
+              />
+              <QuickAction
+                to="/buddy-team"
+                title={t('home.quick.buddyTeam')}
+                description={t('home.quick.supportNetwork')}
+                icon={IconHeartHandshake}
+                accent="coral"
+              />
+            </div>
+          </div>
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              {l(locale, ls('Culture', 'الثقافة'))}
+            </p>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <QuickAction
+                to="/experience"
+                title={t('home.quick.experience')}
+                description={t('home.quick.experienceSubtitle')}
+                icon={IconLayoutGrid}
+                accent="gold"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Leadership Preview */}
-      <section>
+      <section className="relative reveal-up" style={{ animationDelay: '200ms' }}>
+        <div className="pointer-events-none absolute -left-10 -right-10 -top-6 h-px bg-linear-to-r from-transparent via-slate-200 to-transparent dark:via-slate-700" />
         <div className="mb-6 flex items-end justify-between">
           <div className="space-y-1">
             <h2 className="text-2xl font-bold text-[#002855] dark:text-white">{t('home.leaders.title')}</h2>
@@ -303,7 +435,8 @@ export function HomePage() {
       </section>
 
       {/* Buddy Team Preview */}
-      <section>
+      <section className="relative reveal-up" style={{ animationDelay: '260ms' }}>
+        <div className="pointer-events-none absolute -left-10 -right-10 -top-6 h-px bg-linear-to-r from-transparent via-slate-200 to-transparent dark:via-slate-700" />
         <div className="mb-6 flex items-end justify-between">
           <div className="space-y-1">
             <h2 className="text-2xl font-bold text-[#002855] dark:text-white">{t('home.buddy.title')}</h2>
@@ -321,7 +454,8 @@ export function HomePage() {
       </section>
 
       {/* Next Actions List */}
-      <section>
+      <section className="relative reveal-up" style={{ animationDelay: '320ms' }}>
+        <div className="pointer-events-none absolute -left-10 -right-10 -top-6 h-px bg-linear-to-r from-transparent via-slate-200 to-transparent dark:via-slate-700" />
         <div className="mb-6 flex items-end justify-between">
           <div className="space-y-1">
             <h2 className="text-2xl font-bold text-[#002855] dark:text-white">{t('home.upNext.title')}</h2>
@@ -338,21 +472,25 @@ export function HomePage() {
 
         <div className="grid gap-4 md:grid-cols-2">
           {[
-            ...upNextDocuments.map((d) => ({
+            ...upNextDocuments.map((d, index) => ({
               id: d.id,
               title: l(locale, d.title),
               description: l(locale, d.description),
               category: t('home.actionRequired'),
               to: '/resources',
               kind: 'doc' as const,
+              due: index === 0 ? dueToday : dueSoon,
+              effort: effortQuick,
             })),
-            ...upNextActions.map((action) => ({
+            ...upNextActions.map((action, index) => ({
               id: action.id,
               title: l(locale, action.title),
               description: action.sessionDate ? l(locale, action.sessionDate) : l(locale, action.description),
               category: action.category,
               to: `/actions/${action.id}`,
               kind: 'action' as const,
+              due: index === 0 ? dueSoon : dueToday,
+              effort: effortFocus,
             })),
           ].slice(0, 4).map((item) => (
             <Link
@@ -368,9 +506,13 @@ export function HomePage() {
                   <span className="text-[11px] font-bold uppercase tracking-wider text-[#E1523E]">
                     {item.category}
                   </span>
+                  <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-500 dark:bg-slate-800 dark:text-slate-300">
+                    {l(locale, item.due)}
+                  </span>
                 </div>
                 <h3 className="mt-1 truncate font-bold text-slate-900 dark:text-white">{item.title}</h3>
                 <p className="mt-1 line-clamp-2 text-sm text-slate-500 dark:text-slate-400">{item.description}</p>
+                <p className="mt-3 text-xs font-semibold text-slate-400 dark:text-slate-500">{l(locale, item.effort)}</p>
               </div>
               <IconChevronRight className="h-5 w-5 self-center text-slate-300 transition-colors group-hover:text-slate-500" />
             </Link>
