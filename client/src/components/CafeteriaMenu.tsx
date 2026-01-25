@@ -122,7 +122,7 @@ export function CafeteriaMenu({ input, toolName, toolCallId, addToolResult }: Pr
             </div>
             
             <div className={`p-4 grid grid-cols-1 md:grid-cols-2 gap-4 ${theme.section.light}`}>
-              {category.items.map((item, itemIdx) => (
+              {(category.items ?? []).map((item, itemIdx) => (
                 <div key={itemIdx} className={theme.item.compact}>
                   <div className="flex items-start justify-between mb-2">
                     <div>

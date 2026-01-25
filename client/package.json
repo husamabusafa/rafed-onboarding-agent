@@ -13,6 +13,8 @@
     "@hsafa/ui-sdk": "^0.6.4",
     "@tabler/icons-react": "^3.35.0",
     "@tailwindcss/vite": "^4.1.18",
+    "pannellum-react": "^1.2.4",
+    "prop-types": "^15.8.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^6.26.2",

@@ -81,7 +81,7 @@ export function CompanyCalendar({ input, toolName, toolCallId, addToolResult }: 
   
   useEffect(() => {
     if (addToolResult && toolName && toolCallId) {
-      const totalHolidays = months.reduce((sum, month) => sum + month.holidays.length, 0);
+      const totalHolidays = months.reduce((sum, month) => sum + (month.holidays ?? []).length, 0);
       addToolResult({
         tool: toolName,
         toolCallId: toolCallId,
@@ -136,9 +136,9 @@ export function CompanyCalendar({ input, toolName, toolCallId, addToolResult }: 
                 {month.totalDays} days, starts on {month.startsOn}
               </p>
               
-              {month.holidays.length > 0 ? (
+              {(month.holidays ?? []).length > 0 ? (
                 <div className="space-y-2">
-                  {month.holidays.map((holiday, idx) => (
+                  {(month.holidays ?? []).map((holiday, idx) => (
                     <div key={idx} className={`${theme.infoBox.base} ${theme.infoBox.primary}`}>
                       <div className="flex justify-between items-start">
                         <div className="flex-1">

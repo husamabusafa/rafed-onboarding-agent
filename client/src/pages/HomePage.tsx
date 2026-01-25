@@ -9,6 +9,7 @@ import {
 import type { ComponentType } from 'react'
 import { Link } from 'react-router-dom'
 import { PeopleGrid } from '../components/PeopleGrid'
+import Panorama from '../components/Panorama'
 import { onboardingActions } from '../data/onboardingActions'
 import { tatweerInduction } from '../data/tatweerInduction'
 
@@ -85,13 +86,32 @@ export function HomePage() {
 
         <div className="mt-12 grid gap-8 lg:grid-cols-3">
           {/* Welcome Message */}
-          <div className="col-span-2 overflow-hidden rounded-3xl bg-linear-to-br from-[#002855] to-[#003B73] p-8 text-white shadow-xl shadow-[#002855]/10 md:p-10">
+          <div className="col-span-2 relative overflow-hidden rounded-3xl bg-linear-to-br from-[#002855] via-[#002855] to-[#003B73] p-8 text-white shadow-xl shadow-[#002855]/10 md:p-10">
+            {/* Corner decorative circles */}
+            <div className="absolute top-0 right-0 h-32 w-32 rounded-full bg-linear-to-bl from-white/10 to-transparent blur-xl" />
+            <div className="absolute top-0 right-0 h-20 w-20 rounded-full bg-linear-to-bl from-white/15 to-transparent blur-lg" />
+            <div className="absolute bottom-0 left-0 h-32 w-32 rounded-full bg-linear-to-tr from-[#E1523E]/15 to-transparent blur-xl" />
+            <div className="absolute bottom-0 left-0 h-20 w-20 rounded-full bg-linear-to-tr from-[#E1523E]/20 to-transparent blur-lg" />
+            
+            {/* Additional corner accents */}
+            <div className="absolute top-4 right-4 h-3 w-3 rounded-full bg-white/40" />
+            <div className="absolute bottom-4 left-4 h-3 w-3 rounded-full bg-[#E1523E]/40" />
+            
             <div dir="rtl" lang="ar" className="relative z-10">
-              <p className="whitespace-pre-line text-lg leading-loose opacity-90">{arabicWelcome}</p>
+              <p className="whitespace-pre-line text-lg leading-loose opacity-95 drop-shadow-sm">{arabicWelcome}</p>
             </div>
-            {/* Decorative background elements */}
-            <div className="absolute -bottom-24 -right-24 h-64 w-64 rounded-full bg-white/5 blur-3xl" />
-            <div className="absolute -left-24 -top-24 h-64 w-64 rounded-full bg-[#E1523E]/20 blur-3xl" />
+            
+            {/* Enhanced background elements */}
+            <div className="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-white/5 blur-3xl" />
+            <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-[#E1523E]/10 blur-3xl" />
+            
+            {/* Subtle grid pattern overlay */}
+            <div 
+              className="absolute inset-0 opacity-20"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 40 0 L 0 0 0 40' fill='none' stroke='white' stroke-width='0.5' opacity='0.1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)' /%3E%3C/svg%3E")`
+              }}
+            />
           </div>
 
           {/* Quick Stats/Info */}
@@ -122,6 +142,11 @@ export function HomePage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* 360° Office Tour */}
+      <section>
+        <Panorama />
       </section>
 
       {/* Quick Actions Grid */}

@@ -103,7 +103,7 @@ export function DepartmentBrowser({ input, toolName, toolCallId, addToolResult }
       </div>
 
       <div className="space-y-4">
-        {divisions.map((division, idx) => (
+        {divisions?.map((division, idx) => (
           <div key={idx} className={`${borders.base} rounded-3xl overflow-hidden`}>
             <div className={`${theme.gradient.primary} p-4 ${borders.base} border-b`}>
               <h3 className={`text-lg font-bold ${theme.text.primary}`}>{division.nameEn}</h3>
@@ -111,7 +111,7 @@ export function DepartmentBrowser({ input, toolName, toolCallId, addToolResult }
             </div>
             
             <div className={`p-4 ${theme.section.light} space-y-3`}>
-              {division.departments.map((dept, deptIdx) => (
+              {(division.departments ?? []).map((dept, deptIdx) => (
                 <div key={deptIdx} className={theme.item.compact}>
                   <div className="flex items-center justify-between">
                     <div className="flex-1">

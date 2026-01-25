@@ -23,6 +23,7 @@ import { BenefitsOverview } from './components/BenefitsOverview'
 import { ProbationTracker } from './components/ProbationTracker'
 import { FeedbackSurvey } from './components/FeedbackSurvey'
 import { ChatPage } from './pages/ChatPage'
+import { ChatPage2 } from './pages/ChatPage2'
 import { ActionDetailPage } from './pages/ActionDetailPage'
 import { ActionsPage } from './pages/ActionsPage'
 import { BuddyTeamPage } from './pages/BuddyTeamPage'
@@ -125,6 +126,10 @@ function App() {
         <Route
           path="chat"
           element={<ChatPage themeMode={themeMode} uiComponents={uiComponents} initialMessages={initialMessages} />}
+        />
+        <Route
+          path="chat2"
+          element={<ChatPage2 themeMode={themeMode} uiComponents={uiComponents} />}
         />
         <Route path="login" element={<LoginPage />} />
         <Route path="test-components" element={<TestComponentsPage />} />

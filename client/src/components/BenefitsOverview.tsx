@@ -102,10 +102,10 @@ export function BenefitsOverview({ input, toolName, toolCallId, addToolResult }:
                 </span>
               </div>
 
-              {salary.allowances.length > 0 && (
+              {(salary.allowances ?? []).length > 0 && (
                 <div className="pt-3 border-t border-[#002855]/10 dark:border-white/10">
                   <p className="mb-2 text-sm font-medium text-slate-700 dark:text-slate-300">Allowances</p>
-                  {salary.allowances.map((allowance, idx) => (
+                  {(salary.allowances ?? []).map((allowance, idx) => (
                     <div key={idx} className="flex justify-between text-sm py-1">
                       <span className="text-slate-500 dark:text-slate-400">{allowance.type}</span>
                       <span className="font-medium text-[#002855] dark:text-white">SAR {allowance.amount.toLocaleString()}</span>
