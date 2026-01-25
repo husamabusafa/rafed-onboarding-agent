@@ -76,6 +76,12 @@ Server will run on `http://localhost:3001`
 - `GET /onboarding/probation/:employeeId` - Get probation status
 - `GET /onboarding/feedback/:employeeId` - Get feedback surveys
 - `POST /onboarding/feedback/:employeeId` - Submit feedback
+- `GET /onboarding/plan/:employeeId` - Get onboarding plan
+- `GET /onboarding/policies/:employeeId` - Get policy acknowledgments
+- `GET /onboarding/training/:employeeId` - Get training modules + completion
+- `GET /onboarding/checkins/:employeeId` - Get check-ins
+- `POST /onboarding/checkins/:employeeId` - Create check-in
+- `GET /onboarding/events/:employeeId` - Get onboarding events
 
 ### Requests
 - `GET /requests/documents/:employeeId` - Get document requests

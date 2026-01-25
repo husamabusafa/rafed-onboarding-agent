@@ -19,6 +19,9 @@ model Employee {
   email           String    @unique
   mobile          String
   joiningDate     DateTime  @default(now())
+  employeeLevel   EmployeeLevel?
+  jobFamily       String?
+  location        String?
   
   // Relations
   department      Department @relation(fields: [departmentId], references: [id])
@@ -36,6 +39,7 @@ model Employee {
   // Related records
   attendanceRecords    AttendanceRecord[]
   onboardingTasks      OnboardingTask[]
+  onboardingPlan       OnboardingPlan?
   documentRequests     DocumentRequest[]
   leaveRequests        LeaveRequest[]
   equipmentRequests    EquipmentRequest[]
@@ -47,6 +51,11 @@ model Employee {
   benefits             Benefits?
   probationEvaluations ProbationEvaluation[]
   feedbackSurveys      FeedbackSurvey[]
+  policyAcknowledgments PolicyAcknowledgment[]
+  trainingCompletions  TrainingCompletion[]
+  checkIns             CheckIn[]
+  onboardingEvents     OnboardingEvent[]
+  ownedTasks           OnboardingTask[] @relation("TaskOwner")
   
   // Team relationships
   managerId       Int?
@@ -181,10 +190,20 @@ model OnboardingTask {
   taskAr            String
   taskEn            String
   responsibleParty  String
+  ownerType         TaskOwnerType @default(OTHER)
+  ownerEmployee     Employee?     @relation("TaskOwner", fields: [ownerEmployeeId], references: [id])
+  ownerEmployeeId   Int?
   status            TaskStatus    @default(PENDING)
   dueDate           DateTime?
   completedDate     DateTime?
   priority          Priority      @default(MEDIUM)
+  slaDays           Int?
+  sourceTemplate    OnboardingTaskTemplate? @relation(fields: [sourceTemplateId], references: [id])
+  sourceTemplateId  Int?
+  plan              OnboardingPlan? @relation(fields: [planId], references: [id])
+  planId            Int?
+  dependencies      TaskDependency[] @relation("TaskDependencyTask")
+  blockedBy         TaskDependency[] @relation("TaskDependencyDependsOn")
   
   createdAt         DateTime      @default(now())
   updatedAt         DateTime      @updatedAt
@@ -192,6 +211,165 @@ model OnboardingTask {
   @@index([employeeId])
   @@index([status])
   @@map("onboarding_tasks")
+}
+
+model OnboardingPlanTemplate {
+  id                  Int                     @id @default(autoincrement())
+  nameAr              String
+  nameEn              String
+  descriptionAr       String?
+  descriptionEn       String?
+  targetAudience      TargetAudience?
+  defaultDurationDays Int?
+  tasks               OnboardingTaskTemplate[]
+
+  createdAt           DateTime                @default(now())
+  updatedAt           DateTime                @updatedAt
+
+  @@map("onboarding_plan_templates")
+}
+
+model OnboardingPlan {
+  id         Int                   @id @default(autoincrement())
+  employee   Employee              @relation(fields: [employeeId], references: [id])
+  employeeId Int                   @unique
+  template   OnboardingPlanTemplate? @relation(fields: [templateId], references: [id])
+  templateId Int?
+  status     PlanStatus            @default(ACTIVE)
+  startDate  DateTime?             @db.Date
+  endDate    DateTime?             @db.Date
+  assignedAt DateTime              @default(now())
+  tasks      OnboardingTask[]
+
+  createdAt  DateTime              @default(now())
+  updatedAt  DateTime              @updatedAt
+
+  @@index([templateId])
+  @@map("onboarding_plans")
+}
+
+model OnboardingTaskTemplate {
+  id                   Int                  @id @default(autoincrement())
+  planTemplate         OnboardingPlanTemplate @relation(fields: [planTemplateId], references: [id])
+  planTemplateId       Int
+  stage                OnboardingStage
+  taskAr               String
+  taskEn               String
+  ownerType            TaskOwnerType         @default(OTHER)
+  slaDays              Int?
+  priority             Priority              @default(MEDIUM)
+  dependencyTemplateIds Int[]                @default([])
+
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+
+  @@index([planTemplateId])
+  @@map("onboarding_task_templates")
+}
+
+model TaskDependency {
+  id               Int            @id @default(autoincrement())
+  task             OnboardingTask @relation("TaskDependencyTask", fields: [taskId], references: [id])
+  taskId           Int
+  dependsOnTask    OnboardingTask @relation("TaskDependencyDependsOn", fields: [dependsOnTaskId], references: [id])
+  dependsOnTaskId  Int
+
+  createdAt        DateTime       @default(now())
+
+  @@unique([taskId, dependsOnTaskId])
+  @@index([taskId])
+  @@index([dependsOnTaskId])
+  @@map("task_dependencies")
+}
+
+model PolicyAcknowledgment {
+  id             Int          @id @default(autoincrement())
+  employee       Employee     @relation(fields: [employeeId], references: [id])
+  employeeId     Int
+  policyName     String
+  policyVersion  String
+  policyGroup    String?
+  status         PolicyStatus @default(PENDING)
+  requiredBy     DateTime?    @db.Date
+  acknowledgedAt DateTime?
+
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@index([employeeId])
+  @@map("policy_acknowledgments")
+}
+
+model TrainingModule {
+  id             Int                @id @default(autoincrement())
+  code           String             @unique
+  titleAr        String
+  titleEn        String
+  descriptionAr  String?
+  descriptionEn  String?
+  durationMinutes Int?
+  stage          OnboardingStage?
+  required       Boolean            @default(false)
+  targetAudience TargetAudience?
+  provider       String?
+  completions    TrainingCompletion[]
+
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  @@map("training_modules")
+}
+
+model TrainingCompletion {
+  id          Int            @id @default(autoincrement())
+  employee    Employee       @relation(fields: [employeeId], references: [id])
+  employeeId  Int
+  module      TrainingModule @relation(fields: [moduleId], references: [id])
+  moduleId    Int
+  status      TrainingStatus @default(NOT_STARTED)
+  startedAt   DateTime?
+  completedAt DateTime?
+  score       Int?
+  evidenceUrl String?
+
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@unique([employeeId, moduleId])
+  @@index([employeeId])
+  @@index([moduleId])
+  @@map("training_completions")
+}
+
+model OnboardingEvent {
+  id         Int                @id @default(autoincrement())
+  employee   Employee           @relation(fields: [employeeId], references: [id])
+  employeeId Int
+  eventType  OnboardingEventType
+  stage      OnboardingStage?
+  payload    Json?
+  occurredAt DateTime           @default(now())
+  createdAt  DateTime           @default(now())
+
+  @@index([employeeId])
+  @@index([eventType])
+  @@map("onboarding_events")
+}
+
+model CheckIn {
+  id          Int         @id @default(autoincrement())
+  employee    Employee    @relation(fields: [employeeId], references: [id])
+  employeeId  Int
+  checkInType CheckInType
+  conductedBy String?
+  notes       String?
+  scheduledAt DateTime?
+  completedAt DateTime?
+
+  createdAt   DateTime    @default(now())
+
+  @@index([employeeId])
+  @@map("check_ins")
 }
 
 // Document Requests
@@ -504,7 +682,8 @@ model ProbationEvaluation {
 model ProbationMilestone {
   id            Int      @id @default(autoincrement())
   employeeId    Int
-  name          String
+  nameAr        String
+  nameEn        String
   dueDate       DateTime @db.Date
   completed     Boolean  @default(false)
   completedDate DateTime?
@@ -524,6 +703,7 @@ model FeedbackSurvey {
   employee           Employee     @relation(fields: [employeeId], references: [id])
   employeeId         Int
   surveyType         SurveyType
+  onboardingStage    OnboardingStage?
   isAnonymous        Boolean      @default(false)
   questions          Json
   overallRating      Int?
@@ -551,6 +731,16 @@ enum TaskStatus {
   IN_PROGRESS
   COMPLETED
   BLOCKED
+}
+
+enum TaskOwnerType {
+  EMPLOYEE
+  MANAGER
+  HR
+  IT
+  FACILITIES
+  BUDDY
+  OTHER
 }
 
 enum Priority {
@@ -758,6 +948,47 @@ enum EvaluationType {
   DAY_60
   DAY_90
   FINAL
+}
+
+enum PlanStatus {
+  ACTIVE
+  COMPLETED
+  PAUSED
+  CANCELLED
+}
+
+enum PolicyStatus {
+  PENDING
+  ACKNOWLEDGED
+  OVERDUE
+}
+
+enum TrainingStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  FAILED
+}
+
+enum CheckInType {
+  BUDDY
+  MANAGER
+  HR
+  IT
+  FACILITIES
+  OTHER
+}
+
+enum OnboardingEventType {
+  PLAN_ASSIGNED
+  TASK_CREATED
+  TASK_COMPLETED
+  TASK_BLOCKED
+  POLICY_ACKNOWLEDGED
+  TRAINING_STARTED
+  TRAINING_COMPLETED
+  CHECK_IN_COMPLETED
+  SURVEY_SUBMITTED
 }
 
 enum SurveyType {

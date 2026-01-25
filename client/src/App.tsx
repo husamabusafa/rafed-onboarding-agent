@@ -1,6 +1,8 @@
 import { HsafaProvider } from '@hsafa/ui-sdk'
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { ProtectedRoute } from './auth/ProtectedRoute'
+import { I18nProvider } from './i18n/i18n'
 import { WelcomeOnboarding } from './components/WelcomeOnboarding'
 import { EmployeeDirectory } from './components/EmployeeDirectory'
 import { DepartmentBrowser } from './components/DepartmentBrowser'
@@ -22,14 +24,29 @@ import { InternalContactDirectory } from './components/InternalContactDirectory'
 import { BenefitsOverview } from './components/BenefitsOverview'
 import { ProbationTracker } from './components/ProbationTracker'
 import { FeedbackSurvey } from './components/FeedbackSurvey'
+import { PageTitle } from './components/PageTitle'
 import { ChatPage } from './pages/ChatPage'
 import { ChatPage2 } from './pages/ChatPage2'
 import { ActionDetailPage } from './pages/ActionDetailPage'
 import { ActionsPage } from './pages/ActionsPage'
 import { BuddyTeamPage } from './pages/BuddyTeamPage'
+import { BuddyTeamMemberPage } from './pages/BuddyTeamMemberPage'
+import { CalendarPage } from './pages/CalendarPage'
+import { CafeteriaOrderPage } from './pages/CafeteriaOrderPage'
+import { CompanyEventsPage } from './pages/CompanyEventsPage'
+import { ExperienceHubPage } from './pages/ExperienceHubPage'
+import { GalleryPage } from './pages/GalleryPage'
 import { HomePage } from './pages/HomePage'
+import { MeetingRoomsPage } from './pages/MeetingRoomsPage'
+import { NewsPage } from './pages/NewsPage'
+import { EmployeesPage } from './pages/EmployeesPage'
+import { JourneyPage } from './pages/JourneyPage'
+import { LeaderDetailPage } from './pages/LeaderDetailPage'
 import { LeadershipPage } from './pages/LeadershipPage'
 import { LoginPage } from './pages/LoginPage'
+import { OnboardingJourneyPage } from './pages/OnboardingJourneyPage'
+import { ResourcesDocumentsPage } from './pages/ResourcesDocumentsPage'
+import { SettingsPage } from './pages/SettingsPage'
 import { SystemLayout } from './pages/SystemLayout'
 import { TestComponentsPage } from './pages/TestComponentsPage'
 import { ToolsFacilitiesPage } from './pages/ToolsFacilitiesPage'
@@ -97,44 +114,50 @@ function App() {
   }, [themeMode])
 
   return (
-    <HsafaProvider baseUrl="https://server.hsafa.com">
-      <Routes>
-        <Route path="/" element={<SystemLayout themeMode={themeMode} onThemeToggle={() => setThemeMode((t) => (t === 'dark' ? 'light' : 'dark'))} />}>
-          <Route index element={<HomePage />} />
-          <Route path="leadership" element={<LeadershipPage />} />
-          <Route path="buddy-team" element={<BuddyTeamPage />} />
-          <Route path="tools" element={<ToolsFacilitiesPage />} />
-          <Route path="actions" element={<ActionsPage />} />
-          <Route path="actions/:actionId" element={<ActionDetailPage />} />
-          <Route
-            path="employees"
-            element={<h1 className="text-3xl font-bold tracking-tight text-[#002855] dark:text-white md:text-4xl">Employees</h1>}
-          />
-          <Route
-            path="calendar"
-            element={<h1 className="text-3xl font-bold tracking-tight text-[#002855] dark:text-white md:text-4xl">Calendar</h1>}
-          />
-          <Route
-            path="settings"
-            element={<h1 className="text-3xl font-bold tracking-tight text-[#002855] dark:text-white md:text-4xl">Settings</h1>}
-          />
-          <Route
-            path="*"
-            element={<h1 className="text-3xl font-bold tracking-tight text-[#002855] dark:text-white md:text-4xl">Coming Soon</h1>}
-          />
-        </Route>
-        <Route
-          path="chat"
-          element={<ChatPage themeMode={themeMode} uiComponents={uiComponents} initialMessages={initialMessages} />}
-        />
-        <Route
-          path="chat2"
-          element={<ChatPage2 themeMode={themeMode} uiComponents={uiComponents} />}
-        />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="test-components" element={<TestComponentsPage />} />
-      </Routes>
-    </HsafaProvider>
+    <I18nProvider>
+      <HsafaProvider baseUrl="https://server.hsafa.com">
+        <Routes>
+          <Route path="login" element={<LoginPage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<SystemLayout themeMode={themeMode} onThemeToggle={() => setThemeMode((t) => (t === 'dark' ? 'light' : 'dark'))} />}>
+              <Route index element={<HomePage />} />
+              <Route path="onboarding" element={<OnboardingJourneyPage />} />
+              <Route path="journey" element={<JourneyPage />} />
+              <Route path="resources" element={<ResourcesDocumentsPage />} />
+              <Route path="experience" element={<ExperienceHubPage />} />
+              <Route path="experience/cafeteria" element={<CafeteriaOrderPage />} />
+              <Route path="experience/rooms" element={<MeetingRoomsPage />} />
+              <Route path="experience/events" element={<CompanyEventsPage />} />
+              <Route path="experience/news" element={<NewsPage />} />
+              <Route path="experience/gallery" element={<GalleryPage />} />
+              <Route path="leadership" element={<LeadershipPage />} />
+              <Route path="leadership/:leaderId" element={<LeaderDetailPage />} />
+              <Route path="buddy-team" element={<BuddyTeamPage />} />
+              <Route path="buddy-team/:memberId" element={<BuddyTeamMemberPage />} />
+              <Route path="tools" element={<ToolsFacilitiesPage />} />
+              <Route path="actions" element={<ActionsPage />} />
+              <Route path="actions/:actionId" element={<ActionDetailPage />} />
+              <Route path="employees" element={<EmployeesPage />} />
+              <Route path="calendar" element={<CalendarPage />} />
+              <Route path="settings" element={<SettingsPage themeMode={themeMode} onThemeToggle={() => setThemeMode((t) => (t === 'dark' ? 'light' : 'dark'))} />} />
+              <Route
+                path="*"
+                element={<PageTitle labelKey="nav.comingSoon" />}
+              />
+            </Route>
+            <Route
+              path="chat"
+              element={<ChatPage themeMode={themeMode} uiComponents={uiComponents} initialMessages={initialMessages} />}
+            />
+            <Route
+              path="chat2"
+              element={<ChatPage2 themeMode={themeMode} uiComponents={uiComponents} />}
+            />
+            <Route path="test-components" element={<TestComponentsPage />} />
+          </Route>
+        </Routes>
+      </HsafaProvider>
+    </I18nProvider>
   )
 }
 

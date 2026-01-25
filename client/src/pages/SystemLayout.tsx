@@ -3,11 +3,14 @@ import {
   IconCalendar,
   IconChecklist,
   IconCrown,
+  IconFileDescription,
   IconHeartHandshake,
+  IconLayoutGrid,
   IconLayoutDashboard,
   IconMenu2,
   IconMessageCircle,
   IconMoon,
+  IconRoute,
   IconSettings,
   IconSun,
   IconTools,
@@ -16,6 +19,7 @@ import {
 } from '@tabler/icons-react'
 import { useState } from 'react'
 import { Link, NavLink, Outlet } from 'react-router-dom'
+import { useI18n } from '../i18n/i18n'
 
 type ThemeMode = 'light' | 'dark'
 
@@ -26,16 +30,21 @@ type Props = {
 
 export function SystemLayout({ themeMode, onThemeToggle }: Props) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { t, locale, toggleLocale } = useI18n()
 
   const navItems = [
-    { to: '/', label: 'Home', Icon: IconLayoutDashboard },
-    { to: '/actions', label: 'Actions', Icon: IconChecklist },
-    { to: '/tools', label: 'Tools', Icon: IconTools },
-    { to: '/leadership', label: 'Leadership', Icon: IconCrown },
-    { to: '/buddy-team', label: 'Buddy Team', Icon: IconHeartHandshake },
-    { to: '/employees', label: 'Employees', Icon: IconUsers },
-    { to: '/calendar', label: 'Calendar', Icon: IconCalendar },
-    { to: '/settings', label: 'Settings', Icon: IconSettings },
+    { to: '/', label: t('nav.home'), Icon: IconLayoutDashboard },
+    { to: '/onboarding', label: t('nav.onboarding'), Icon: IconRoute },
+    { to: '/journey', label: t('nav.journey'), Icon: IconRoute },
+    { to: '/resources', label: t('nav.resources'), Icon: IconFileDescription },
+    { to: '/actions', label: t('nav.actions'), Icon: IconChecklist },
+    { to: '/tools', label: t('nav.tools'), Icon: IconTools },
+    { to: '/experience', label: t('nav.experience'), Icon: IconLayoutGrid },
+    { to: '/leadership', label: t('nav.leadership'), Icon: IconCrown },
+    { to: '/buddy-team', label: t('nav.buddyTeam'), Icon: IconHeartHandshake },
+    { to: '/employees', label: t('nav.employees'), Icon: IconUsers },
+    { to: '/calendar', label: t('nav.calendar'), Icon: IconCalendar },
+    { to: '/settings', label: t('nav.settings'), Icon: IconSettings },
   ]
 
   return (
@@ -53,8 +62,8 @@ export function SystemLayout({ themeMode, onThemeToggle }: Props) {
         />
 
         <aside
-          className={`group/sidebar fixed inset-y-0 left-0 z-30 flex h-screen w-72 flex-col overflow-hidden bg-white/50 backdrop-blur-xl transition-[transform,width] duration-300 ease-out hover:w-72 dark:bg-slate-950/50 md:w-20 md:hover:w-72 ${
-            mobileMenuOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0'
+          className={`group/sidebar fixed inset-y-0 left-0 rtl:left-auto rtl:right-0 z-30 flex h-screen w-72 flex-col overflow-hidden bg-white/50 backdrop-blur-xl transition-[transform,width] duration-300 ease-out hover:w-72 dark:bg-slate-950/50 md:w-20 md:hover:w-72 ${
+            mobileMenuOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0 rtl:translate-x-full rtl:md:translate-x-0'
           }`}
         >
           <div className="flex h-16 items-center gap-3 px-6">
@@ -62,7 +71,7 @@ export function SystemLayout({ themeMode, onThemeToggle }: Props) {
               H
             </div>
             <div className="min-w-0 transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100">
-              <p className="truncate font-bold text-[#002855] dark:text-white">Hayyak</p>
+              <p className="truncate font-bold text-[#002855] dark:text-white">{t('app.name')}</p>
             </div>
           </div>
 
@@ -92,10 +101,10 @@ export function SystemLayout({ themeMode, onThemeToggle }: Props) {
             <button
               type="button"
               className="group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-white/50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
-              aria-label="Notifications"
+              aria-label={t('nav.notifications')}
             >
               <IconBell className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300" />
-              <span className="min-w-0 flex-1 truncate text-left transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100">Notifications</span>
+              <span className="min-w-0 flex-1 truncate text-left rtl:text-right transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100">{t('nav.notifications')}</span>
               <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[#E1523E]/10 px-1 text-[10px] font-bold text-[#E1523E] transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100 dark:bg-[#E1523E]/20">
                 0
               </span>
@@ -105,17 +114,17 @@ export function SystemLayout({ themeMode, onThemeToggle }: Props) {
               to="/chat"
               onClick={() => setMobileMenuOpen(false)}
               className="group mt-1 flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-white/50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
-              aria-label="Open chat"
+              aria-label={t('nav.chat')}
             >
               <IconMessageCircle className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300" />
-              <span className="min-w-0 flex-1 truncate transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100">Chat</span>
+              <span className="min-w-0 flex-1 truncate transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100">{t('nav.chat')}</span>
             </Link>
 
             <button
               type="button"
               onClick={onThemeToggle}
               className="group mt-1 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-white/50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
-              aria-label={themeMode === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+              aria-label={themeMode === 'dark' ? t('theme.light') : t('theme.dark')}
             >
               {themeMode === 'dark' ? (
                 <IconSun className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300" />
@@ -123,7 +132,21 @@ export function SystemLayout({ themeMode, onThemeToggle }: Props) {
                 <IconMoon className="h-5 w-5 shrink-0 text-slate-400 transition-colors group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-300" />
               )}
               <span className="min-w-0 flex-1 truncate text-left transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100">
-                {themeMode === 'dark' ? 'Light mode' : 'Dark mode'}
+                {themeMode === 'dark' ? t('theme.light') : t('theme.dark')}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={toggleLocale}
+              className="group mt-1 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition-colors hover:bg-white/50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-white/5 dark:hover:text-white"
+              aria-label={t('lang.toggle')}
+            >
+              <div className="flex h-5 w-5 items-center justify-center rounded-md border border-slate-200 text-[10px] font-bold text-slate-500 transition-colors group-hover:border-slate-300 group-hover:text-slate-700 dark:border-white/10 dark:text-slate-300 dark:group-hover:text-white">
+                {locale.toUpperCase()}
+              </div>
+              <span className="min-w-0 flex-1 truncate text-left rtl:text-right transition-all duration-300 md:opacity-0 md:group-hover/sidebar:opacity-100">
+                {locale === 'ar' ? t('lang.en') : t('lang.ar')}
               </span>
             </button>
           </div>
@@ -144,16 +167,16 @@ export function SystemLayout({ themeMode, onThemeToggle }: Props) {
               </button>
               
               <div className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-400">
-                <span className="hidden sm:inline">Hayyak System</span>
+                <span className="hidden sm:inline">{t('header.system')}</span>
                 <span className="hidden text-slate-300 sm:inline dark:text-slate-600">/</span>
-                <span className="text-slate-900 dark:text-white">Workspace</span>
+                <span className="text-slate-900 dark:text-white">{t('header.workspace')}</span>
               </div>
             </div>
 
             <div className="relative flex items-center gap-3">
               <div className="hidden sm:flex items-center gap-3 rounded-full bg-white px-3 py-1.5 shadow-sm ring-1 ring-slate-900/5 dark:bg-white/5 dark:ring-white/10">
                 <span className="h-2 w-2 rounded-full bg-[#002855] dark:bg-blue-400" />
-                <span className="text-xs font-medium text-slate-600 dark:text-slate-300">Online</span>
+                <span className="text-xs font-medium text-slate-600 dark:text-slate-300">{t('status.online')}</span>
               </div>
               <div className="grid h-9 w-9 place-items-center rounded-full bg-linear-to-br from-[#002855] to-[#E1523E] text-xs font-bold text-white shadow-md shadow-[#E1523E]/20">
                 HY

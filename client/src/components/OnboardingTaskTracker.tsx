@@ -1,5 +1,6 @@
 import { useEffect, type ComponentType } from 'react'
 import { IconChecklist, IconClock, IconCircleCheck, IconAlertCircle } from '@tabler/icons-react'
+import { useI18n } from '../i18n/i18n'
 
 const theme = {
   card: {
@@ -59,14 +60,14 @@ type StatusConfigEntry = {
 }
 
 interface Task {
-  taskId: number
-  stage: string
-  taskAr: string
-  taskEn: string
-  responsibleParty: string
-  status: 'pending' | 'in_progress' | 'completed' | 'blocked'
-  dueDate?: string
-  completedDate?: string
+  taskId: string
+  titleEn: string
+  titleAr: string
+  descriptionEn: string
+  descriptionAr: string
+  status: 'pending' | 'PENDING' | 'in_progress' | 'IN_PROGRESS' | 'completed' | 'COMPLETED' | 'blocked' | 'BLOCKED'
+  dueDate: string
+  owner: string
   priority: 'high' | 'medium' | 'low'
 }
 
@@ -96,13 +97,14 @@ const statusConfig: Record<string, StatusConfigEntry> = {
 const EMPTY_TASKS: Task[] = []
 
 export function OnboardingTaskTracker({ input, toolName, toolCallId, addToolResult }: Props) {
+  const { locale } = useI18n()
   const onboardingStage = input?.onboardingStage || 'pre_joining';
   const tasks = input?.tasks ?? EMPTY_TASKS;
   const progressPercentage = input?.progressPercentage || 0;
   
   useEffect(() => {
     if (addToolResult && toolName && toolCallId) {
-      const completedTasks = tasks.filter(t => t.status === 'completed').length;
+      const completedTasks = tasks.filter((t) => t.status.toLowerCase() === 'completed').length;
       addToolResult({
         tool: toolName,
         toolCallId: toolCallId,
@@ -119,6 +121,12 @@ export function OnboardingTaskTracker({ input, toolName, toolCallId, addToolResu
   }, [onboardingStage, tasks, progressPercentage, toolName, toolCallId, addToolResult]);
 
   const stageName = onboardingStage.replace('_', ' ').toUpperCase()
+  const stageNameAr =
+    onboardingStage === 'pre_joining'
+      ? 'ما قبل المباشرة'
+      : onboardingStage === 'first_day'
+        ? 'اليوم الأول'
+        : 'بعد المباشرة'
   
   return (
     <div className={`${theme.card.base} max-w-4xl`}>
@@ -127,12 +135,12 @@ export function OnboardingTaskTracker({ input, toolName, toolCallId, addToolResu
           <IconChecklist className={`w-6 h-6 ${theme.icon.primary}`} />
         </div>
         <div className="flex-1">
-          <h2 className={theme.header.title}>Onboarding Tasks</h2>
-          <p className={theme.header.subtitle}>مهام التأهيل</p>
+          <h2 className={theme.header.title}>{locale === 'ar' ? 'مهام التهيئة' : 'Onboarding Tasks'}</h2>
+          <p className={theme.header.subtitle}>{locale === 'ar' ? 'تابع مهامك ومتطلبات التهيئة' : 'Track your onboarding tasks'}</p>
         </div>
         <div className="text-right">
           <p className={`text-3xl font-bold ${theme.icon.primary}`}>{progressPercentage}%</p>
-          <p className={`text-xs ${theme.text.muted}`}>Complete</p>
+          <p className={`text-xs ${theme.text.muted}`}>{locale === 'ar' ? 'مكتمل' : 'Complete'}</p>
         </div>
       </div>
 
@@ -144,26 +152,31 @@ export function OnboardingTaskTracker({ input, toolName, toolCallId, addToolResu
       </div>
 
       <div className={`mb-4 ${theme.infoBox.base} ${theme.infoBox.primary}`}>
-        <p className={`text-sm font-medium ${theme.text.primary}`}>Current Stage: <span className={theme.text.muted}>{stageName}</span></p>
+        <p className={`text-sm font-medium ${theme.text.primary}`}>
+          {locale === 'ar' ? 'المرحلة الحالية:' : 'Current Stage:'}{' '}
+          <span className={theme.text.muted}>{locale === 'ar' ? stageNameAr : stageName}</span>
+        </p>
       </div>
 
       <div className="space-y-3 max-h-96 overflow-y-auto">
         {tasks.map((task: Task) => {
+          const normalizedStatus = task.status.toLowerCase() as 'pending' | 'in_progress' | 'completed' | 'blocked'
           const StatusIcon = statusConfig[task.status].icon
+          const primaryTitle = locale === 'ar' ? task.titleAr : task.titleEn
+          const secondaryTitle = locale === 'ar' ? task.titleEn : task.titleAr
           
           return (
             <div key={task.taskId} className={theme.item.compact}>
               <div className="flex items-start gap-3">
-                <div className={`p-2 rounded-xl ${iconBackgrounds[task.status === 'completed' ? 'green' : task.status === 'blocked' ? 'primary' : task.status === 'in_progress' ? 'teal' : 'navy']}`}>
+                <div className={`p-2 rounded-xl ${iconBackgrounds[normalizedStatus === 'completed' ? 'green' : normalizedStatus === 'blocked' ? 'primary' : normalizedStatus === 'in_progress' ? 'teal' : 'navy']}`}>
                   <StatusIcon className={`w-5 h-5 ${statusConfig[task.status].color}`} />
                 </div>
                 <div className="flex-1">
-                  <h3 className={`font-semibold ${theme.text.primary}`}>{task.taskEn}</h3>
-                  <p className={`text-sm ${theme.text.subtle}`}>{task.taskAr}</p>
+                  <h3 className={`font-semibold ${theme.text.primary}`}>{primaryTitle}</h3>
+                  <p className={`text-sm ${theme.text.subtle}`}>{secondaryTitle}</p>
                   <div className={`flex items-center gap-3 mt-2 text-xs ${theme.text.muted}`}>
-                    <span className={`px-2 py-1 ${theme.badge.base} ${theme.badge.navy} rounded`}>Stage: {task.stage}</span>
-                    <span className={`px-2 py-1 ${theme.badge.base} ${theme.badge.teal} rounded`}>{task.responsibleParty}</span>
-                    {task.dueDate && <span>Due: {task.dueDate}</span>}
+                    <span className={`${theme.badge.base} ${theme.badge.navy}`}>{task.owner}</span>
+                    {task.dueDate && <span>{locale === 'ar' ? `الاستحقاق: ${task.dueDate}` : `Due: ${task.dueDate}`}</span>}
                   </div>
                 </div>
                 <span className={`px-3 py-1 text-xs rounded-full font-medium ${theme.badge.base} ${

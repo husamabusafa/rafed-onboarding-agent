@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { IconClock, IconMapPin, IconCheck, IconX } from '@tabler/icons-react'
+import { useI18n } from '../i18n/i18n'
 
 const theme = {
   card: {
@@ -38,7 +39,7 @@ const theme = {
   table: {
     container: 'overflow-x-auto rounded-2xl border border-[#002855]/10 bg-white/70 shadow-sm dark:border-white/10 dark:bg-slate-950/30',
     header: 'border-b border-[#002855]/10 bg-white/70 dark:border-white/10 dark:bg-slate-950/35',
-    headerCell: 'text-left py-3 px-4 text-xs font-semibold text-[#002855] dark:text-slate-200',
+    headerCell: 'text-start py-3 px-4 text-xs font-semibold text-[#002855] dark:text-slate-200',
     body: 'bg-white/60 dark:bg-slate-950/25',
     row: 'border-b border-[#002855]/10 last:border-0 hover:bg-[#E1523E]/5 transition-colors dark:border-white/10 dark:hover:bg-[#E1523E]/10',
     cell: 'py-3 px-4 text-sm',
@@ -92,6 +93,7 @@ interface Props {
 
 
 export function AttendanceTracker({ input, toolName, toolCallId, addToolResult }: Props) {
+  const { t } = useI18n()
   const date = input?.date || '';
   const checkInTime = input?.checkInTime;
   const checkOutTime = input?.checkOutTime;
@@ -125,15 +127,15 @@ export function AttendanceTracker({ input, toolName, toolCallId, addToolResult }
           <IconClock className={`w-6 h-6 ${theme.icon.green}`} />
         </div>
         <div>
-          <h2 className={theme.header.title}>Attendance Tracker</h2>
-          <p className={theme.header.subtitle}>تتبع الحضور</p>
+          <h2 className={theme.header.title}>{t('attendance.title')}</h2>
+          <p className={theme.header.subtitle}>{t('attendance.subtitle')}</p>
         </div>
       </div>
 
       <div className={`${theme.gradient.success} rounded-3xl p-6 mb-6 ${theme.infoBox.base} ${theme.infoBox.success}`}>
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className={`text-sm ${theme.text.muted}`}>Today's Status</p>
+            <p className={`text-sm ${theme.text.muted}`}>{t('common.todayStatus')}</p>
             <p className={`text-2xl font-bold ${theme.text.primary}`}>{date}</p>
           </div>
           <span className={`px-3 py-1 rounded-full text-sm font-medium ${theme.badge.base} ${statusColors.attendance[status] || statusColors.attendance.ABSENT}`}>
@@ -143,27 +145,27 @@ export function AttendanceTracker({ input, toolName, toolCallId, addToolResult }
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className={theme.item.compact}>
-            <p className={`text-xs ${theme.text.muted} mb-1`}>Check In</p>
+            <p className={`text-xs ${theme.text.muted} mb-1`}>{t('common.checkIn')}</p>
             <p className={`text-lg font-bold ${theme.text.primary}`}>{checkInTime || '--:--'}</p>
           </div>
           <div className={theme.item.compact}>
-            <p className={`text-xs ${theme.text.muted} mb-1`}>Check Out</p>
+            <p className={`text-xs ${theme.text.muted} mb-1`}>{t('common.checkOut')}</p>
             <p className={`text-lg font-bold ${theme.text.primary}`}>{checkOutTime || '--:--'}</p>
           </div>
           <div className={theme.item.compact}>
-            <p className={`text-xs ${theme.text.muted} mb-1`}>Location</p>
+            <p className={`text-xs ${theme.text.muted} mb-1`}>{t('common.location')}</p>
             <div className="flex items-center gap-1">
               <IconMapPin className={`w-4 h-4 ${theme.icon.muted}`} />
-              <p className={`text-sm font-medium ${theme.text.primary}`}>{location || 'N/A'}</p>
+              <p className={`text-sm font-medium ${theme.text.primary}`}>{location || t('common.na')}</p>
             </div>
           </div>
           <div className={theme.item.compact}>
-            <p className={`text-xs ${theme.text.muted} mb-1`}>Verified</p>
+            <p className={`text-xs ${theme.text.muted} mb-1`}>{t('common.verified')}</p>
             <div className="flex items-center gap-1">
               {biometricVerified ? (
-                <><IconCheck className={`w-4 h-4 ${theme.icon.green}`} /><span className={`text-sm font-medium ${theme.text.muted}`}>Yes</span></>
+                <><IconCheck className={`w-4 h-4 ${theme.icon.green}`} /><span className={`text-sm font-medium ${theme.text.muted}`}>{t('common.yes')}</span></>
               ) : (
-                <><IconX className={`w-4 h-4 ${theme.icon.primary}`} /><span className={`text-sm font-medium ${theme.text.muted}`}>No</span></>
+                <><IconX className={`w-4 h-4 ${theme.icon.primary}`} /><span className={`text-sm font-medium ${theme.text.muted}`}>{t('common.no')}</span></>
               )}
             </div>
           </div>
@@ -171,16 +173,16 @@ export function AttendanceTracker({ input, toolName, toolCallId, addToolResult }
       </div>
 
       <div>
-        <h3 className={`text-lg font-semibold ${theme.text.primary} mb-4`}>Recent History</h3>
+        <h3 className={`text-lg font-semibold ${theme.text.primary} mb-4`}>{t('common.recentHistory')}</h3>
         <div className={theme.table.container}>
           <table className="w-full">
             <thead>
               <tr className={theme.table.header}>
-                <th className={theme.table.headerCell}>Date</th>
-                <th className={theme.table.headerCell}>Check In</th>
-                <th className={theme.table.headerCell}>Check Out</th>
-                <th className={theme.table.headerCell}>Hours</th>
-                <th className={theme.table.headerCell}>Status</th>
+                <th className={theme.table.headerCell}>{t('common.date')}</th>
+                <th className={theme.table.headerCell}>{t('common.checkIn')}</th>
+                <th className={theme.table.headerCell}>{t('common.checkOut')}</th>
+                <th className={theme.table.headerCell}>{t('common.hours')}</th>
+                <th className={theme.table.headerCell}>{t('common.status')}</th>
               </tr>
             </thead>
             <tbody className={theme.table.body}>

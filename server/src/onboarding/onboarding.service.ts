@@ -16,6 +16,10 @@ export class OnboardingService {
       select: { onboardingStage: true },
     });
 
+    if (!employee) {
+      return null;
+    }
+
     const completedTasks = tasks.filter(t => t.status === 'COMPLETED').length;
     const progressPercentage = tasks.length > 0 ? Math.round((completedTasks / tasks.length) * 100) : 0;
 
@@ -73,7 +77,7 @@ export class OnboardingService {
       },
     });
 
-    if (!employee.probationStart || !employee.probationEnd) {
+    if (!employee || !employee.probationStart || !employee.probationEnd) {
       return null;
     }
 
@@ -106,7 +110,7 @@ export class OnboardingService {
       status: today > employee.probationEnd ? 'COMPLETED' : 'ACTIVE',
       milestones,
       evaluations,
-      nextEvaluationDate: evaluations.find(e => !e.completedDate)?.scheduledDate.toISOString().split('T')[0],
+      nextEvaluationDate: evaluations.find(e => !e.completedDate)?.scheduledDate?.toISOString().split('T')[0],
     };
   }
 
@@ -117,11 +121,83 @@ export class OnboardingService {
     });
   }
 
+  async getOnboardingPlan(employeeId: number) {
+    return this.prisma.onboardingPlan.findUnique({
+      where: { employeeId },
+      include: {
+        template: true,
+        tasks: {
+          orderBy: [{ stage: 'asc' }, { priority: 'desc' }],
+          include: {
+            dependencies: true,
+            blockedBy: true,
+          },
+        },
+      },
+    });
+  }
+
+  async getPolicyAcknowledgments(employeeId: number) {
+    return this.prisma.policyAcknowledgment.findMany({
+      where: { employeeId },
+      orderBy: { requiredBy: 'asc' },
+    });
+  }
+
+  async getTrainingModules(employeeId: number) {
+    return this.prisma.trainingModule.findMany({
+      orderBy: { required: 'desc' },
+      include: {
+        completions: {
+          where: { employeeId },
+        },
+      },
+    });
+  }
+
+  async getCheckIns(employeeId: number) {
+    return this.prisma.checkIn.findMany({
+      where: { employeeId },
+      orderBy: { createdAt: 'desc' },
+    });
+  }
+
+  async createCheckIn(employeeId: number, data: any) {
+    const checkIn = await this.prisma.checkIn.create({
+      data: {
+        employeeId,
+        checkInType: data.checkInType,
+        conductedBy: data.conductedBy,
+        notes: data.notes,
+        scheduledAt: data.scheduledAt ? new Date(data.scheduledAt) : undefined,
+        completedAt: data.completedAt ? new Date(data.completedAt) : undefined,
+      },
+    });
+
+    await this.prisma.onboardingEvent.create({
+      data: {
+        employeeId,
+        eventType: 'CHECK_IN_COMPLETED',
+        payload: { checkInId: checkIn.id, checkInType: checkIn.checkInType },
+      },
+    });
+
+    return checkIn;
+  }
+
+  async getOnboardingEvents(employeeId: number) {
+    return this.prisma.onboardingEvent.findMany({
+      where: { employeeId },
+      orderBy: { occurredAt: 'desc' },
+    });
+  }
+
   async submitFeedback(employeeId: number, data: any) {
     return this.prisma.feedbackSurvey.create({
       data: {
         employeeId,
         surveyType: data.surveyType,
+        onboardingStage: data.onboardingStage,
         isAnonymous: data.isAnonymous || false,
         questions: data.questions,
         overallRating: data.overallRating,

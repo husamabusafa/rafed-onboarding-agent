@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { IconCalendar } from '@tabler/icons-react'
+import { useI18n } from '../i18n/i18n'
 
 const theme = {
   card: {
@@ -75,6 +76,7 @@ interface Props {
 }
 
 export function CompanyCalendar({ input, toolName, toolCallId, addToolResult }: Props) {
+  const { locale } = useI18n()
   const year = input?.year || 2026;
   const months = input?.months ?? EMPTY_MONTHS;
   const weekendDays = input?.weekendDays ?? EMPTY_WEEKEND_DAYS;
@@ -105,13 +107,15 @@ export function CompanyCalendar({ input, toolName, toolCallId, addToolResult }: 
           <IconCalendar className={`w-6 h-6 ${theme.icon.teal}`} />
         </div>
         <div>
-          <h2 className={theme.header.title}>Company Calendar {year}</h2>
-          <p className={theme.header.subtitle}>التقويم الشركة</p>
+          <h2 className={theme.header.title}>
+            {locale === 'ar' ? `تقويم الشركة ${year}` : `Company Calendar ${year}`}
+          </h2>
+          <p className={theme.header.subtitle}>{locale === 'ar' ? 'الإجازات والمناسبات' : 'Holidays & events'}</p>
         </div>
       </div>
 
       <div className={`mb-6 ${theme.infoBox.base} ${theme.infoBox.info}`}>
-        <p className={`text-sm font-medium ${theme.text.secondary}`}>Weekend Days:</p>
+        <p className={`text-sm font-medium ${theme.text.secondary}`}>{locale === 'ar' ? 'عطلة نهاية الأسبوع:' : 'Weekend Days:'}</p>
         <p className={`text-xs ${theme.text.muted} mt-1`}>{weekendDays.join(', ')}</p>
       </div>
 
@@ -125,7 +129,9 @@ export function CompanyCalendar({ input, toolName, toolCallId, addToolResult }: 
                   <p className={`text-xs ${theme.text.muted}`}>{month.nameAr}</p>
                 </div>
                 <div className="text-right">
-                  <p className={`text-xs ${theme.text.muted}`}>Hijri: {month.hijriRangeEn}</p>
+                  <p className={`text-xs ${theme.text.muted}`}>
+                    {locale === 'ar' ? `هجري: ${month.hijriRangeAr}` : `Hijri: ${month.hijriRangeEn}`}
+                  </p>
                   <p className={`text-xs ${theme.text.subtle}`}>{month.hijriRangeAr}</p>
                 </div>
               </div>
@@ -133,7 +139,9 @@ export function CompanyCalendar({ input, toolName, toolCallId, addToolResult }: 
             
             <div className={`p-4 ${theme.section.light}`}>
               <p className={`text-xs ${theme.text.subtle} mb-3`}>
-                {month.totalDays} days, starts on {month.startsOn}
+                {locale === 'ar'
+                  ? `عدد الأيام: ${month.totalDays} · يبدأ يوم ${month.startsOn}`
+                  : `${month.totalDays} days, starts on ${month.startsOn}`}
               </p>
               
               {(month.holidays ?? []).length > 0 ? (
@@ -153,7 +161,9 @@ export function CompanyCalendar({ input, toolName, toolCallId, addToolResult }: 
                   ))}
                 </div>
               ) : (
-                <p className={`text-sm ${theme.text.subtle} italic`}>No holidays this month</p>
+                <p className={`text-sm ${theme.text.subtle} italic`}>
+                  {locale === 'ar' ? 'لا توجد إجازات في هذا الشهر' : 'No holidays this month'}
+                </p>
               )}
             </div>
           </div>
