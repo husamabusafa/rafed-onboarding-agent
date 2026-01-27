@@ -128,6 +128,15 @@ export const tatweerInduction = {
     ] satisfies Person[],
     talentAcquisitionAndOnboardingTeam: [
       {
+        id: 'abdullah-al-rubaiyan',
+        name: 'Abdullah Alrobean',
+        title: ls('Talent Acquisition Director', 'مدير استقطاب المواهب'),
+        bio: ls(
+          'Your main contact for talent acquisition and onboarding support.',
+          'جهة تواصلك لاستقطاب المواهب ودعم التهيئة.',
+        ),
+      },
+      {
         id: 'ghaida-al-fawaz-ta',
         name: 'Ghaida Al Fawaz',
         title: ls('Sr. Talent Acquisition Specialist', 'أخصائي أول استقطاب المواهب'),
