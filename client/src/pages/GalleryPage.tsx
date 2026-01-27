@@ -2,13 +2,38 @@ import { IconX } from '@tabler/icons-react'
 import { useState } from 'react'
 import { useI18n } from '../i18n/i18n'
 
+// Experience gallery: neutral event / company visuals (Pexels)
 const images = [
-  { id: 'logo', src: '/company-logo.png', alt: 'Company' },
-  { id: 'leader-1', src: '/eng-metab-al-shahrani.png', alt: 'Leader' },
-  { id: 'leader-2', src: '/mr-mohammed-alhizam.png', alt: 'Leader' },
-  { id: 'leader-3', src: '/eng-fahad-al-solaie.png', alt: 'Leader' },
-  { id: 'leader-4', src: '/eng-omar-al-suwaiyan.png', alt: 'Leader' },
-  { id: 'leader-5', src: '/eng-mohamed-al-mehiemeed.png', alt: 'Leader' },
+  {
+    id: 'event-townhall',
+    src: 'https://images.pexels.com/photos/1181408/pexels-photo-1181408.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    alt: 'Company townhall event with employees gathered in a modern hall',
+  },
+  {
+    id: 'workshop-onboarding',
+    src: 'https://images.pexels.com/photos/1181395/pexels-photo-1181395.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    alt: 'Onboarding workshop with team members collaborating around a table',
+  },
+  {
+    id: 'office-lobby',
+    src: 'https://images.pexels.com/photos/1560932/pexels-photo-1560932.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    alt: 'Bright corporate lobby with people walking and talking',
+  },
+  {
+    id: 'meeting-room',
+    src: 'https://images.pexels.com/photos/1181528/pexels-photo-1181528.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    alt: 'Meeting room with a presentation on a large screen',
+  },
+  {
+    id: 'team-collaboration',
+    src: 'https://images.pexels.com/photos/1181472/pexels-photo-1181472.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    alt: 'Team collaborating on laptops in an open workspace',
+  },
+  {
+    id: 'office-panorama',
+    src: 'https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=1200',
+    alt: 'Panoramic view of a modern office building exterior',
+  },
 ] as const
 
 export function GalleryPage() {

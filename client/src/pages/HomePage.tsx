@@ -196,7 +196,7 @@ export function HomePage() {
               {l(locale, heroStatus)}
             </span>
             <h1 className="text-5xl font-extrabold tracking-tight text-[#002855] dark:text-white sm:text-6xl">
-              Hayyak
+              {l(locale, ls('Hayyak', 'حيّاك'))}
             </h1>
             <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">
               {t('home.subtitle')}
