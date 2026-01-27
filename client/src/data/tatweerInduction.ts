@@ -5,6 +5,7 @@ export type Person = {
   id?: string
   name: string
   title?: LocalizedString
+  company?: LocalizedString
   team?: string
   email?: string
   phone?: string
@@ -40,30 +41,35 @@ export const tatweerInduction = {
         id: 'eng-metab-al-shahrani',
         name: 'Eng. Metab Al Shahrani',
         title: ls('Group CEO', 'الرئيس التنفيذي'),
+        company: ls('Tataweer', 'تطوير'),
         bio: ls('Group executive leadership.', 'قيادة تنفيذية على مستوى المجموعة.'),
       },
       {
         id: 'ehab-mufti',
         name: 'Ehab Mufti',
         title: ls('Group CEO', 'الرئيس التنفيذي'),
+        company: ls('Rafed', 'رافد'),
         bio: ls('Group executive leadership.', 'قيادة تنفيذية على مستوى المجموعة.'),
       },
       {
         id: 'eng-fahad-al-solaie',
         name: 'Eng. Fahad Al Solaie',
         title: ls('Group CEO', 'الرئيس التنفيذي'),
+        company: ls('Tetco', 'تتكو'),
         bio: ls('Group executive leadership.', 'قيادة تنفيذية على مستوى المجموعة.'),
       },
       {
         id: 'eng-omar-al-suwaiyan',
         name: 'Eng. Omar Al Suwaiyan',
         title: ls('Group CEO', 'الرئيس التنفيذي'),
+        company: ls('TBC', 'TBC'),
         bio: ls('Group executive leadership.', 'قيادة تنفيذية على مستوى المجموعة.'),
       },
       {
         id: 'eng-mohamed-al-mehiemeed',
         name: 'Eng. Mohamed Al Mehiemeed',
         title: ls('Group CEO', 'الرئيس التنفيذي'),
+        company: ls('Talemia', 'التعليمية'),
         bio: ls('Group executive leadership.', 'قيادة تنفيذية على مستوى المجموعة.'),
       },
     ] satisfies Person[],
@@ -461,7 +467,7 @@ export const tatweerInduction = {
       ),
       coverage: ls(
         'Movement between Tatweer companies (Holding, Talemia, Tatweer, TBC, Tatweer) and the headquarters of the Ministry of Education.',
-        'التنقل بين شركات تطوير (القابضة، تاليميا، تطوير، TBC، تطوير) ومقر وزارة التعليم.',
+        'التنقل بين شركات تطوير (القابضة، التعليمية، تطوير، TBC، تطوير) ومقر وزارة التعليم.',
       ),
       criteria: ls('All THC employee', 'جميع موظفي THC'),
     },

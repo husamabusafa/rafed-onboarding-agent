@@ -13,7 +13,7 @@ function PeopleLinks({
 }: {
   title: string
   subtitle: string
-  people: readonly { id?: string; name: string; title?: Parameters<typeof l>[1] }[]
+  people: readonly { id?: string; name: string; title?: Parameters<typeof l>[1]; company?: Parameters<typeof l>[1] }[]
   columns: 'two' | 'three'
 }) {
   const { locale } = useI18n()
@@ -30,6 +30,7 @@ function PeopleLinks({
         {people.map((person) => {
           const imageSrc = getPersonImageSrc(person.name)
           const resolvedTitle = person.title ? l(locale, person.title) : undefined
+          const resolvedCompany = person.company ? l(locale, person.company) : undefined
           const to = person.id ? `/leadership/${person.id}` : '/leadership'
 
           return (
@@ -59,6 +60,7 @@ function PeopleLinks({
 
               <div className="min-w-0 flex-1">
                 <p className="truncate text-sm font-bold text-slate-900 dark:text-white">{person.name}</p>
+                {resolvedCompany ? <p className="mt-0.5 text-[13px] font-semibold text-[#E1523E] dark:text-[#E1523E]">{resolvedCompany}</p> : null}
                 {resolvedTitle ? <p className="mt-0.5 line-clamp-2 text-[12px] text-slate-500 dark:text-slate-400">{resolvedTitle}</p> : null}
               </div>
 
