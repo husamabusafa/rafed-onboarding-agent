@@ -9,7 +9,6 @@ export function normalizePersonKey(value: string): string {
 
 const imageFileByPersonKey: Record<string, string> = {
   [normalizePersonKey('Eng. Metab Al Shahrani')]: 'eng-metab-al-shahrani.png',
-  [normalizePersonKey('Mr. Mohammed AlHizam')]: 'mr-mohammed-alhizam.png',
   [normalizePersonKey('Eng. Fahad Al Solaie')]: 'eng-fahad-al-solaie.png',
   [normalizePersonKey('Eng. Omar Al Suwaiyan')]: 'eng-omar-al-suwaiyan.png',
   [normalizePersonKey('Eng. Mohamed Al Mehiemeed')]: 'eng-mohamed-al-mehiemeed.png',

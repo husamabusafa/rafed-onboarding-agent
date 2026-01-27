@@ -9,7 +9,7 @@ export function WelcomeOnboarding() {
       <div className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
         <div className="flex-1">
           <h1 className="text-4xl md:text-5xl font-bold mb-3 bg-clip-text">
-            Welcome to TETCO! 🎉
+            Welcome to Tatweer! 🎉
           </h1>
           <p className="text-lg leading-relaxed mb-6 text-slate-600 dark:text-slate-300">
             Your journey at Tatweer Educational Technologies begins here. We're excited to have you join our mission to transform education through technology.

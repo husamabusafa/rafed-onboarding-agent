@@ -43,8 +43,8 @@ export const tatweerInduction = {
         bio: ls('Group executive leadership.', 'قيادة تنفيذية على مستوى المجموعة.'),
       },
       {
-        id: 'mr-mohammed-alhizam',
-        name: 'Mr. Mohammed AlHizam',
+        id: 'ehab-mufti',
+        name: 'Ehab Mufti',
         title: ls('Group CEO', 'الرئيس التنفيذي'),
         bio: ls('Group executive leadership.', 'قيادة تنفيذية على مستوى المجموعة.'),
       },
@@ -127,12 +127,6 @@ export const tatweerInduction = {
       },
     ] satisfies Person[],
     talentAcquisitionAndOnboardingTeam: [
-      {
-        id: 'omar-al-ekresh',
-        name: 'Omar Al Ekresh',
-        title: ls('Talent Acquisition Director', 'مدير استقطاب المواهب'),
-        bio: ls('Your contact for talent acquisition and onboarding guidance.', 'جهة تواصلك لاستقطاب المواهب ودعم التهيئة.'),
-      },
       {
         id: 'ghaida-al-fawaz-ta',
         name: 'Ghaida Al Fawaz',
@@ -457,8 +451,8 @@ export const tatweerInduction = {
         'اتفاقية شراكة مع Uber Business لتقديم خدمات النقل لموظفي شركات تطوير دون تكاليف إضافية.',
       ),
       coverage: ls(
-        'Movement between Tatweer companies (Holding, Talemia, Rafd, TBC, TETCO) and the headquarters of the Ministry of Education.',
-        'التنقل بين شركات تطوير (القابضة، تاليميا، رافد، TBC، TETCO) ومقر وزارة التعليم.',
+        'Movement between Tatweer companies (Holding, Talemia, Tatweer, TBC, Tatweer) and the headquarters of the Ministry of Education.',
+        'التنقل بين شركات تطوير (القابضة، تاليميا، تطوير، TBC، تطوير) ومقر وزارة التعليم.',
       ),
       criteria: ls('All THC employee', 'جميع موظفي THC'),
     },

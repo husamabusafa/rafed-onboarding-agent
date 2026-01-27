@@ -473,7 +473,7 @@ export function HomePage() {
                 {t('home.startChat')}
               </span>
               <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white sm:text-4xl">
-                {l(locale, ls('Ask Rafed to organize your onboarding.', 'اسأل رافد لترتيب رحلة تهيئتك.'))}
+                {l(locale, ls('Ask Tatweer to organize your onboarding.', 'اسأل تطوير لترتيب رحلة تهيئتك.'))}
               </h2>
               <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
                 {l(locale, ls('Summarize tasks, find documents, or get answers instantly.', 'لخّص المهام، اعثر على المستندات، أو احصل على إجابات فورية.'))}
