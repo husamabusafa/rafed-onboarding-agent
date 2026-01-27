@@ -117,7 +117,10 @@ function App() {
     <I18nProvider>
       <HsafaProvider baseUrl="https://server.hsafa.com">
         <Routes>
-          <Route path="login" element={<LoginPage />} />
+          <Route
+            path="login"
+            element={<LoginPage themeMode={themeMode} onThemeToggle={() => setThemeMode((t) => (t === 'dark' ? 'light' : 'dark'))} />}
+          />
           <Route element={<ProtectedRoute />}>
             <Route path="/" element={<SystemLayout themeMode={themeMode} onThemeToggle={() => setThemeMode((t) => (t === 'dark' ? 'light' : 'dark'))} />}>
               <Route index element={<HomePage />} />

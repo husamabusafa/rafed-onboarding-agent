@@ -1,10 +1,17 @@
-import { IconLock, IconMail, IconUser } from '@tabler/icons-react'
+import { IconLock, IconMail, IconMoon, IconSun, IconUser, IconWorld } from '@tabler/icons-react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useI18n } from '../i18n/i18n'
 import { useAuth } from '../auth/AuthContext'
 
-export function LoginPage() {
-  const { t } = useI18n()
+type ThemeMode = 'light' | 'dark'
+
+type Props = {
+  themeMode: ThemeMode
+  onThemeToggle: () => void
+}
+
+export function LoginPage({ themeMode, onThemeToggle }: Props) {
+  const { t, locale, toggleLocale } = useI18n()
   const { login } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
@@ -21,11 +28,38 @@ export function LoginPage() {
       {/* Left Column: Form */}
       <div className="flex flex-col justify-center bg-white/70 px-8 py-12 backdrop-blur-sm dark:bg-slate-950/60 sm:px-12 lg:px-20 xl:px-24">
         <div className="w-full max-w-sm mx-auto lg:mx-0">
-          <div className="mb-10 flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#002855] text-white shadow-lg shadow-[#002855]/20">
-              <IconUser className="h-5 w-5" />
+          <div className="mb-10 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#002855] text-white shadow-lg shadow-[#002855]/20">
+                <IconUser className="h-5 w-5" />
+              </div>
+              <span className="text-xl font-bold text-[#002855] dark:text-white">{t('app.name')}</span>
             </div>
-            <span className="text-xl font-bold text-[#002855] dark:text-white">{t('app.name')}</span>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={onThemeToggle}
+                className="inline-flex h-9 items-center justify-center rounded-full bg-[#002855]/5 px-3 text-xs font-bold text-[#002855] transition-colors hover:bg-[#002855]/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
+                aria-label={themeMode === 'dark' ? t('theme.light') : t('theme.dark')}
+              >
+                {themeMode === 'dark' ? (
+                  <IconSun className="h-4 w-4" />
+                ) : (
+                  <IconMoon className="h-4 w-4" />
+                )}
+              </button>
+
+              <button
+                type="button"
+                onClick={toggleLocale}
+                className="inline-flex h-9 items-center gap-2 rounded-full bg-[#002855]/5 px-3 text-xs font-bold text-[#002855] transition-colors hover:bg-[#002855]/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
+                aria-label={t('lang.toggle')}
+              >
+                <IconWorld className="h-4 w-4" />
+                <span>{locale.toUpperCase()}</span>
+              </button>
+            </div>
           </div>
           <h1 className="text-3xl font-extrabold tracking-tight text-[#002855] dark:text-white sm:text-4xl">
             {t('login.title')}
